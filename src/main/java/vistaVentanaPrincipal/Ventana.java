@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 public class Ventana extends JFrame implements ActionListener{
     
     private PanelLateral pLat;
-    private PanelFicha pFic;
+    
     
     public Ventana(){
         this.inicializarComponentes();
@@ -26,10 +26,7 @@ public class Ventana extends JFrame implements ActionListener{
     private void inicializarComponentes(){
         
        this.pLat = new PanelLateral();
-       this.add(this.pLat, BorderLayout.WEST);
-       
-       this.pFic = new PanelFicha();
-       this.add(this.pFic, BorderLayout.CENTER);
+       this.add(this.pLat, BorderLayout.WEST);              
        
        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Veterinaria");
