@@ -6,6 +6,7 @@
 package vistaVentanaPrincipal;
 
 import java.awt.GridLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class PanelBuscador extends JPanel{
     private JLabel labNombre, labTipo, labRutDuenno;
     private JTextField txtNombre, txtRutDuenno; 
     private JComboBox cbTipo;
+    public JButton btnBuscar;
     
     public PanelBuscador(){
         this.inicializarComponentes();
@@ -29,9 +31,10 @@ public class PanelBuscador extends JPanel{
     private void inicializarComponentes(){
         
         TitledBorder border = new TitledBorder(" Busqueda Avanzada ");
+        border.setTitleColor(new java.awt.Color(54,82,48));
         this.setBorder(border);
         
-        GridLayout distribucion = new GridLayout(3,2);
+        GridLayout distribucion = new GridLayout(4,2);
         this.setLayout(distribucion);
         
         this.labNombre = new JLabel("Nombre paciente");
@@ -50,7 +53,15 @@ public class PanelBuscador extends JPanel{
         this.labRutDuenno = new JLabel("RUT Dueño");
         this.txtRutDuenno = new JTextField("");
         this.add(this.labRutDuenno);
-        this.add(this.txtRutDuenno);
+        this.add(this.txtRutDuenno);                
+        
+        this.labNombre = new JLabel("");
+        this.add(this.labNombre);
+        
+        this.btnBuscar = new JButton("Buscar");
+        this.add(this.btnBuscar);
+        
+        this.setBackground(new java.awt.Color(134,204,161));
         
     }
     

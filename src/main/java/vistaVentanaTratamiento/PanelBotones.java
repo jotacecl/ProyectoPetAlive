@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPacientes;
+package vistaVentanaTratamiento;
 
+import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -14,23 +15,21 @@ import javax.swing.JPanel;
  */
 public class PanelBotones extends JPanel{
     
-    public JButton btnEliminar, btnAbrir, btnAnnadir;
+    public JButton btnGuardar;
     
     public PanelBotones(){
-        this.iniciarComponentes();
+        this.inicializarComponentes();
     }
     
-    private void iniciarComponentes(){
-        this.btnAbrir = new JButton("Abrir");
-        this.add(this.btnAbrir);
+    private void inicializarComponentes(){
+        FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
+        this.setLayout(distribucion);
         
-        this.btnAnnadir = new JButton("Añadir");
-        this.add(this.btnAnnadir);
-        
-        this.btnEliminar = new JButton("Eliminar");
-        this.add(this.btnEliminar);
+        this.btnGuardar = new JButton("Guardar");
+        this.add(this.btnGuardar);
         
         this.setBackground(new java.awt.Color(134,204,161));
+        
     }
     
 }

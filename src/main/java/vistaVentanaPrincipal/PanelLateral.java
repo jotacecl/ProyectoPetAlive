@@ -5,8 +5,6 @@
  */
 package vistaVentanaPrincipal;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import javax.swing.Box;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -17,28 +15,27 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelLateral extends JPanel{
     
-    private PanelBuscador pBus;
-    private PanelOpciones pOpc;
+    public PanelBuscador pBus;
+    public PanelOpciones pOpc;
     
     public PanelLateral(){
         this.inicializarComponentes();
     }
     
     private void inicializarComponentes(){
-        
-        Box caja = Box.createVerticalBox();
+                       
+        Box caja = Box.createHorizontalBox();
         TitledBorder border = new TitledBorder("");  
         
-        this.pBus = new PanelBuscador();
-        caja.add(this.pBus, BorderLayout.NORTH);
-        
-        JPanel panelVacio = new JPanel();
-        caja.add(panelVacio, BorderLayout.CENTER);
-                
         this.pOpc = new PanelOpciones();
-        caja.add(this.pOpc, BorderLayout.SOUTH);
+        caja.add(this.pOpc);
         
+        this.pBus = new PanelBuscador();
+        caja.add(this.pBus);
+                                                
         this.add(caja);
+        
+        this.setBackground(new java.awt.Color(134,204,161));
         
         
     }
