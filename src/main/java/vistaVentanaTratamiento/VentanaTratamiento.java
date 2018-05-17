@@ -18,7 +18,7 @@ public class VentanaTratamiento extends JFrame{
     private PanelTexto pText;
     
     public VentanaTratamiento(){
-        
+        inicializarComponentes();
     }
     
     private void inicializarComponentes(){
