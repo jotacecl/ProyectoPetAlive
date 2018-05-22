@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VentanaFichaPaciente;
+package VistaFichaPaciente;
 
 /**
  *
  * @author HernySenpai
  */
-public class PestPacPanelCen {
+public class PestDatosResponsable {
     
 }
