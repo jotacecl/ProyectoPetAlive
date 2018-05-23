@@ -14,10 +14,20 @@ import javax.swing.JTabbedPane;
  */
 public class PestagnaPaciente extends JTabbedPane {
     private PestPacPanelSup panelSup;
+    private PestPacPanelCen panelCen;
+    private PestPacPanelInf panelInf;
     
     private void inicializarComponentes(){
         this.panelSup = new PestPacPanelSup();
         this.add(panelSup, BorderLayout.NORTH);
+        
+        this.panelCen = new PestPacPanelCen();
+        this.add(this.panelCen, BorderLayout.CENTER);
+        
+        this.panelInf = new PestPacPanelInf();
+        this.add(this.panelInf, BorderLayout.SOUTH);
+        
+        this.setName("Datos paciente");
     }
 
     public PestagnaPaciente() {

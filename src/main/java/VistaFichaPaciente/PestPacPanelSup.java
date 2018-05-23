@@ -84,7 +84,7 @@ public class PestPacPanelSup extends JPanel{
     }
 
     public PestPacPanelSup() {
-        this.inicializarComponentes();
+        inicializarComponentes();
     }
     
 }

@@ -31,7 +31,7 @@ public class PestDatosRespnPanelSup extends JPanel {
     private JComboBox ingMetodo;
 
     public PestDatosRespnPanelSup() {
-        this.inicializarComponentes();
+        inicializarComponentes();
     }
     
     
@@ -47,7 +47,7 @@ public class PestDatosRespnPanelSup extends JPanel {
         this.add(this.ingNombre);
         
         this.rut = new JLabel("RUT");
-        this.add(this.ingRut);
+        this.add(this.rut);
         
         this.ingRut = new JTextField(6);
         this.add(this.ingRut);

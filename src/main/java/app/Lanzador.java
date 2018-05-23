@@ -6,6 +6,7 @@
 package app;
 
 
+import VistaFichaPaciente.VentanaFichaPaciente;
 import vistaVentanaPrincipal.Ventana;
 
 
@@ -19,7 +20,7 @@ public class Lanzador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Ventana inicio = new Ventana();
+        VentanaFichaPaciente v1 = new VentanaFichaPaciente();
     }
     
 }
