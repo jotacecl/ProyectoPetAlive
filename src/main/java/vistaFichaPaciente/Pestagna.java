@@ -13,7 +13,7 @@ import javax.swing.JTabbedPane;
  */
 public class Pestagna extends JTabbedPane{
     
-    PestagnaPaciente pPac;
+    public PestagnaPaciente pPac;
     public PestagnaResponsable pResp;
     
     public Pestagna(){
