@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -23,10 +23,10 @@ public class PanelJaulas extends JPanel{
     public ArrayList<Jaula> jaulasL, jaulasS, jaulasM;
     
     public PanelJaulas(){
-        this.inicializarComponentes();
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){
         
         TitledBorder border = new TitledBorder("Jaulas");
         border.setTitleColor(new java.awt.Color(54,82,48));

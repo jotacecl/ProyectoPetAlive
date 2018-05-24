@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import javax.swing.JButton;
 
@@ -13,7 +13,20 @@ import javax.swing.JButton;
  */
 public class Jaula extends JButton{
     
-    public Jaula(){
+    private boolean ocupada;    
+    
+    public Jaula(){        
+    }
+
+    public boolean isOcupada() {
+        return ocupada;
+    }
+
+    public void setOcupada(boolean ocuapada) {
+        this.ocupada = ocuapada;
+    }
+    
+    public void pintar(boolean ocupado){
         
     }
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
@@ -19,10 +19,10 @@ public class PanelLateral extends JPanel{
     public PanelOpciones pOpc;
     
     public PanelLateral(){
-        this.inicializarComponentes();
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){
                        
         Box caja = Box.createHorizontalBox();
         TitledBorder border = new TitledBorder("");  

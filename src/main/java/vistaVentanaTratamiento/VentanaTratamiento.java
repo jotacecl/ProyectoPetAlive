@@ -7,7 +7,6 @@ package vistaVentanaTratamiento;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
-import vistaVentanaPacientes.VentanaPacientes;
 
 /**
  *
@@ -18,10 +17,11 @@ public class VentanaTratamiento extends JFrame{
     private PanelTexto pText;
     
     public VentanaTratamiento(){
-        inicializarComponentes();
+        iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){                
+        
         this.pText = new PanelTexto();
         this.add(this.pText, BorderLayout.CENTER);
         
@@ -29,10 +29,10 @@ public class VentanaTratamiento extends JFrame{
         this.add(this.pBtn, BorderLayout.SOUTH);
                 
         this.setDefaultCloseOperation(VentanaTratamiento.HIDE_ON_CLOSE);
-        this.setTitle("Veterinaria"+"- Tratamiento Paciente");
-//        this.setSize(1000,600);
+        this.setTitle("Tratamiento Paciente");
         this.setLocation(100,100);
         this.setVisible(true);
+        this.setResizable(false);
         pack();
     }
     

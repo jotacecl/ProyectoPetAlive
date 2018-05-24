@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -25,10 +25,10 @@ public class PanelBuscador extends JPanel{
     public JButton btnBuscar;
     
     public PanelBuscador(){
-        this.inicializarComponentes();
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){
         
         TitledBorder border = new TitledBorder(" Busqueda Avanzada ");
         border.setTitleColor(new java.awt.Color(54,82,48));
@@ -61,7 +61,7 @@ public class PanelBuscador extends JPanel{
         this.btnBuscar = new JButton("Buscar");
         this.add(this.btnBuscar);
         
-        this.setBackground(new java.awt.Color(134,204,161));
+        this.setBackground(new java.awt.Color(134, 204, 161));
         
     }
     

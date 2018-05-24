@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -17,18 +17,18 @@ import vistaVentanaPacientes.VentanaPacientes;
  *
  * @author Juan Carlos
  */
-public class Ventana extends JFrame implements ActionListener{
+public class VentanaInicio extends JFrame implements ActionListener{
     
     private PanelLateral pLat;
     private PanelJaulas pJail;
     private PanelSuperior pTitulo;
     
     
-    public Ventana(){
-        this.inicializarComponentes();
+    public VentanaInicio(){
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){
        
        try {
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -54,7 +54,6 @@ public class Ventana extends JFrame implements ActionListener{
        
        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Veterinaria");
-//        this.setSize(1000,600);
         this.setLocation(100,100);
         this.setVisible(true);
         pack();

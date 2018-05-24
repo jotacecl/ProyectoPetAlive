@@ -8,6 +8,7 @@ package vistaVentanaPacientes;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,10 +22,14 @@ public class PanelTabla extends JPanel{
     private JScrollPane scroll;
     
     public PanelTabla() {
-        inicializarComponente();
+        iniciarComponentes();
     }
 
-    private void inicializarComponente() {                
+    private void iniciarComponentes() { 
+        
+        TitledBorder border = new TitledBorder("Tabla de pacientes");
+        border.setTitleColor(new java.awt.Color(54,82,48));
+        this.setBorder(border);
         
         this.modelo = new DefaultTableModel();
         this.tabla = new JTable();        

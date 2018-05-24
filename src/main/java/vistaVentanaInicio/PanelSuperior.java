@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class PanelSuperior extends JPanel{
     
     private JLabel labTitulo;
-    private String nombreVeterinaria = "VidaPet";
+    private String nombreVeterinaria = "PetAlive";
     
     public PanelSuperior(){
         this.iniciarComponentes();
@@ -26,7 +26,7 @@ public class PanelSuperior extends JPanel{
         
         Font font = new Font("Eras Bold ITC", Font.PLAIN, 24);
         
-        this.labTitulo = new JLabel("Veterianaria "+nombreVeterinaria);
+        this.labTitulo = new JLabel("Veterinaria "+nombreVeterinaria);
         this.labTitulo.setFont(font);
         this.labTitulo.setForeground(new java.awt.Color(235,234,175));
         

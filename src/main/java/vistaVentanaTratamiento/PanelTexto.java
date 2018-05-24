@@ -5,9 +5,12 @@
  */
 package vistaVentanaTratamiento;
 
+import java.awt.FlowLayout;
+import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -19,17 +22,28 @@ public class PanelTexto extends JPanel{
     private JLabel labTrat;
     
     public PanelTexto(){
-        this.inicializarComponentes();
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){
+        Box caja = Box.createVerticalBox();
         
+        TitledBorder border = new TitledBorder("");       
+        this.setBorder(border);
+        
+        JPanel pnlLabTrat = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labTrat = new JLabel("Tratamiento ");
-        this.add(this.labTrat);
+        pnlLabTrat.add(this.labTrat);
+        pnlLabTrat.setBackground(new java.awt.Color(134, 204, 161));
+        caja.add(pnlLabTrat);
         
-        this.areaTexto = new JTextArea("");
-        this.add(this.areaTexto);
+        JPanel pnlArea = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        this.areaTexto = new JTextArea(20,45);
+        pnlArea.add(this.areaTexto);
+        pnlArea.setBackground(new java.awt.Color(134, 204, 161));
+        caja.add(pnlArea);
         
+        this.add(caja);
         this.setBackground(new java.awt.Color(134,204,161));
     }
     

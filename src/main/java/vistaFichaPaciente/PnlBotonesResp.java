@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VistaFichaPaciente;
+package vistaFichaPaciente;
 
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -13,15 +13,20 @@ import javax.swing.JPanel;
  *
  * @author HernySenpai
  */
-public class PestDatosRespnPanelInf extends JPanel {
-    private JButton verDetalle;
+public class PnlBotonesResp extends JPanel {
+    public JButton verDetalle;
     
-    private void inicializarComponentes(){
+    public PnlBotonesResp(){
+        this.iniciarComponentes();
+    }
+    
+    private void iniciarComponentes(){
         
-        GridLayout distribucion = new GridLayout();
+        FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
         this.verDetalle = new JButton("Ver detalle insumos");
         this.add(this.verDetalle);
         
+        this.setBackground(new java.awt.Color(134, 204, 161));
         this.setLayout(distribucion);
     }
     

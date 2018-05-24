@@ -18,10 +18,10 @@ public class PanelBotones extends JPanel{
     public JButton btnGuardar;
     
     public PanelBotones(){
-        this.inicializarComponentes();
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
+    private void iniciarComponentes(){
         FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
         this.setLayout(distribucion);
         

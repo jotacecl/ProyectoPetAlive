@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaVentanaPrincipal;
+package vistaVentanaInicio;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -20,13 +20,11 @@ public class PanelOpciones extends JPanel{
     public JButton btnTabla, btnAgregarJaula, btnNuevoPac, btnQuitarPac, btnQuitarJaula;
     
     public PanelOpciones(){
-        this.inicializarComponentes();
+        this.iniciarComponentes();
     }
     
-    private void inicializarComponentes(){
-        Box cajaTotal = Box.createHorizontalBox();
-        Box cajaPacientes = Box.createVerticalBox();
-        Box cajaJaulas = Box.createVerticalBox();
+    private void iniciarComponentes(){
+        Box cajaTotal = Box.createHorizontalBox();        
         
         FlowLayout distribucion = new FlowLayout();
         this.setLayout(distribucion);
