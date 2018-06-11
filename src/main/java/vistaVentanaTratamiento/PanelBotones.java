@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class PanelBotones extends JPanel{
     
-    public JButton btnGuardar;
+    public JButton btnGuardar, btnInsumos;    
     
     public PanelBotones(){
         this.iniciarComponentes();
@@ -27,6 +27,9 @@ public class PanelBotones extends JPanel{
         
         this.btnGuardar = new JButton("Guardar");
         this.add(this.btnGuardar);
+        
+        this.btnInsumos = new JButton("Insumos/Tratamientos");
+        this.add(this.btnInsumos);
         
         this.setBackground(new java.awt.Color(134,204,161));
         

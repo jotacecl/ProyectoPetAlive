@@ -6,15 +6,19 @@
 package vistaVentanaTratamiento;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import vistaVentanaInsumos.VentanaInsumos;
 
 /**
  *
  * @author Juan Carlos
  */
-public class VentanaTratamiento extends JFrame{
+public class VentanaTratamiento extends JFrame implements ActionListener{
     private PanelBotones pBtn;
     private PanelTexto pText;
+    private VentanaInsumos vIns;
     
     public VentanaTratamiento(){
         iniciarComponentes();
@@ -27,6 +31,9 @@ public class VentanaTratamiento extends JFrame{
         
         this.pBtn = new PanelBotones();
         this.add(this.pBtn, BorderLayout.SOUTH);
+        
+        this.pBtn.btnGuardar.addActionListener(this);
+        this.pBtn.btnInsumos.addActionListener(this);
                 
         this.setDefaultCloseOperation(VentanaTratamiento.HIDE_ON_CLOSE);
         this.setTitle("Tratamiento Paciente");
@@ -34,6 +41,13 @@ public class VentanaTratamiento extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         pack();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(this.pBtn.btnInsumos == e.getSource()){
+            this.vIns = new VentanaInsumos();
+        }
     }
     
     
