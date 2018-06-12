@@ -27,6 +27,16 @@ public class SubPanelDatos {
         return panel;
     }
     
+    public JPanel generarSubPanelTFP(JPanel panel, JLabel label, JTextField txt, String sLabel, int R, int G, int B){
+        panel = new JPanel(new FlowLayout(FlowLayout.LEFT));        
+        label = new JLabel(sLabel);
+        panel.add(label);        
+        txt = new JTextField("",3);
+        panel.add(txt);
+        panel.setBackground(new java.awt.Color(R, G, B));    
+        return panel;
+    }
+    
     public JPanel generarSubPanelCB(JPanel panel, JLabel label, JComboBox cb, String sLabel, int R, int G, int B){
         panel = new JPanel(new FlowLayout(FlowLayout.LEFT)); 
         label = new JLabel(sLabel);

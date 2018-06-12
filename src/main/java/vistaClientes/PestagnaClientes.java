@@ -50,11 +50,10 @@ public class PestagnaClientes extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(this.panelBtn.btnAbrir == e.getSource()){
-            this.vCliente = new VentanaCliente();
+            this.vCliente = new VentanaCliente(1);
         }else if(this.panelBtn.btnAnnadir == e.getSource()){
-            this.vCliente = new VentanaCliente();
-        }else if(this.panelBtn.btnEliminar == e.getSource()){
-            this.vCliente = new VentanaCliente();
+            this.vCliente = new VentanaCliente(2);
+        }else if(this.panelBtn.btnEliminar == e.getSource()){            
         }
     }
     

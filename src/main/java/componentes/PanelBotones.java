@@ -30,7 +30,7 @@ public class PanelBotones extends JPanel{
         
     }
     
-    private void generarBotonesAAE(){
+    public void generarBotonesAAE(){
         this.btnAbrir = new JButton("Abrir");
         this.add(this.btnAbrir);
         
@@ -43,7 +43,7 @@ public class PanelBotones extends JPanel{
         this.setBackground(new java.awt.Color(134,204,161));
     }
     
-    private void generarBotonesAC(){
+    public void generarBotonesAC(){
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
         this.btnAceptar = new JButton("Aceptar");
@@ -55,7 +55,7 @@ public class PanelBotones extends JPanel{
         this.setBackground(new java.awt.Color(134,204,161));
     }
     
-    private void generarBotonesGC(){
+    public void generarBotonesGC(){
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
         this.btnGuardar = new JButton("Guardar");

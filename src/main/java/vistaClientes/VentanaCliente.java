@@ -17,19 +17,19 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCliente extends JFrame implements ActionListener{
     
-    public PanelBotonesC pnlBotones;
+    public PanelBotones pnlBotones;
     public PanelDatos pnlDatos;
     
-    public VentanaCliente(){
-        this.iniciarComponentes();
+    public VentanaCliente(int btnSeleccionado){
+        this.iniciarComponentes(btnSeleccionado);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(int btnSeleccionado){
                      
         this.pnlDatos = new PanelDatos();
         this.add(this.pnlDatos, BorderLayout.CENTER);
         
-        this.pnlBotones = new PanelBotonesC();
+        this.pnlBotones = new PanelBotones(btnSeleccionado);
         this.add(this.pnlBotones, BorderLayout.SOUTH);
         
         this.setBackground(new java.awt.Color(134, 204, 161));

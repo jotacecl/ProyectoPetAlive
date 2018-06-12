@@ -48,8 +48,7 @@ public class VentanaFichaPaciente extends JFrame implements ActionListener{
         this.setVisible(true);
         this.setTitle("Ficha del paciente");
         this.setLocation(100,100);
-        this.setResizable(false);
-        
+        this.setResizable(false);       
         pack();
     }
 

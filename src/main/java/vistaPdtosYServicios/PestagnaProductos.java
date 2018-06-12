@@ -18,8 +18,9 @@ import componentes.PanelBotones;
  */
 public class PestagnaProductos extends JPanel implements ActionListener{
     
-    public PanelTabla panelTabla;
-    public PanelBotones panelBtn;
+    public PanelTabla pnlTabla;
+    public PanelBotones pnlBotones;
+    private VentanaProducto vProducto;
     
     public PestagnaProductos(){
         this.iniciarComponentes();
@@ -29,26 +30,30 @@ public class PestagnaProductos extends JPanel implements ActionListener{
         this.setLayout(new BorderLayout());
         this.setName("Productos");
         
-        this.panelTabla = new PanelTabla("Productos disponibles al publico");
-        this.panelTabla.addColumn("ID");
-        this.panelTabla.addColumn("Nombre");
-        this.panelTabla.addColumn("Tipo");
-        this.panelTabla.addColumn("Descripción");
-        this.panelTabla.addColumn("Stock");
-        this.panelTabla.addColumn("Precio Und");
-        this.add(this.panelTabla, BorderLayout.CENTER);
+        this.pnlTabla = new PanelTabla("Productos disponibles al publico");
+        this.pnlTabla.addColumn("ID");
+        this.pnlTabla.addColumn("Nombre");
+        this.pnlTabla.addColumn("Tipo");
+        this.pnlTabla.addColumn("Descripción");
+        this.pnlTabla.addColumn("Stock");
+        this.pnlTabla.addColumn("Precio Und");
+        this.add(this.pnlTabla, BorderLayout.CENTER);
         
-        this.panelBtn = new PanelBotones(1);
-        this.panelBtn.btnAbrir.addActionListener(this);
-        this.panelBtn.btnAnnadir.addActionListener(this);
-        this.panelBtn.btnEliminar.addActionListener(this);
-        this.add(this.panelBtn, BorderLayout.SOUTH);
+        this.pnlBotones = new PanelBotones(1);
+        this.pnlBotones.btnAbrir.addActionListener(this);
+        this.pnlBotones.btnAnnadir.addActionListener(this);
+        this.pnlBotones.btnEliminar.addActionListener(this);
+        this.add(this.pnlBotones, BorderLayout.SOUTH);
         
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.pnlBotones.btnAbrir == e.getSource()){
+            this.vProducto = new VentanaProducto(2);
+        }else if(this.pnlBotones.btnAnnadir == e.getSource()){
+            this.vProducto = new VentanaProducto(3);
+        }
     }
     
 }

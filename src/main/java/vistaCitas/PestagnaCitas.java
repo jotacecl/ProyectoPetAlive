@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 public class PestagnaCitas extends JPanel implements ActionListener{
     
     private VentanaCita vCita;
-    private PanelTabla panelTabla;
-    private PanelBotones panelBtn;
+    private PanelTabla pnlTabla;
+    private PanelBotones pnlBotones;
     
     public PestagnaCitas(){
      this.iniciarComponentes();
@@ -30,27 +30,31 @@ public class PestagnaCitas extends JPanel implements ActionListener{
         this.setLayout(new BorderLayout());
         this.setName("Citas");
         
-        this.panelTabla = new PanelTabla("Pacientes");
-        this.panelTabla.addColumn("ID Paciente");
-        this.panelTabla.addColumn("Paciente");
-        this.panelTabla.addColumn("RUT Cliente");
-        this.panelTabla.addColumn("Fecha ingreso");           
-        this.panelTabla.addColumn("Fecha cita");
-        this.panelTabla.addColumn("Motivo");
-        this.add(this.panelTabla, BorderLayout.CENTER);
+        this.pnlTabla = new PanelTabla("Pacientes");
+        this.pnlTabla.addColumn("ID Paciente");
+        this.pnlTabla.addColumn("Paciente");
+        this.pnlTabla.addColumn("RUT Cliente");
+        this.pnlTabla.addColumn("Fecha ingreso");           
+        this.pnlTabla.addColumn("Fecha cita");
+        this.pnlTabla.addColumn("Motivo");
+        this.add(this.pnlTabla, BorderLayout.CENTER);
         
-        this.panelBtn = new PanelBotones(1);
-        this.panelBtn.btnAbrir.addActionListener(this);
-        this.panelBtn.btnAnnadir.addActionListener(this);
-        this.panelBtn.btnEliminar.addActionListener(this);
-        this.add(this.panelBtn, BorderLayout.SOUTH);
+        this.pnlBotones = new PanelBotones(1);
+        this.pnlBotones.btnAbrir.addActionListener(this);
+        this.pnlBotones.btnAnnadir.addActionListener(this);
+        this.pnlBotones.btnEliminar.addActionListener(this);
+        this.add(this.pnlBotones, BorderLayout.SOUTH);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(this.panelBtn.btnAbrir == e.getSource()){
-            this.vCita = new VentanaCita();
+        
+        if(this.pnlBotones.btnAbrir == e.getSource()){
+            this.vCita = new VentanaCita(2);
+        }else if(this.pnlBotones.btnAnnadir == e.getSource()){
+            this.vCita = new VentanaCita(3);
         }
+        
     }
     
 }

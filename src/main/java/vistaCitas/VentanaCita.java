@@ -20,23 +20,20 @@ public class VentanaCita extends JFrame implements ActionListener{
     public PanelDatos pnlDatos;
     public PanelBotones pnlBotones;
     
-    public VentanaCita(){
-        this.iniciarComponentes();
+    public VentanaCita(int btnSeleccionado){
+        this.iniciarComponentes(btnSeleccionado);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(int btnSeleccionado){
         
         this.pnlDatos = new PanelDatos();
         this.add(pnlDatos, BorderLayout.CENTER);
         
-        this.pnlBotones = new PanelBotones(3);
-        this.add(this.pnlBotones, BorderLayout.SOUTH);
-        
-        this.pnlBotones.btnGuardar.addActionListener(this);
-        this.pnlBotones.btnCancelar.addActionListener(this);
+        this.pnlBotones = new PanelBotones(btnSeleccionado);
+        this.add(this.pnlBotones, BorderLayout.SOUTH);        
         
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setTitle("Datos del Cliente");
+        this.setTitle("Citas programadas");
         this.setLocation(50,50);
         this.setVisible(true);
         this.setResizable(false);

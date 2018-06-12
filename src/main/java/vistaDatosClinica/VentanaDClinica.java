@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaPdtosYServicios;
+package vistaDatosClinica;
 
 import componentes.PanelBotones;
 import java.awt.BorderLayout;
@@ -13,28 +13,28 @@ import javax.swing.JFrame;
  *
  * @author Juan Carlos
  */
-public class VentanaProducto extends JFrame{
+public class VentanaDClinica extends JFrame{
     
+    public PanelDatos pnlDatos;
     public PanelBotones pnlBotones;
-    public PanelDatosP pnlDatos;
     
-    public VentanaProducto(int btnSeleccionado){
-        this.iniciarComponentes(btnSeleccionado);
+    public VentanaDClinica(){
+        this.iniciarComponentes();
     }
     
-    private void iniciarComponentes(int btnSeleccionado){
+    private void iniciarComponentes(){
         
-        this.pnlDatos = new PanelDatosP();
+        this.pnlDatos = new PanelDatos();
         this.add(pnlDatos, BorderLayout.CENTER);
         
-        this.pnlBotones = new PanelBotones(btnSeleccionado);
+        this.pnlBotones = new PanelBotones(3);
         this.add(pnlBotones, BorderLayout.SOUTH);
         
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setTitle("Datos del Cliente");
-        this.setLocation(50,50);
+        this.setBackground(new java.awt.Color(134, 204, 161));
         this.setVisible(true);
-        this.setResizable(false);
+        this.setTitle("Datos de la Clinica/Consulta");
+        this.setLocation(100,100);
+        this.setResizable(false);       
         pack();
         
     }
