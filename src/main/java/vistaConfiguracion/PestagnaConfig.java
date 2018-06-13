@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import vistaDatosClinica.VentanaDClinica;
 import vistaHorario.VentanaHorario;
 import vistaJaulas.VentanaCJaulas;
+import vistaPersonalizacion.VentanaPersonalizacion;
 
 /**
  *
@@ -24,6 +25,8 @@ public class PestagnaConfig extends JPanel implements ActionListener{
     private VentanaDClinica vDClinica;
     private VentanaHorario vHorario;
     private VentanaCJaulas vCJaulas;
+    private VentanaPersonalizacion vPersonalizar;
+    private VentanaAcerca vAcerca;
     
     public PestagnaConfig(){
         this.iniciarComponentes();
@@ -40,6 +43,9 @@ public class PestagnaConfig extends JPanel implements ActionListener{
         this.pOpciones.bDatosClinica.addActionListener(this);
         this.pOpciones.bHorario.addActionListener(this);
         this.pOpciones.bJaulas.addActionListener(this);
+        
+        this.pOpciones.bPersonalizar.setEnabled(false);
+        
         this.pOpciones.bPersonalizar.addActionListener(this);
         this.pOpciones.bAcerca.addActionListener(this);
         
@@ -56,6 +62,10 @@ public class PestagnaConfig extends JPanel implements ActionListener{
             this.vHorario = new VentanaHorario();
         }else if(this.pOpciones.bJaulas == e.getSource()){
             this.vCJaulas = new VentanaCJaulas();
+        }else if(this.pOpciones.bPersonalizar == e.getSource()){
+            this.vPersonalizar = new VentanaPersonalizacion();
+        }else if(this.pOpciones.bAcerca == e.getSource()){
+            this.vAcerca = new VentanaAcerca();
         }
     }
     

@@ -31,7 +31,7 @@ public class VentanaProducto extends JFrame{
         this.add(pnlBotones, BorderLayout.SOUTH);
         
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setTitle("Datos del Cliente");
+        this.setTitle("Productos para el publico");
         this.setLocation(50,50);
         this.setVisible(true);
         this.setResizable(false);

@@ -33,9 +33,7 @@ public class VentanaFichaPaciente extends JFrame implements ActionListener{
         this.pnlAMedicos = new PanelAMedicos();
         
         this.pnlBotones = new PanelBotonesP();
-        
-                
-        this.setBackground(new java.awt.Color(134, 204, 161));
+                                
         this.setName("Datos paciente");
                 
         this.pnlBotones.btnDiagnostico.addActionListener(this);        

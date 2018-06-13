@@ -33,7 +33,7 @@ public class VentanaPersonal extends JFrame implements ActionListener{
         this.add(this.pnlBotones, BorderLayout.SOUTH);
         
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setTitle("Veterinaria");
+        this.setTitle("Personal de la veterinaria");
         this.setLocation(50,50);
         this.setVisible(true);
         this.setResizable(false);
