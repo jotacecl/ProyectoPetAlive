@@ -18,17 +18,17 @@ import vistaPersonalizacion.VentanaPersonalizacion;
  *
  * @author Juan Carlos
  */
-public class PestagnaConfig extends JPanel implements ActionListener{
+public class PestagnaConfig extends JPanel {
     
     public PanelOpciones pOpciones;
     public PanelLogo pLogo;
     private VentanaDClinica vDClinica;
     private VentanaHorario vHorario;
-    private VentanaCJaulas vCJaulas;
+    public VentanaCJaulas vCJaulas;
     private VentanaPersonalizacion vPersonalizar;
-    private VentanaAcerca vAcerca;
+    private VentanaAcerca vAcerca;    
     
-    public PestagnaConfig(){
+    public PestagnaConfig(){        
         this.iniciarComponentes();
     }
     
@@ -40,33 +40,33 @@ public class PestagnaConfig extends JPanel implements ActionListener{
         this.pOpciones = new PanelOpciones();
         this.pLogo = new PanelLogo();
         
-        this.pOpciones.bDatosClinica.addActionListener(this);
-        this.pOpciones.bHorario.addActionListener(this);
-        this.pOpciones.bJaulas.addActionListener(this);
+//        this.pOpciones.bDatosClinica.addActionListener(this);
+//        this.pOpciones.bHorario.addActionListener(this);
+//        this.pOpciones.bJaulas.addActionListener(this);
         
         this.pOpciones.bPersonalizar.setEnabled(false);
         
-        this.pOpciones.bPersonalizar.addActionListener(this);
-        this.pOpciones.bAcerca.addActionListener(this);
+//        this.pOpciones.bPersonalizar.addActionListener(this);
+//        this.pOpciones.bAcerca.addActionListener(this);
         
         this.add(pLogo, BorderLayout.EAST);
         this.add(pOpciones, BorderLayout.CENTER);                
         
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(this.pOpciones.bDatosClinica == e.getSource()){
-            this.vDClinica = new VentanaDClinica();
-        }else if(this.pOpciones.bHorario == e.getSource()){
-            this.vHorario = new VentanaHorario();
-        }else if(this.pOpciones.bJaulas == e.getSource()){
-            this.vCJaulas = new VentanaCJaulas();
-        }else if(this.pOpciones.bPersonalizar == e.getSource()){
-            this.vPersonalizar = new VentanaPersonalizacion();
-        }else if(this.pOpciones.bAcerca == e.getSource()){
-            this.vAcerca = new VentanaAcerca();
-        }
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if(this.pOpciones.bDatosClinica == e.getSource()){
+//            this.vDClinica = new VentanaDClinica();
+//        }else if(this.pOpciones.bHorario == e.getSource()){
+//            this.vHorario = new VentanaHorario();
+//        }else if(this.pOpciones.bJaulas == e.getSource()){
+//            this.vCJaulas = new VentanaCJaulas();
+//        }else if(this.pOpciones.bPersonalizar == e.getSource()){
+//            this.vPersonalizar = new VentanaPersonalizacion();
+//        }else if(this.pOpciones.bAcerca == e.getSource()){
+//            this.vAcerca = new VentanaAcerca();
+//        }
+//    }
     
 }

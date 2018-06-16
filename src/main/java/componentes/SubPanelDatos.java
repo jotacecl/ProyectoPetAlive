@@ -21,8 +21,7 @@ public class SubPanelDatos {
     public JPanel generarSubPanelTF(JPanel panel, JLabel label, JTextField txt, String sLabel, int R, int G, int B){
         panel = new JPanel(new FlowLayout(FlowLayout.LEFT));        
         label = new JLabel(sLabel);
-        panel.add(label);        
-        txt = new JTextField("",20);
+        panel.add(label);                
         panel.add(txt);
         panel.setBackground(new java.awt.Color(R, G, B));    
         return panel;
@@ -31,8 +30,7 @@ public class SubPanelDatos {
     public JPanel generarSubPanelTFP(JPanel panel, JLabel label, JTextField txt, String sLabel, int R, int G, int B){
         panel = new JPanel(new FlowLayout(FlowLayout.LEFT));        
         label = new JLabel(sLabel);
-        panel.add(label);        
-        txt = new JTextField("",3);
+        panel.add(label);                
         panel.add(txt);
         panel.setBackground(new java.awt.Color(R, G, B));    
         return panel;

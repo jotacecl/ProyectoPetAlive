@@ -36,17 +36,21 @@ public class PanelCJaulas extends JPanel{
         this.subPanel = new SubPanelDatos();
         
         JPanel pnlCS = new JPanel();
+        this.txtCS = new JTextField("",3);
         caja.add(subPanel.generarSubPanelTFP(pnlCS, labCS, txtCS, "Jaulas S(Pequeñas) ", 134, 204, 161));
         
         JPanel pnlCM = new JPanel();
+        this.txtCM = new JTextField("",3);
         caja.add(subPanel.generarSubPanelTFP(pnlCM, labCM, txtCM, "Jaulas M(Medias)      ", 134, 204, 161));
         
         JPanel pnlCL = new JPanel();
-        caja.add(subPanel.generarSubPanelTFP(pnlCL, labCL, txtCL, "Jaulas L(Grandes)    ", 134, 204, 161));
+        this.txtCL = new JTextField("",3);
+        caja.add(subPanel.generarSubPanelTFP(pnlCL, labCL, txtCL, "Jaulas L(Grandes)    ", 134, 204, 161));        
         
         this.setBackground(new java.awt.Color(134, 204, 161));
         this.add(caja);
         
     }
+        
     
 }

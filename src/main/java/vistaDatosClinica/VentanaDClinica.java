@@ -16,27 +16,32 @@ import javax.swing.JFrame;
 public class VentanaDClinica extends JFrame{
     
     public PanelDatos pnlDatos;
-    public PanelBotones pnlBotones;
+    public PanelBotones pnlBotones;    
     
-    public VentanaDClinica(){
-        this.iniciarComponentes();
+    public VentanaDClinica(String nombreS, String nombreF, String direccion, String ciudad, String region, String telefono, String email, String web){
+        this.iniciarComponentes(nombreS, nombreF, direccion, ciudad, region, telefono, email, web);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String nombreS, String nombreF, String direccion, String ciudad, String region, String telefono, String email, String web){
         
-        this.pnlDatos = new PanelDatos();
+        this.pnlDatos = new PanelDatos(nombreS, nombreF, direccion, ciudad, region, telefono, email, web);
         this.add(pnlDatos, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(3);
         this.add(pnlBotones, BorderLayout.SOUTH);
         
-        this.setBackground(new java.awt.Color(134, 204, 161));
-        this.setVisible(true);
+        this.setBackground(new java.awt.Color(134, 204, 161));        
         this.setTitle("Datos de la Clinica/Consulta");
         this.setLocation(100,100);
         this.setResizable(false);       
         pack();
         
     }
+    
+    
+//    public void setVisible(boolean visible){
+//        this.setVisible(visible);
+//    } 
+    
     
 }

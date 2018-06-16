@@ -37,9 +37,9 @@ public class PestagnasInicio extends JTabbedPane{
     private void iniciarComponentes(){
         
         this.pCitas = new PestagnaCitas();
-        this.pFicheros = new PestagnaFicheros();
-        this.pConfig = new PestagnaConfig();
+        this.pFicheros = new PestagnaFicheros();        
         this.pJaulas = new PestagnaJaulas();
+        this.pConfig = new PestagnaConfig();
         
         this.add(pCitas);
         this.add(pFicheros);

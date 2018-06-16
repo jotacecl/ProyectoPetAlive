@@ -16,15 +16,15 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelJaulas extends JPanel{
     
-    private final int cantidadJaulasL = 6, cantidadJaulasM = 10, cantidadJaulasS = 15;
+    public int cantidadJaulasL , cantidadJaulasM , cantidadJaulasS ;
     
     public ArrayList<Jaula> jaulasL, jaulasS, jaulasM;
     
     public PanelJaulas(){
         this.iniciarComponentes();
     }
-    
-    private void iniciarComponentes(){
+        
+    public void iniciarComponentes(){
         
         this.setLayout(new GridLayout(1,3));
         
@@ -78,6 +78,20 @@ public class PanelJaulas extends JPanel{
             panel.add(jaulas.get(i));
         }
             
-    }        
-    
+    }   
+
+    public void setCantidadJaulasL(int cantidadJaulasL) {
+        this.cantidadJaulasL = cantidadJaulasL;
+    }
+
+    public void setCantidadJaulasM(int cantidadJaulasM) {
+        this.cantidadJaulasM = cantidadJaulasM;
+    }
+
+    public void setCantidadJaulasS(int cantidadJaulasS) {
+        this.cantidadJaulasS = cantidadJaulasS;
+    }
+   
+   
+          
 }
