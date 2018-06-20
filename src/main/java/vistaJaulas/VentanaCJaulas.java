@@ -7,10 +7,7 @@ package vistaJaulas;
 
 import componentes.PanelBotones;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -23,13 +20,13 @@ public class VentanaCJaulas extends JFrame{
     public PanelJaulas pnlJaulas;
     public PestagnaJaulas pJaulas;
     
-    public VentanaCJaulas(){        
-        this.iniciarComponentes();
+    public VentanaCJaulas(String L, String M, String S){        
+        this.iniciarComponentes(L, M , S);
     }
     
-    public void iniciarComponentes(){
+    private void iniciarComponentes(String L, String M, String S){
         
-        this.pnlCJaulas = new PanelCJaulas();
+        this.pnlCJaulas = new PanelCJaulas(L, M ,S);
         this.add(this.pnlCJaulas, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(3);

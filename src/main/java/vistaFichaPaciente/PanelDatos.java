@@ -7,10 +7,13 @@ package vistaFichaPaciente;
 
 import com.toedter.calendar.JDateChooser;
 import componentes.BotonIcono;
+import componentes.SubPanelDatos;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,60 +27,57 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelDatos extends JPanel{
     
-    private JLabel labPaciente, labRaza, labEspecie, labFechaNac, labSexo, labInternado, labJaula, labCliente;    
-    private JTextField txtPaciente, txtEspecie, txtRaza, txtFechaNacimiento, txtJaula, txtCliente;
-    private JComboBox cbTipo;    
-    private JRadioButton rbMacho, rbHembra;    
-    private JRadioButton rbSi, rbNo; 
+    private JLabel labPaciente, labRaza,labColor, labEspecie, labFechaNac, labSexo, labInternado, labJaula, labCliente;    
+    public JTextField txtPaciente,txtColor, txtRaza, txtFechaNacimiento, txtJaula, txtCliente;
+    public JComboBox cbTipo;    
+    public JRadioButton rbMacho, rbHembra;    
+    public JRadioButton rbSi, rbNo; 
+    public ButtonGroup grupoRB,grupoRB2;
     public JDateChooser calendario;
     public BotonIcono btnBusqueda;
-    private static final String FORMATO = "%1$td-%1$tm-%1$tY";
+    public JButton btnAgregar;
+    public static final String FORMATO = "%1$td-%1$tm-%1$tY";
+    public SubPanelDatos subPanel;
     
-    private void iniciarComponentes(){
-        Box caja = Box.createVerticalBox();
-        
-        calendario = new JDateChooser();
-        
+    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String jaula, boolean jaulaEnable){
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
         
-        JPanel pnlPac = new JPanel(new FlowLayout());
-        this.labPaciente = new JLabel("Nombre paciente ");
-        pnlPac.add(this.labPaciente);
-        this.txtPaciente = new JTextField("", 20);
-        pnlPac.add(this.txtPaciente);
-        pnlPac.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlPac);
+        Box caja = Box.createVerticalBox();        
         
-        JPanel pnlEspe = new JPanel(new FlowLayout());
-        this.labEspecie = new JLabel("Especie                  ");
-        pnlEspe.add(this.labEspecie); 
-        this.cbTipo = new JComboBox();        
-        this.cbTipo.addItem("Cánido");
-        this.cbTipo.addItem("Félido");
-        this.cbTipo.addItem("Otro");
-        pnlEspe.add(cbTipo);
-        this.txtEspecie = new JTextField("",13);
-        pnlEspe.add(this.txtEspecie);
-        pnlEspe.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlEspe);
+        subPanel = new SubPanelDatos();
+        
+        calendario = new JDateChooser();               
+        
+        JPanel pnlPac = new JPanel(new FlowLayout());        
+        this.txtPaciente = new JTextField(nombrePaciente, 20);        
+        caja.add(this.subPanel.generarSubPanelTF(pnlPac, labPaciente, txtPaciente, "Nombre paciente ", 134,204,161));
+        
+        JPanel pnlEspe = new JPanel(new FlowLayout());        
+        this.cbTipo = new JComboBox();      
+        this.btnAgregar = new JButton("+");
+        caja.add(this.subPanel.generarSubPanelCB(pnlEspe, labEspecie, cbTipo, "Especie                  ", 134,204,161, btnAgregar));
         
         JPanel pnlRaza = new JPanel(new FlowLayout());
-        this.labRaza = new JLabel("Raza                        ");
-        pnlRaza.add(this.labRaza);
-        this.txtRaza = new JTextField("",20);
-        pnlRaza.add(this.txtRaza);
-        pnlRaza.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlRaza);
+        this.txtRaza = new JTextField(raza,20);
+        caja.add(this.subPanel.generarSubPanelTF(pnlRaza, labRaza, txtRaza, "Raza                        ", 134,204,161));
+        
+        JPanel pnlColor = new JPanel(new FlowLayout());
+        this.txtColor = new JTextField(color, 20);
+        caja.add(this.subPanel.generarSubPanelTF(pnlColor, labColor, txtColor, "Color ", 134,204,161));
         
         JPanel pnlFecha = new JPanel(new FlowLayout());
         this.labFechaNac = new JLabel("Fecha Nac.             ");
         pnlFecha.add(this.labFechaNac);
-        this.txtFechaNacimiento = new JTextField("",20);
+        this.txtFechaNacimiento = new JTextField(fNac,20);
         JPanel subPanel = new JPanel();
         subPanel.setPreferredSize(new Dimension(226,25));
         subPanel.setLayout(new GridLayout(1,1));
         subPanel.add(this.calendario);
+        
+        String fechaSeleccionada = String.format(FORMATO, this.calendario.getDate());
+        this.txtFechaNacimiento.setText(fechaSeleccionada);
+        
         pnlFecha.add(subPanel);
         pnlFecha.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlFecha);
@@ -85,7 +85,7 @@ public class PanelDatos extends JPanel{
         JPanel pnlCliente = new JPanel(new FlowLayout());
         this.labCliente = new JLabel("RUT Cliente            ");
         pnlCliente.add(this.labCliente);
-        this.txtCliente = new JTextField("",17);
+        this.txtCliente = new JTextField(rut,17);
         pnlCliente.add(this.txtCliente);
         this.txtCliente.setEditable(false);
         this.btnBusqueda = new BotonIcono("","data/icon/search.png","data/icon/search.png");
@@ -96,23 +96,30 @@ public class PanelDatos extends JPanel{
         JPanel pnlSexo = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labSexo = new JLabel("Sexo        ");
         pnlSexo.add(this.labSexo);
+        this.grupoRB = new ButtonGroup();
         this.rbMacho = new JRadioButton("Macho");
-        pnlSexo.add(this.rbMacho);
+        grupoRB.add(this.rbMacho);
         this.rbHembra = new JRadioButton("Hembra");
-        pnlSexo.add(this.rbHembra);
+        grupoRB.add(this.rbHembra);
+        pnlSexo.add(this.rbMacho);
+        pnlSexo.add(this.rbHembra);        
         pnlSexo.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlSexo);
         
         JPanel pnlInternado = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labInternado = new JLabel("Internado");
         pnlInternado.add(this.labInternado);
+        this.grupoRB2 = new ButtonGroup();
         this.rbSi = new JRadioButton("SI");
-        pnlInternado.add(this.rbSi);
+        grupoRB2.add(this.rbSi);
         this.rbNo = new JRadioButton("NO");
+        grupoRB2.add(this.rbNo);
+        pnlInternado.add(this.rbSi);
         pnlInternado.add(this.rbNo);
         this.labJaula = new JLabel("Jaula");
         pnlInternado.add(this.labJaula);
-        this.txtJaula = new JTextField("", 2);
+        this.txtJaula = new JTextField(jaula, 2);
+        this.txtJaula.setEnabled(jaulaEnable);
         pnlInternado.add(this.txtJaula);
         pnlInternado.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlInternado);
@@ -121,8 +128,8 @@ public class PanelDatos extends JPanel{
         this.add(caja);        
     }
 
-    public PanelDatos() {
-        iniciarComponentes();
+    public PanelDatos(String nombrePaciente, String raza, String color, String fNac, String rut, String jaula, boolean jaulaEnable) {
+        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, jaula , jaulaEnable);
     }
     
 }

@@ -6,6 +6,7 @@
 package componentes;
 
 import java.awt.FlowLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,14 +37,13 @@ public class SubPanelDatos {
         return panel;
     }
     
-    public JPanel generarSubPanelCB(JPanel panel, JLabel label, JComboBox cb, String sLabel, int R, int G, int B){
+    public JPanel generarSubPanelCB(JPanel panel, JLabel label, JComboBox cb, String sLabel, int R, int G, int B, JButton btnAgregar){
         panel = new JPanel(new FlowLayout(FlowLayout.LEFT)); 
         label = new JLabel(sLabel);
-        cb = new JComboBox();
-        cb.addItem("");
-        cb.addItem("Añadir nuevo...");
+        cb.addItem("    ");
         panel.add(label);
         panel.add(cb);    
+        panel.add(btnAgregar);
         panel.setBackground(new java.awt.Color(R, G, B)); 
         return panel;
     }

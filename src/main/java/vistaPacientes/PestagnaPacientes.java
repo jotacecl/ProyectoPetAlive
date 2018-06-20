@@ -8,9 +8,6 @@ package vistaPacientes;
 import componentes.PanelBotones;
 import componentes.PanelTabla;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import vistaFichaPaciente.VentanaFichaPaciente;
 
@@ -18,11 +15,11 @@ import vistaFichaPaciente.VentanaFichaPaciente;
  *
  * @author Juan Carlos
  */
-public class PestagnaPacientes extends JPanel implements ActionListener{
+public class PestagnaPacientes extends JPanel {
     
     private VentanaFichaPaciente vFicha;
-    private PanelTabla panelTabla;
-    private PanelBotones panelBtn;
+    public PanelTabla panelTabla;
+    public PanelBotones panelBtn;
     
     public PestagnaPacientes(){
         this.iniciarComponentes();
@@ -45,22 +42,8 @@ public class PestagnaPacientes extends JPanel implements ActionListener{
         this.add(this.panelTabla, BorderLayout.CENTER);
         
         this.panelBtn = new PanelBotones(1);
-        this.panelBtn.btnAbrir.addActionListener(this);
-        this.panelBtn.btnAnnadir.addActionListener(this);
-        this.panelBtn.btnEliminar.addActionListener(this);
         this.add(this.panelBtn, BorderLayout.SOUTH);
                 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(this.panelBtn.btnAbrir == e.getSource()){
-            this.vFicha = new VentanaFichaPaciente();
-        }else if(this.panelBtn.btnAnnadir == e.getSource()){
-            this.vFicha = new VentanaFichaPaciente();
-        }else if(this.panelBtn.btnEliminar == e.getSource()){
-            JOptionPane.showMessageDialog(null,"Esta funcion aun no se implementa\n" + "Proximamente: Se agrega funcion para eliminar al paciente seleccionado"); 
-        }
     }
     
 }

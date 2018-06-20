@@ -7,6 +7,7 @@ package vistaPersonal;
 
 import componentes.SubPanelDatos;
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class PanelDatos extends JPanel{
     public JTextField txtID, txtNombres, txtApellidos, txtTelefono, txtMovil, txtEmail, txtDireccion;
     public JComboBox cbCiudad, cbRegion, cbCargo;
     public SubPanelDatos subPanel;
+    public JButton btnAgregarC, btnAgregarR, btnAgregarCG;
     
     public PanelDatos(){
         this.iniciarComponentes();
@@ -50,10 +52,12 @@ public class PanelDatos extends JPanel{
         caja.add(this.subPanel.generarSubPanelTF(pnlDireccion, labDireccion, txtDireccion, "Dirección   ", 134, 204, 161));
         
         JPanel pnlCiudad = new JPanel();
-        caja.add(this.subPanel.generarSubPanelCB(pnlCiudad, labCiudad, cbCiudad, "Ciudad      ", 134, 204, 161));
+        this.btnAgregarC = new JButton("+");
+        caja.add(this.subPanel.generarSubPanelCB(pnlCiudad, labCiudad, cbCiudad, "Ciudad      ", 134, 204, 161, btnAgregarC));
         
         JPanel pnlRegion = new JPanel();
-        caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región      ", 134, 204, 161));
+        this.btnAgregarR = new JButton("+");
+        caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región      ", 134, 204, 161, btnAgregarR));
         
         JPanel pnlTelefono = new JPanel();
         caja.add(this.subPanel.generarSubPanelTF(pnlTelefono, labTelefono, txtTelefono, "Teléfono   ", 134, 204, 161));
@@ -65,7 +69,8 @@ public class PanelDatos extends JPanel{
         caja.add(this.subPanel.generarSubPanelTF(pnlEmail, labEmail, txtEmail, "Email       ", 134, 204, 161));
         
         JPanel pnlCargo = new JPanel();
-        caja.add(this.subPanel.generarSubPanelCB(pnlCargo, labCargo, cbCargo, "Cargo       ", 134, 204, 161));
+        this.btnAgregarCG = new JButton("+");
+        caja.add(this.subPanel.generarSubPanelCB(pnlCargo, labCargo, cbCargo, "Cargo       ", 134, 204, 161, btnAgregarCG));
         
         this.setBackground(new java.awt.Color(134,204,161));
         

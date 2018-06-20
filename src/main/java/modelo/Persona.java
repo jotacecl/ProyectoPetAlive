@@ -13,7 +13,9 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String rut;
+    private String direccion;
     private String ciudad;
+    private String region;
     private int telefono;
     private int movil;
     private String email;
@@ -21,11 +23,13 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String rut, String ciudad, int telefono, int movil, String email) {
+    public Persona(String nombre, String apellido, String rut, String direccion, String ciudad,String region, int telefono, int movil, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.rut = rut;
+        this.direccion = direccion;
         this.ciudad = ciudad;
+        this.region = region;
         this.telefono = telefono;
         this.movil = movil;
         this.email = email;
@@ -54,6 +58,14 @@ public class Persona {
     public void setRut(String rut) {
         this.rut = rut;
     }
+    
+    public String getDireccion(){
+        return direccion;
+    }
+    
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
+    }
 
     public String getCiudad() {
         return ciudad;
@@ -61,6 +73,14 @@ public class Persona {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+    
+    public String getRegion(){
+        return region;
+    }
+    
+    public void setRegion(String region){
+        this.region = region;
     }
 
     public int getTelefono() {

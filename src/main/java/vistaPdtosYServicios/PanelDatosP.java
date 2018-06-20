@@ -7,6 +7,7 @@ package vistaPdtosYServicios;
 
 import componentes.SubPanelDatos;
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ public class PanelDatosP extends JPanel{
     private JLabel labID, labNombre, labTipo, labDescripcion, labStock, labPrecio;
     public JTextField txtID, txtNombre, txtDescripcion, txtStock, txtPrecio;
     public JComboBox cbTipo;
+    public JButton btnAgregar;
     public SubPanelDatos subPanel;
     
     public PanelDatosP(){
@@ -44,7 +46,8 @@ public class PanelDatosP extends JPanel{
         caja.add(this.subPanel.generarSubPanelTF(pnlNombre, labNombre, txtNombre, "Producto       ", 134, 204, 161));
         
         JPanel pnlTipo = new JPanel();
-        caja.add(this.subPanel.generarSubPanelCB(pnlTipo, labTipo, cbTipo, "Tipo               ", 134, 204, 161));
+        this.btnAgregar = new JButton("+");
+        caja.add(this.subPanel.generarSubPanelCB(pnlTipo, labTipo, cbTipo, "Tipo               ", 134, 204, 161, btnAgregar));
         
         JPanel pnlDescripcion = new JPanel();
         caja.add(this.subPanel.generarSubPanelTF(pnlDescripcion, labDescripcion, txtDescripcion, "Descripcion ",  134, 204, 161));

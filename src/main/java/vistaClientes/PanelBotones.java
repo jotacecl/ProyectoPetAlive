@@ -16,15 +16,15 @@ import javax.swing.JTextField;
  * @author HernySenpai
  */
 public class PanelBotones extends JPanel {
-    public JButton btnGuardar, btnCancelar;
+    public JButton btnGuardar, btnCancelar, btnAceptar;
     public JTextField txtDeuda;
     private JLabel labDeuda;
     
-    public PanelBotones(int btnSeleccionado){
-        this.iniciarComponentes(btnSeleccionado);
+    public PanelBotones(int btnSelect){
+        this.iniciarComponentes(btnSelect);
     }
     
-    private void iniciarComponentes(int btnSeleccionado){
+    private void iniciarComponentes(int btnSelect){
         
         FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
         
@@ -35,13 +35,13 @@ public class PanelBotones extends JPanel {
         this.txtDeuda.setEditable(false);
         this.add(this.txtDeuda);
         
-        if(btnSeleccionado == 1){
-            this.btnGuardar = new JButton("Aceptar");
+        this.btnGuardar = new JButton("Guardar");
+        this.btnAceptar = new JButton("Aceptar");
+        if(btnSelect == 1){            
+            this.add(this.btnAceptar);
+        }else if(btnSelect == 2){            
             this.add(this.btnGuardar);
-        }else if(btnSeleccionado == 2){
-            this.btnGuardar = new JButton("Guardar");
-            this.add(this.btnGuardar);
-        }                
+        }
         
         this.btnCancelar = new JButton("Cancelar");
         this.add(this.btnCancelar);

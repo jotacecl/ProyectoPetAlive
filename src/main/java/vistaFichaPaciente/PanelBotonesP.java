@@ -5,7 +5,10 @@
  */
 package vistaFichaPaciente;
 
+import componentes.PanelBotones;
+import componentes.SubPanelDatos;
 import java.awt.FlowLayout;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -15,24 +18,38 @@ import javax.swing.JPanel;
  */
 public class PanelBotonesP extends JPanel{
     
-    public JButton btnTratamiento, btnDiagnostico, btnPagar;    
+    public JButton btnTratamiento, btnDiagnostico, btnPagar;  
+    public PanelBotones pnlBotones;
+    public SubPanelDatos subPanel;
 
-    public PanelBotonesP() {
-        this.iniciarComponentes();
+    public PanelBotonesP(int btnSeleccionado) {
+        this.iniciarComponentes(btnSeleccionado);
     }        
     
-    private void iniciarComponentes(){
-        FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
+    private void iniciarComponentes(int btnSeleccionado){
+        
+        Box caja = Box.createVerticalBox();        
+        
+        subPanel = new SubPanelDatos();
+        
+        
+        JPanel pnlBotones1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));        
         this.btnTratamiento = new JButton("Tratamiento");
-        this.add(this.btnTratamiento);        
+        pnlBotones1.add(this.btnTratamiento);        
         
         this.btnDiagnostico = new JButton ("Diagnostico");
-        this.add(this.btnDiagnostico);
+        pnlBotones1.add(this.btnDiagnostico);
         
         this.btnPagar = new JButton("Pagar tratamiento");
-        this.add(this.btnPagar);
+        pnlBotones1.add(this.btnPagar);
         
-        this.setLayout(distribucion);
+        pnlBotones1.setBackground(new java.awt.Color(134, 204, 161));
+        caja.add(pnlBotones1);
+        
+        this.pnlBotones = new PanelBotones(btnSeleccionado);
+        caja.add(this.pnlBotones);
+        
+        this.add(caja);
         
         this.setBackground(new java.awt.Color(134, 204, 161));
     }

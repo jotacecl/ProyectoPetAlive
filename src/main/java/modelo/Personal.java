@@ -17,8 +17,8 @@ public class Personal extends Persona {
     
     
     
-    public Personal(String cargo, String nombre, String apellido, String rut, String ciudad, int telefono, int movil, String email) {
-        super(nombre, apellido, rut, ciudad, telefono, movil, email);
+    public Personal(String cargo, String nombre, String apellido, String rut,String direccion, String ciudad, String region, int telefono, int movil, String email) {
+        super(nombre, apellido, rut, direccion, ciudad, region, telefono, movil, email);
         this.cargo = cargo;
     }
 

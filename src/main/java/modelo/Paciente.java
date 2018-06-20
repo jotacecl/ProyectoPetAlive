@@ -17,9 +17,10 @@ public class Paciente {
     private String especie;
     private String raza;
     private String color;
-    private Date fNacimiento;
-    private Boolean sexo;
-    private Boolean internado;
+    private String fNacimiento;
+    private String sexo;
+    private String internado;
+    private String rutCliente;
     private int jaula;
 
     public String getId() {
@@ -62,27 +63,27 @@ public class Paciente {
         this.color = color;
     }
 
-    public Date getfNacimiento() {
+    public String getfNacimiento() {
         return fNacimiento;
     }
 
-    public void setfNacimiento(Date fNacimiento) {
+    public void setfNacimiento(String fNacimiento) {
         this.fNacimiento = fNacimiento;
     }
 
-    public Boolean getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public Boolean getInternado() {
+    public String getInternado() {
         return internado;
     }
 
-    public void setInternado(Boolean internado) {
+    public void setInternado(String internado) {
         this.internado = internado;
     }
 
@@ -93,11 +94,19 @@ public class Paciente {
     public void setJaula(int jaula) {
         this.jaula = jaula;
     }
+    
+    public String getRutCliente(){
+        return rutCliente;
+    }
+    
+    public void setRutCliente(String rutCliente){
+        this.rutCliente = rutCliente;
+    }
 
     public Paciente() {
     }
 
-    public Paciente(String id, String nombre, String especie, String raza, String color, Date fNacimiento, Boolean sexo, Boolean internado, int jaula) {
+    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, int jaula, String rutCliente) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -107,6 +116,7 @@ public class Paciente {
         this.sexo = sexo;
         this.internado = internado;
         this.jaula = jaula;
+        this.rutCliente = rutCliente;
     }
     
     

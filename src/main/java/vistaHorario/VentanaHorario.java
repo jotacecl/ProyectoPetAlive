@@ -17,13 +17,13 @@ public class VentanaHorario extends JFrame{
     public PanelHorario pnlHorario;
     public PanelBotones pnlBotones;
        
-    public VentanaHorario(){
-        this.iniciarComponentes();
+    public VentanaHorario(String hLV1, String mLV1, String hLV2,String mLV2, String hSD1, String mSD1, String hSD2,String mSD2){
+        this.iniciarComponentes(hLV1,mLV1,hLV2,mLV2, hSD1,mSD1,hSD2,mSD2);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String hLV1, String mLV1, String hLV2,String mLV2, String hSD1, String mSD1, String hSD2,String mSD2){
         
-        this.pnlHorario = new PanelHorario();
+        this.pnlHorario = new PanelHorario(hLV1,mLV1,hLV2,mLV2, hSD1,mSD1,hSD2,mSD2);
         this.add(this.pnlHorario, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(2);
@@ -32,7 +32,6 @@ public class VentanaHorario extends JFrame{
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setTitle("Horario de atencion");
         this.setLocation(50,50);
-        this.setVisible(true);
         this.setResizable(false);
         pack();
         

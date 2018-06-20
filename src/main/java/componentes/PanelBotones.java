@@ -20,6 +20,7 @@ public class PanelBotones extends JPanel{
     
     
     public PanelBotones(int op){
+        this.iniciarBotones();
         if(op == 1){
             this.generarBotonesAAE();
         }else if(op == 2){
@@ -30,14 +31,23 @@ public class PanelBotones extends JPanel{
         
     }
     
-    public void generarBotonesAAE(){
+    public void iniciarBotones(){
         this.btnAbrir = new JButton("Abrir");
+        this.btnAnnadir = new JButton("Añadir");
+        this.btnEliminar = new JButton("Eliminar");
+        this.btnAceptar = new JButton("Aceptar");
+        this.btnGuardar = new JButton("Guardar");
+        this.btnCancelar = new JButton("Cancelar");
+    }
+    
+    public void generarBotonesAAE(){
+        
         this.add(this.btnAbrir);
         
-        this.btnAnnadir = new JButton("Añadir");
+        
         this.add(this.btnAnnadir);
         
-        this.btnEliminar = new JButton("Eliminar");
+        
         this.add(this.btnEliminar);
         
         this.setBackground(new java.awt.Color(134,204,161));
@@ -46,7 +56,7 @@ public class PanelBotones extends JPanel{
     public void generarBotonesAC(){
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
-        this.btnAceptar = new JButton("Aceptar");
+        
         this.add(this.btnAceptar);
         
         this.btnCancelar = new JButton("Cancelar");
@@ -58,10 +68,10 @@ public class PanelBotones extends JPanel{
     public void generarBotonesGC(){
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
-        this.btnGuardar = new JButton("Guardar");
+        
         this.add(this.btnGuardar);
         
-        this.btnCancelar = new JButton("Cancelar");
+        
         this.add(this.btnCancelar);
         
         this.setBackground(new java.awt.Color(134,204,161));
