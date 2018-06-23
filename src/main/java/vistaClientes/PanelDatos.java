@@ -6,6 +6,7 @@
 package vistaClientes;
 
 import componentes.SubPanelDatos;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -21,17 +22,19 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelDatos extends JPanel {
     
-    private JLabel labNombres, labApellidos, labRut, labTelefono, labMovil, labDireccion, labCiudad, labRegion, labEmail;        
-    public JTextField txtNombre, txtApellidos, txtRut, txtTelefono, txtMovil, txtDireccion, txtEmail;    
+    private JLabel labNombres, labApellidos, labRut, labTelefono, labMovil, labDireccion, labCiudad, labRegion, labEmail;  
+    private JLabel signos;
+    public JTextField txtNombre, txtApellidos, txtTelefono, txtMovil, txtDireccion, txtEmail;  
+    public JTextField rutParte1, rutParte2, rutParte3, rutParte4;
     public JComboBox cbCiudad, cbRegion;
     public JButton btnAgregarC, btnAgregarR;
-    public SubPanelDatos subPanel;
+    public SubPanelDatos subPanel;    
 
-    public PanelDatos(String nombre, String apellidos, String rut, String direccion, String telefono, String movil,  String email) {
-        iniciarComponentes(nombre, apellidos, rut, direccion, telefono, movil, email);
+    public PanelDatos(String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email) {
+        iniciarComponentes(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
     }
                 
-    private void iniciarComponentes(String nombre, String apellidos, String rut, String direccion, String telefono, String movil,  String email){
+    private void iniciarComponentes(String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
         
@@ -48,8 +51,24 @@ public class PanelDatos extends JPanel {
         caja.add(this.subPanel.generarSubPanelTF(pnlApellidos, labApellidos, txtApellidos, "Apellidos   ", 134,204,161));
         
         JPanel pnlRut = new JPanel(new FlowLayout(FlowLayout.LEFT));   
-        this.txtRut = new JTextField(rut,20);
-        caja.add(this.subPanel.generarSubPanelTF(pnlRut, labRut, txtRut, "RUT            ", 134,204,161));
+        this.labRut = new JLabel("RUT            ");
+        this.rutParte1 = new JTextField(rutPart1,2);              
+        this.rutParte2 = new JTextField(rutPart2,2);     
+        this.rutParte3 = new JTextField(rutPart3,2);    
+        this.rutParte4 = new JTextField(rutPart4,2);
+        pnlRut.add(this.labRut);
+        pnlRut.add(this.rutParte1);
+        this.signos = new JLabel(".");  
+        pnlRut.add(this.signos);
+        pnlRut.add(this.rutParte2);
+        this.signos = new JLabel(".");
+        pnlRut.add(this.signos);
+        pnlRut.add(this.rutParte3);
+        this.signos = new JLabel("-");
+        pnlRut.add(this.signos);
+        pnlRut.add(this.rutParte4);
+        pnlRut.setBackground(new Color(134,204,161));
+        caja.add(pnlRut);               
         
         JPanel pnlCiudad = new JPanel(new FlowLayout(FlowLayout.LEFT));      
         this.cbCiudad = new JComboBox();            

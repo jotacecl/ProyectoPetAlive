@@ -8,15 +8,13 @@ package vistaPersonal;
 import componentes.PanelBotones;
 import componentes.PanelTabla;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Juan Carlos
  */
-public class PestagnaPersonal extends JPanel implements ActionListener{
+public class PestagnaPersonal extends JPanel{
     
     public PanelTabla pnlTabla;
     public PanelBotones pnlBotones;
@@ -30,10 +28,10 @@ public class PestagnaPersonal extends JPanel implements ActionListener{
         this.setLayout(new BorderLayout());
         this.setName("Personal");
         
-        this.pnlTabla = new PanelTabla("Personal de la clinica/consulta");
-        this.pnlTabla.addColumn("ID");
+        this.pnlTabla = new PanelTabla("Personal de la clinica/consulta");        
         this.pnlTabla.addColumn("Nombres");
-        this.pnlTabla.addColumn("Apellidos");        
+        this.pnlTabla.addColumn("Apellidos");   
+        this.pnlTabla.addColumn("RUT"); 
         this.pnlTabla.addColumn("Ciudad");
         this.pnlTabla.addColumn("Teléfono");
         this.pnlTabla.addColumn("Móvil");
@@ -42,21 +40,7 @@ public class PestagnaPersonal extends JPanel implements ActionListener{
         this.add(this.pnlTabla, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(1);
-        this.pnlBotones.btnAbrir.addActionListener(this);
-        this.pnlBotones.btnAnnadir.addActionListener(this);
-        this.pnlBotones.btnEliminar.addActionListener(this);
         this.add(this.pnlBotones, BorderLayout.SOUTH);
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        if(this.pnlBotones.btnAbrir == e.getSource()){
-            this.vPersonal = new VentanaPersonal(2);
-        }else if(this.pnlBotones.btnAnnadir == e.getSource()){
-            this.vPersonal = new VentanaPersonal(3);
-        }
-        
-    }
-    
+       
 }

@@ -20,13 +20,13 @@ public class VentanaPersonal extends JFrame implements ActionListener{
     public PanelDatos pnlDatos;
     public PanelBotones pnlBotones;    
     
-    public VentanaPersonal(int btnSeleccionado){
-        this.iniciarComponentes(btnSeleccionado);
+    public VentanaPersonal(int btnSeleccionado, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
+        this.iniciarComponentes(btnSeleccionado, nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
     }
     
-    private void iniciarComponentes(int btnSeleccionado){
+    private void iniciarComponentes(int btnSeleccionado, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
         
-        this.pnlDatos = new PanelDatos();
+        this.pnlDatos = new PanelDatos(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
         this.add(this.pnlDatos, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSeleccionado);
@@ -35,7 +35,6 @@ public class VentanaPersonal extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setTitle("Personal de la veterinaria");
         this.setLocation(50,50);
-        this.setVisible(true);
         this.setResizable(false);
         pack();
     }

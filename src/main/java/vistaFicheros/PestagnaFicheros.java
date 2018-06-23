@@ -8,7 +8,7 @@ package vistaFicheros;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import vistaClientes.PestagnaClientes;
-import vistaPacientes.PestagnaPacientes;
+import vistaFichaPaciente.PestagnaPacientes;
 import vistaPdtosYServicios.PestagnaProductos;
 import vistaPdtosYServicios.PestagnaServicios;
 import vistaPersonal.PestagnaPersonal;

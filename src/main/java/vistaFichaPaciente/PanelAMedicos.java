@@ -10,6 +10,8 @@ import java.awt.TextArea;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -19,9 +21,10 @@ import javax.swing.border.TitledBorder;
 public class PanelAMedicos extends JPanel {
     
     private JLabel antecedentesMedicos;
-    private TextArea ingAntecedentesMedicos;
+    public JTextArea ingAntecedentesMedicos;
+    public JScrollPane scroll;
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String antMed){
         
         Box caja = Box.createVerticalBox(); 
         FlowLayout distribucion = new FlowLayout(FlowLayout.LEFT);
@@ -35,8 +38,10 @@ public class PanelAMedicos extends JPanel {
         pnlLabAnt.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlLabAnt);
         
-        this.ingAntecedentesMedicos = new TextArea(6,45);
-        caja.add(this.ingAntecedentesMedicos);        
+        this.ingAntecedentesMedicos = new JTextArea(10,35);
+        this.ingAntecedentesMedicos.setText(antMed);
+        this.scroll = new JScrollPane(ingAntecedentesMedicos);
+        caja.add(this.scroll);        
         
         this.add(caja);
         this.setBackground(new java.awt.Color(134, 204, 161));
@@ -44,8 +49,8 @@ public class PanelAMedicos extends JPanel {
         
     }
 
-    public PanelAMedicos() {
-        this.iniciarComponentes();
+    public PanelAMedicos(String antMed) {
+        this.iniciarComponentes(antMed);
     }
     
 }

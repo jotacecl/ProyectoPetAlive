@@ -22,6 +22,7 @@ public class Paciente {
     private String internado;
     private String rutCliente;
     private int jaula;
+    private String antecedentes;
 
     public String getId() {
         return id;
@@ -103,10 +104,18 @@ public class Paciente {
         this.rutCliente = rutCliente;
     }
 
+    public String getAntecedentes() {
+        return antecedentes;
+    }
+
+    public void setAntecedentes(String antecedentes) {
+        this.antecedentes = antecedentes;
+    }        
+
     public Paciente() {
     }
 
-    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, int jaula, String rutCliente) {
+    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, int jaula, String rutCliente, String antMed) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -117,6 +126,7 @@ public class Paciente {
         this.internado = internado;
         this.jaula = jaula;
         this.rutCliente = rutCliente;
+        this.antecedentes = antMed;
     }
     
     

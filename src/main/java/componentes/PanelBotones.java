@@ -58,8 +58,7 @@ public class PanelBotones extends JPanel{
         
         
         this.add(this.btnAceptar);
-        
-        this.btnCancelar = new JButton("Cancelar");
+                
         this.add(this.btnCancelar);
         
         this.setBackground(new java.awt.Color(134,204,161));

@@ -17,13 +17,13 @@ public class VentanaCliente extends JFrame{
     public PanelBotones pnlBotones;
     public PanelDatos pnlDatos;
     
-    public VentanaCliente(int btnSelect, String nombre, String apellidos, String rut, String direccion, String telefono, String movil,  String email){
-        this.iniciarComponentes(btnSelect, nombre, apellidos, rut, direccion, telefono, movil, email);
+    public VentanaCliente(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
+        this.iniciarComponentes(btnSelect, nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
     }
     
-    private void iniciarComponentes(int btnSelect, String nombre, String apellidos, String rut, String direccion, String telefono, String movil,  String email){
+    private void iniciarComponentes(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
                      
-        this.pnlDatos = new PanelDatos(nombre, apellidos, rut, direccion, telefono, movil, email);
+        this.pnlDatos = new PanelDatos(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
         this.add(this.pnlDatos, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSelect);

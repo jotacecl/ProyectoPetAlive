@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  */
 public class PestagnaClientes extends JPanel{
     
-    public PanelTabla panelTabla;
-    public PanelBotones panelBtn;
+    public PanelTabla pnlTabla;
+    public PanelBotones pnlBotones;
     
     public PestagnaClientes(){
         this.iniciarComponentes();
@@ -27,18 +27,18 @@ public class PestagnaClientes extends JPanel{
         this.setLayout(new BorderLayout());
         this.setName("Clientes");
         
-        this.panelTabla = new PanelTabla("Clientes");
-        this.panelTabla.addColumn("Nombres");
-        this.panelTabla.addColumn("Apellidos");
-        this.panelTabla.addColumn("RUT");
-        this.panelTabla.addColumn("Ciudad");
-        this.panelTabla.addColumn("Teléfono");
-        this.panelTabla.addColumn("Móvil");
-        this.panelTabla.addColumn("Email");
-        this.add(this.panelTabla, BorderLayout.CENTER);
+        this.pnlTabla = new PanelTabla("Clientes");
+        this.pnlTabla.addColumn("Nombres");
+        this.pnlTabla.addColumn("Apellidos");
+        this.pnlTabla.addColumn("RUT");
+        this.pnlTabla.addColumn("Ciudad");
+        this.pnlTabla.addColumn("Teléfono");
+        this.pnlTabla.addColumn("Móvil");
+        this.pnlTabla.addColumn("Email");
+        this.add(this.pnlTabla, BorderLayout.CENTER);
         
-        this.panelBtn = new PanelBotones(1);
-        this.add(this.panelBtn, BorderLayout.SOUTH);
+        this.pnlBotones = new PanelBotones(1);
+        this.add(this.pnlBotones, BorderLayout.SOUTH);
     }
 
     

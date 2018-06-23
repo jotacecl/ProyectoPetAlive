@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import vistaPacientes.PestagnaPacientes;
+import vistaFichaPaciente.PestagnaPacientes;
 
 /**
  *

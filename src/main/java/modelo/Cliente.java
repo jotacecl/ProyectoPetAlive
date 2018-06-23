@@ -5,11 +5,15 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HernySenpai
  */
 public class Cliente extends Persona{
+    
+    public ArrayList<Paciente> listaMascotas = new ArrayList<>();
 
     public Cliente() {
     }
@@ -18,5 +22,8 @@ public class Cliente extends Persona{
         super(nombre, apellido, rut, direccion, ciudad, region, telefono, movil, email);
     }
     
+    public Paciente getMascota(int index){        
+            return listaMascotas.get(index);        
+    }
     
 }

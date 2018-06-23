@@ -64,7 +64,7 @@ public class PanelDatos extends JPanel{
         
         JPanel pnlColor = new JPanel(new FlowLayout());
         this.txtColor = new JTextField(color, 20);
-        caja.add(this.subPanel.generarSubPanelTF(pnlColor, labColor, txtColor, "Color ", 134,204,161));
+        caja.add(this.subPanel.generarSubPanelTF(pnlColor, labColor, txtColor, "Color                       ", 134,204,161));
         
         JPanel pnlFecha = new JPanel(new FlowLayout());
         this.labFechaNac = new JLabel("Fecha Nac.             ");

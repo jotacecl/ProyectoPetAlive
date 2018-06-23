@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistaPacientes;
+package vistaFichaPaciente;
 
 import componentes.PanelBotones;
 import componentes.PanelTabla;
@@ -18,8 +18,8 @@ import vistaFichaPaciente.VentanaFichaPaciente;
 public class PestagnaPacientes extends JPanel {
     
     private VentanaFichaPaciente vFicha;
-    public PanelTabla panelTabla;
-    public PanelBotones panelBtn;
+    public PanelTabla pnlTabla;
+    public PanelBotones pnlBotones;
     
     public PestagnaPacientes(){
         this.iniciarComponentes();
@@ -29,20 +29,20 @@ public class PestagnaPacientes extends JPanel {
         this.setLayout(new BorderLayout());
         this.setName("Pacientes");
         
-        this.panelTabla = new PanelTabla("Pacientes");
-        this.panelTabla.addColumn("ID");
-        this.panelTabla.addColumn("Nombre");
-        this.panelTabla.addColumn("Especie");
-        this.panelTabla.addColumn("Raza");           
-        this.panelTabla.addColumn("Color");
-        this.panelTabla.addColumn("F.Nacimiento");
-        this.panelTabla.addColumn("Sexo");
-        this.panelTabla.addColumn("Internado");
-        this.panelTabla.addColumn("Jaula");
-        this.add(this.panelTabla, BorderLayout.CENTER);
+        this.pnlTabla = new PanelTabla("Pacientes");
+        this.pnlTabla.addColumn("ID");
+        this.pnlTabla.addColumn("Nombre");
+        this.pnlTabla.addColumn("Especie");
+        this.pnlTabla.addColumn("Raza");           
+        this.pnlTabla.addColumn("Color");
+        this.pnlTabla.addColumn("F.Nacimiento");
+        this.pnlTabla.addColumn("Sexo");
+        this.pnlTabla.addColumn("Internado");
+        this.pnlTabla.addColumn("Jaula");
+        this.add(this.pnlTabla, BorderLayout.CENTER);
         
-        this.panelBtn = new PanelBotones(1);
-        this.add(this.panelBtn, BorderLayout.SOUTH);
+        this.pnlBotones = new PanelBotones(1);
+        this.add(this.pnlBotones, BorderLayout.SOUTH);
                 
     }
     
