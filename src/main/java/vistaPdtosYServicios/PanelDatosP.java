@@ -26,11 +26,11 @@ public class PanelDatosP extends JPanel{
     public JButton btnAgregar;
     public SubPanelDatos subPanel;
     
-    public PanelDatosP(){
-        this.iniciarComponentes();
+    public PanelDatosP(String idProducto, String nombre, String descripcion, String stock, String precio){
+        this.iniciarComponentes(idProducto,nombre,descripcion,stock,precio);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String idProducto, String nombre, String descripcion, String stock, String precio){
         
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
@@ -40,22 +40,28 @@ public class PanelDatosP extends JPanel{
         subPanel = new SubPanelDatos();
         
         JPanel pnlID = new JPanel();
+        this.txtID = new JTextField(idProducto,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlID, labID, txtID, "ID Producto  ", 134, 204, 161));
         
         JPanel pnlNombre = new JPanel();
+        this.txtNombre = new JTextField(nombre,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlNombre, labNombre, txtNombre, "Producto       ", 134, 204, 161));
         
         JPanel pnlTipo = new JPanel();
+        this.cbTipo = new JComboBox();
         this.btnAgregar = new JButton("+");
         caja.add(this.subPanel.generarSubPanelCB(pnlTipo, labTipo, cbTipo, "Tipo               ", 134, 204, 161, btnAgregar));
         
         JPanel pnlDescripcion = new JPanel();
+        this.txtDescripcion = new JTextField(descripcion,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlDescripcion, labDescripcion, txtDescripcion, "Descripcion ",  134, 204, 161));
         
         JPanel pnlStock = new JPanel();
+        this.txtStock = new JTextField(stock,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlStock, labStock, txtStock, "Stock             ", 134, 204, 161));
         
         JPanel pnlPrecio = new JPanel();
+        this.txtPrecio = new JTextField(precio,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlPrecio, labPrecio, txtPrecio, "Precio            ", 134, 204, 161));
         
         this.setBackground(new java.awt.Color(134,204,161));

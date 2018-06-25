@@ -101,9 +101,8 @@ public class SisFichaPaciente {
         this.listaPacientes.get(index).setEspecie(this.especie);
         this.listaPacientes.get(index).setRaza(this.raza);
         this.listaPacientes.get(index).setColor(this.color);
-        if(this.fNac.equals("null-null-null")){                    
-        }else{
-            this.listaPacientes.get(index).setfNacimiento(this.fNac);            
+        if(!this.fNac.equals("null-null-null")){  
+            this.listaPacientes.get(index).setfNacimiento(this.fNac);
         }
         this.listaPacientes.get(index).setSexo(this.sexo);
         this.listaPacientes.get(index).setInternado(this.internado);

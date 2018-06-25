@@ -20,13 +20,13 @@ public class VentanaCita extends JFrame implements ActionListener{
     public PanelDatos pnlDatos;
     public PanelBotones pnlBotones;
     
-    public VentanaCita(int btnSeleccionado){
-        this.iniciarComponentes(btnSeleccionado);
+    public VentanaCita(int btnSeleccionado, String idPaciente, String paciente, String rut, String fIngreso, String fCita, String motivo){
+        this.iniciarComponentes(btnSeleccionado,idPaciente,paciente,rut,fIngreso,fCita,motivo);
     }
     
-    private void iniciarComponentes(int btnSeleccionado){
+    private void iniciarComponentes(int btnSeleccionado,String idPaciente, String paciente, String rut, String fIngreso, String fCita, String motivo){
         
-        this.pnlDatos = new PanelDatos();
+        this.pnlDatos = new PanelDatos(idPaciente,paciente,rut,fIngreso,fCita,motivo);
         this.add(pnlDatos, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSeleccionado);
@@ -34,8 +34,7 @@ public class VentanaCita extends JFrame implements ActionListener{
         
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setTitle("Citas programadas");
-        this.setLocation(50,50);
-        this.setVisible(true);
+        this.setLocation(50,50);        
         this.setResizable(false);
         pack();
         

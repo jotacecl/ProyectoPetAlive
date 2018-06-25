@@ -22,11 +22,11 @@ public class PanelDatosS extends JPanel{
     public JTextField txtNombre, txtDescripcion, txtPrecio;
     public SubPanelDatos subPanel;
     
-    public PanelDatosS(){
-        this.iniciarComponentes();
+    public PanelDatosS(String nombre, String descripcion, String precio){
+        this.iniciarComponentes(nombre,descripcion,precio);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String nombre, String descripcion, String precio){
         
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
@@ -36,13 +36,16 @@ public class PanelDatosS extends JPanel{
         subPanel = new SubPanelDatos();
         
         JPanel pnlNombre = new JPanel();
+        this.txtNombre = new JTextField(nombre,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlNombre, labNombre, txtNombre, "Servicio         ", 134, 204, 161));
         
         JPanel pnlDescripcion = new JPanel();
+        this.txtDescripcion = new JTextField(descripcion,20);
         caja.add(this.subPanel.generarSubPanelTF(pnlDescripcion, labDescripcion, txtDescripcion, "Descripción ", 134, 204, 161));
         
-        JPanel pnlPrecion = new JPanel();
-        caja.add(this.subPanel.generarSubPanelTF(pnlDescripcion, labPrecio, txtPrecio, "Precio           ", 134, 204, 161));
+        JPanel pnlPrecio = new JPanel();
+        this.txtPrecio = new JTextField(precio,20);;
+        caja.add(this.subPanel.generarSubPanelTF(pnlPrecio, labPrecio, txtPrecio, "Precio           ", 134, 204, 161));
         
         this.setBackground(new java.awt.Color(134,204,161));
         this.add(caja);

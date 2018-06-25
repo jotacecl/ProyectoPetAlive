@@ -8,19 +8,16 @@ package vistaCitas;
 import componentes.PanelBotones;
 import componentes.PanelTabla;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Juan Carlos
  */
-public class PestagnaCitas extends JPanel implements ActionListener{
-    
-    private VentanaCita vCita;
-    private PanelTabla pnlTabla;
-    private PanelBotones pnlBotones;
+public class PestagnaCitas extends JPanel{
+        
+    public PanelTabla pnlTabla;
+    public PanelBotones pnlBotones;
     
     public PestagnaCitas(){
      this.iniciarComponentes();
@@ -40,21 +37,8 @@ public class PestagnaCitas extends JPanel implements ActionListener{
         this.add(this.pnlTabla, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(1);
-        this.pnlBotones.btnAbrir.addActionListener(this);
-        this.pnlBotones.btnAnnadir.addActionListener(this);
-        this.pnlBotones.btnEliminar.addActionListener(this);
         this.add(this.pnlBotones, BorderLayout.SOUTH);
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        if(this.pnlBotones.btnAbrir == e.getSource()){
-            this.vCita = new VentanaCita(2);
-        }else if(this.pnlBotones.btnAnnadir == e.getSource()){
-            this.vCita = new VentanaCita(3);
-        }
-        
-    }
+    
     
 }

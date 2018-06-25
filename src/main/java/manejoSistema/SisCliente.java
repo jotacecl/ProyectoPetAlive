@@ -30,7 +30,7 @@ public class SisCliente {
         int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();
         if(btnSeleccionado == 1){          
             this.setDatosCliente(index, listaCiudades, listaRegiones);
-        }else if(btnSeleccionado == 2 && index == -1){
+        }else if(btnSeleccionado == 2){
             this.vCliente = new VentanaCliente(2,"","","","","","","","","","");
             if(this.vCliente.pnlDatos.cbCiudad.getItemAt(1) != ("    ")){
                 this.vCliente.pnlDatos.cbCiudad.removeAllItems();

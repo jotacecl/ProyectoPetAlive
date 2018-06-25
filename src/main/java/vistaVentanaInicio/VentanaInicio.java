@@ -83,6 +83,32 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sPersonal.vPersonal.pnlDatos.btnAgregarC.addActionListener(this);
         this.system.sPersonal.vPersonal.pnlDatos.btnAgregarCG.addActionListener(this);
         this.system.sPersonal.vPersonal.pnlDatos.btnAgregarR.addActionListener(this);
+        
+        //Botones cita
+        this.system.pPestagnas.pCitas.pnlBotones.btnAbrir.addActionListener(this);
+        this.system.pPestagnas.pCitas.pnlBotones.btnAnnadir.addActionListener(this);
+        this.system.pPestagnas.pCitas.pnlBotones.btnEliminar.addActionListener(this);
+        this.system.sCitas.vCitas.pnlBotones.btnAceptar.addActionListener(this);
+        this.system.sCitas.vCitas.pnlBotones.btnGuardar.addActionListener(this);
+        this.system.sCitas.vCitas.pnlBotones.btnCancelar.addActionListener(this);
+        this.system.sCitas.vCitas.pnlDatos.btnBusqueda.addActionListener(this);
+        
+        //Botones productos
+        this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAbrir.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAnnadir.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnEliminar.addActionListener(this);
+        this.system.sProductos.vProducto.pnlBotones.btnAceptar.addActionListener(this);
+        this.system.sProductos.vProducto.pnlBotones.btnGuardar.addActionListener(this);
+        this.system.sProductos.vProducto.pnlBotones.btnCancelar.addActionListener(this);
+        this.system.sProductos.vProducto.pnlDatos.btnAgregar.addActionListener(this);
+        
+        //Botones servicios
+        this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAbrir.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAnnadir.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnEliminar.addActionListener(this);
+        this.system.sServicio.vServicio.pnlBotones.btnAceptar.addActionListener(this);
+        this.system.sServicio.vServicio.pnlBotones.btnGuardar.addActionListener(this);
+        this.system.sServicio.vServicio.pnlBotones.btnCancelar.addActionListener(this);
 
         //Se instancia metodo para verificar largo de datos ingresados a textfields.
         this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte1, 2);
@@ -252,6 +278,96 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.sPersonal.vPersonal.pnlDatos.btnAgregarCG == e.getSource()){
             String cargo = JOptionPane.showInputDialog(null, "Introduce el cargo/rol");            
             this.system.sPersonal.setCargo(cargo); 
+        }else if(this.system.pPestagnas.pCitas.pnlBotones.btnAbrir == e.getSource()){       //Iniciar ventana CITAS
+            try{            
+            this.system.sCitas.iniciarCitas(1, this.system.pPestagnas);
+            this.system.sCitas.vCitas.pnlBotones.btnAceptar.addActionListener(this);
+            this.system.sCitas.vCitas.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.sCitas.vCitas.pnlDatos.btnBusqueda.addActionListener(this);
+            this.system.sCitas.vCitas.setVisible(true);
+            }catch(Exception m){
+                String out = "No hay una cita seleccionada\n";              
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.pPestagnas.pCitas.pnlBotones.btnAnnadir == e.getSource()){
+            this.system.sCitas.iniciarCitas(2, this.system.pPestagnas);
+            this.system.sCitas.vCitas.pnlBotones.btnGuardar.addActionListener(this);
+            this.system.sCitas.vCitas.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.sCitas.vCitas.pnlDatos.btnBusqueda.addActionListener(this);
+            this.system.sCitas.vCitas.setVisible(true);
+        }else if(this.system.pPestagnas.pCitas.pnlBotones.btnEliminar == e.getSource()){
+            
+        }else if(this.system.sCitas.vCitas.pnlDatos.btnBusqueda == e.getSource()){
+            String rut = JOptionPane.showInputDialog(null, "Introduce el rut con puntos y guion \n"+"Ej: 19.512.341-4");   
+            if(this.system.gDatos.compararRut(rut,this.system.sCliente)==true){
+                this.system.sCitas.vCitas.pnlDatos.txtRUT.setText(rut);
+            }
+        }else if(this.system.sCitas.vCitas.pnlBotones.btnGuardar == e.getSource()){
+            this.system.sCitas.crearCita(this.system.pPestagnas);
+            this.system.sCitas.vCitas.hide();
+        }else if(this.system.sCitas.vCitas.pnlBotones.btnAceptar == e.getSource()){
+            int index = this.system.pPestagnas.pCitas.pnlTabla.tabla.getSelectedRow();            
+            this.system.sCitas.editarCita(index, this.system.pPestagnas);
+            this.system.sCitas.vCitas.hide();
+        }else if(this.system.sCitas.vCitas.pnlBotones.btnCancelar == e.getSource()){
+            this.system.sCitas.vCitas.hide();
+        }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAbrir == e.getSource()){ //Iniciar ventana PRODUCTOS
+            try{
+            this.system.sProductos.iniciarProductos(1, this.system.pPestagnas);
+            this.system.sProductos.vProducto.pnlBotones.btnAceptar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlDatos.btnAgregar.addActionListener(this);
+            this.system.sProductos.vProducto.setVisible(true);
+            }catch(Exception m){
+                String out = "No hay un producto seleccionado\n";              
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAnnadir == e.getSource()){
+            this.system.sProductos.iniciarProductos(2, this.system.pPestagnas);
+            this.system.sProductos.vProducto.pnlBotones.btnGuardar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlDatos.btnAgregar.addActionListener(this);
+            this.system.sProductos.vProducto.setVisible(true);
+        }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnEliminar == e.getSource()){
+            
+        }else if(this.system.sProductos.vProducto.pnlBotones.btnGuardar == e.getSource()){
+            this.system.sProductos.crearProducto(this.system.pPestagnas);
+            this.system.sProductos.vProducto.hide();
+        }else if(this.system.sProductos.vProducto.pnlBotones.btnAceptar == e.getSource()){
+            int index = this.system.pPestagnas.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow(); 
+            this.system.sProductos.editarProducto(index, this.system.pPestagnas);
+            this.system.sProductos.vProducto.hide();
+        }else if(this.system.sProductos.vProducto.pnlBotones.btnCancelar == e.getSource()){
+            this.system.sProductos.vProducto.hide();
+        }else if(this.system.sProductos.vProducto.pnlDatos.btnAgregar == e.getSource()){
+            String tipo = JOptionPane.showInputDialog(null, "Introduce el tipo de producto que deseas añadir");
+            this.system.sProductos.setTipo(tipo);
+        }else if(this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAbrir == e.getSource()){ //Iniciar ventana SERVICIOS
+            try{
+                this.system.sServicio.iniciarServicios(1, this.system.pPestagnas);
+                this.system.sServicio.vServicio.pnlBotones.btnAceptar.addActionListener(this);
+                this.system.sServicio.vServicio.pnlBotones.btnCancelar.addActionListener(this);
+                this.system.sServicio.vServicio.setVisible(true);
+            }catch(Exception m){
+                String out = "No hay un producto seleccionado\n";              
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAnnadir == e.getSource()){
+            this.system.sServicio.iniciarServicios(2, this.system.pPestagnas);
+            this.system.sServicio.vServicio.pnlBotones.btnGuardar.addActionListener(this);
+            this.system.sServicio.vServicio.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.sServicio.vServicio.setVisible(true);
+        }else if(this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnEliminar == e.getSource()){
+            
+        }else if(this.system.sServicio.vServicio.pnlBotones.btnAceptar == e.getSource()){
+            int index = this.system.pPestagnas.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow();
+            this.system.sServicio.editarServicio(index, this.system.pPestagnas);
+            this.system.sServicio.vServicio.hide();
+        }else if(this.system.sServicio.vServicio.pnlBotones.btnGuardar == e.getSource()){
+            this.system.sServicio.crearServicio(this.system.pPestagnas);
+            this.system.sServicio.vServicio.hide();
+        }else if(this.system.sServicio.vServicio.pnlBotones.btnCancelar == e.getSource()){
+            this.system.sServicio.vServicio.hide();
         }
     }
            

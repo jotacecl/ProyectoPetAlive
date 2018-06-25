@@ -8,15 +8,13 @@ package vistaPdtosYServicios;
 import componentes.PanelBotones;
 import componentes.PanelTabla;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Juan Carlos
  */
-public class PestagnaServicios extends JPanel implements ActionListener{
+public class PestagnaServicios extends JPanel{
     
     public PanelTabla pnlTabla;
     public PanelBotones pnlBotones;
@@ -37,19 +35,7 @@ public class PestagnaServicios extends JPanel implements ActionListener{
         this.add(this.pnlTabla, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(1);
-        this.pnlBotones.btnAbrir.addActionListener(this);
-        this.pnlBotones.btnAnnadir.addActionListener(this);
-        this.pnlBotones.btnEliminar.addActionListener(this);
         this.add(this.pnlBotones, BorderLayout.SOUTH);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(this.pnlBotones.btnAbrir == e.getSource() ){
-            this.vServicio = new VentanaServicio(2);
-        }else if(this.pnlBotones.btnAnnadir == e.getSource()) {
-            this.vServicio = new VentanaServicio(3);
-        }
     }
     
 }

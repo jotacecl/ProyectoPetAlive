@@ -6,7 +6,10 @@
 package vistaCitas;
 
 import com.toedter.calendar.JDateChooser;
+import componentes.BotonIcono;
+import componentes.SubPanelDatos;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Date;
 import javax.swing.Box;
@@ -22,65 +25,65 @@ import javax.swing.border.TitledBorder;
 public class PanelDatos extends JPanel{
     
     private JLabel labID, labPaciente, labRUT, labFIngreso, labFCita, labMotivo;
-    private JTextField txtID, txtPaciente, txtRUT, txtMotivo, txtFIngreso, txtFCita;
+    public JTextField txtID, txtPaciente, txtRUT, txtMotivo, txtFIngreso, txtFCita;
     public JDateChooser calendario;
-    private static final String FORMATO = "%1$td-%1$tm-%1$tY";
+    public static final String FORMATO = "%1$td-%1$tm-%1$tY";
     private Date fecha;
     private java.sql.Date fechaActual;
     private long fecha1;
+    public SubPanelDatos subPanel;
+    public BotonIcono btnBusqueda;
     
-    public PanelDatos(){
-        this.iniciarComponentes();
+    public PanelDatos(String idPaciente, String paciente, String rut, String fIngreso, String fCita, String motivo){
+        this.iniciarComponentes(idPaciente,paciente,rut,fIngreso,fCita,motivo);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String idPaciente, String paciente, String rut, String fIngreso, String fCita, String motivo){
         
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
         
-        Box caja = Box.createVerticalBox();
+        Box caja = Box.createVerticalBox();        
+        
+        subPanel = new SubPanelDatos();
         
         calendario = new JDateChooser();
         fecha = new Date();
         fecha1 = fecha.getTime();
         fechaActual = new java.sql.Date(fecha1);
         
-        JPanel pnlID = new JPanel();
-        this.labID = new JLabel("ID Paciente     ");
-        this.txtID = new JTextField("", 20);
-        pnlID.add(this.labID);
-        pnlID.add(this.txtID);
-        pnlID.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlID);
+        JPanel pnlID = new JPanel();        
+        this.txtID = new JTextField(idPaciente, 20);        
+        caja.add(this.subPanel.generarSubPanelTF(pnlID, labID, txtID, "ID Paciente     ", 134,204,161));        
         
         JPanel pnlPaciente = new JPanel();
-        this.labPaciente = new JLabel("Paciente          ");
-        this.txtPaciente = new JTextField("", 20);
-        pnlPaciente.add(this.labPaciente);
-        pnlPaciente.add(this.txtPaciente);
-        pnlPaciente.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlPaciente);
+        this.txtPaciente = new JTextField(paciente, 20);
+        caja.add(this.subPanel.generarSubPanelTF(pnlPaciente, labPaciente, txtPaciente, "Paciente          ", 134,204,161));                        
         
-        JPanel pnlRUT = new JPanel();
+        JPanel pnlRUT = new JPanel(new FlowLayout());
         this.labRUT = new JLabel("RUT Cliente    ");
-        this.txtRUT = new JTextField("", 20);
         pnlRUT.add(this.labRUT);
+        this.txtRUT = new JTextField(rut,17);
         pnlRUT.add(this.txtRUT);
+        this.txtRUT.setEditable(false);
+        this.btnBusqueda = new BotonIcono("","data/icon/search.png","data/icon/search.png");
+        pnlRUT.add(this.btnBusqueda);
         pnlRUT.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlRUT);
         
         JPanel pnlFIngreso = new JPanel();
-        this.labFIngreso = new JLabel("Fecha ingreso ");
-        this.txtFIngreso = new JTextField(String.format(FORMATO, fechaActual), 20);
-        pnlFIngreso.add(this.labFIngreso);
-        pnlFIngreso.add(this.txtFIngreso);
+        String fechaAct = String.format(FORMATO, fechaActual);
+        if(" ".equals(fIngreso)){
+            this.txtFIngreso = new JTextField(fechaAct, 20);
+        }else{
+            this.txtFIngreso = new JTextField(fIngreso, 20);
+        }        
         this.txtFIngreso.setEditable(false);
-        pnlFIngreso.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlFIngreso);        
+        caja.add(this.subPanel.generarSubPanelTF(pnlFIngreso, labFIngreso, txtFIngreso, "Fecha Ingreso ", 134,204,161));          
         
         JPanel pnlFCita = new JPanel();
         this.labFCita = new JLabel("Fecha Cita        ");
-        this.txtFCita = new JTextField("dd-mm-aaaa", 20);
+        this.txtFCita = new JTextField(fCita, 20);
         pnlFCita.add(this.labFCita);
         JPanel subPanel = new JPanel();
         subPanel.setPreferredSize(new Dimension(226,25));
@@ -91,12 +94,8 @@ public class PanelDatos extends JPanel{
         caja.add(pnlFCita);
         
         JPanel pnlMotivo = new JPanel();
-        this.labMotivo = new JLabel("Motivo Cita        ");
-        this.txtMotivo = new JTextField("",20);
-        pnlMotivo.add(this.labMotivo);
-        pnlMotivo.add(this.txtMotivo);
-        pnlMotivo.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlMotivo);        
+        this.txtMotivo = new JTextField(motivo,20);
+        caja.add(this.subPanel.generarSubPanelTF(pnlMotivo, labMotivo, txtMotivo, "Motivo Cita        ", 134,204,161));     
         
         this.setBackground(new java.awt.Color(134, 204, 161));
         this.add(caja);

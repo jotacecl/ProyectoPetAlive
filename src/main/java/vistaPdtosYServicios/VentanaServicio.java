@@ -18,13 +18,13 @@ public class VentanaServicio extends JFrame{
     public PanelDatosS pnlDatosS;
     public PanelBotones pnlBotones;
     
-    public VentanaServicio(int btnSeleccionado){
-        this.iniciarComponentes(btnSeleccionado);
+    public VentanaServicio(int btnSeleccionado, String nombre, String descripcion, String precio){
+        this.iniciarComponentes(btnSeleccionado,nombre,descripcion,precio);
     }
     
-    private void iniciarComponentes(int btnSeleccionado){
+    private void iniciarComponentes(int btnSeleccionado, String nombre, String descripcion, String precio){
         
-        this.pnlDatosS = new PanelDatosS();
+        this.pnlDatosS = new PanelDatosS(nombre,descripcion,precio);
         this.add(this.pnlDatosS, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSeleccionado);
@@ -33,7 +33,6 @@ public class VentanaServicio extends JFrame{
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setTitle("Servicios");
         this.setLocation(50,50);
-        this.setVisible(true);
         this.setResizable(false);
         pack();
     }

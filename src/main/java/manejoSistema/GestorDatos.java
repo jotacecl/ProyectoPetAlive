@@ -31,7 +31,7 @@ public class GestorDatos {
             }            
         }
         return existe;
-    } 
+    }        
     
     public ArrayList separarRut(String rut){
         this.lista = new ArrayList<>();

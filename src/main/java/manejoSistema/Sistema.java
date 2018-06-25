@@ -24,6 +24,9 @@ public class Sistema {
     public GestorDatos gDatos;
     public SisFichaPaciente sFichaPaciente;
     public SisPersonal sPersonal;    
+    public SisCitas sCitas;
+    public SisProducto sProductos;
+    public SisServicio sServicio;
     
     public final ArrayList<String> listaCiudades = new ArrayList<>();    
     public final ArrayList<String> listaRegiones = new ArrayList<>();                
@@ -40,6 +43,9 @@ public class Sistema {
         this.gDatos = new GestorDatos();
         this.sFichaPaciente = new SisFichaPaciente();
         this.sPersonal = new SisPersonal();
+        this.sCitas = new SisCitas();
+        this.sProductos = new SisProducto();
+        this.sServicio = new SisServicio();
         
         this.pPestagnas = new PestagnasInicio();
         this.sDatosClinica.iniciarDClinica();
@@ -48,6 +54,9 @@ public class Sistema {
         this.sCliente.iniciarCliente(2, this.pPestagnas, this.listaCiudades, this.listaRegiones);
         this.sFichaPaciente.iniciarFPaciente(2, this.pPestagnas);
         this.sPersonal.iniciarPersonal(2,this.pPestagnas, this.listaCiudades, this.listaRegiones);
+        this.sCitas.iniciarCitas(2, this.pPestagnas);
+        this.sProductos.iniciarProductos(2, this.pPestagnas);
+        this.sServicio.iniciarServicios(2, this.pPestagnas);
     }                
     
     public void setCiudades(String ciudad){
