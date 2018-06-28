@@ -7,6 +7,8 @@ package vistaVentanaInicio;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -46,6 +48,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.pPestagnas.pConfig.pOpciones.bDatosClinica.addActionListener(this);
         this.system.pPestagnas.pConfig.pOpciones.bHorario.addActionListener(this);
         this.system.pPestagnas.pConfig.pOpciones.bAcerca.addActionListener(this);
+        this.system.pPestagnas.pConfig.pOpciones.bDirectorio.addActionListener(this);
         this.system.sConfigJaulas.vCJaulas.pnlBotones.btnGuardar.addActionListener(this);
         this.system.sConfigJaulas.vCJaulas.pnlBotones.btnCancelar.addActionListener(this);
         this.system.sDatosClinica.vDClinica.pnlBotones.btnGuardar.addActionListener(this);
@@ -72,6 +75,9 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
+        this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
+        this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
+        this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);
         
         //Botones personal
         this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir.addActionListener(this);
@@ -109,12 +115,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sServicio.vServicio.pnlBotones.btnAceptar.addActionListener(this);
         this.system.sServicio.vServicio.pnlBotones.btnGuardar.addActionListener(this);
         this.system.sServicio.vServicio.pnlBotones.btnCancelar.addActionListener(this);
-
-        //Se instancia metodo para verificar largo de datos ingresados a textfields.
-        this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte1, 2);
-        this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte2, 3);
-        this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte3, 3);
-        this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte4, 3);        
+        
+        //Botones directorio
+        this.system.sDirectorio.vDirectorio.pnlDatos.btnBuscar.addActionListener(this);
+        this.system.sDirectorio.vDirectorio.pnlBotones.btnAceptar.addActionListener(this);
+        this.system.sDirectorio.vDirectorio.pnlBotones.btnCancelar.addActionListener(this);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Veterinaria");
@@ -126,41 +131,85 @@ public class VentanaInicio extends JFrame implements ActionListener{
     }        
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(this.system.pPestagnas.pConfig.pOpciones.bJaulas == e.getSource()){                      //Iniciar ventana CONFIGURACION JAULA
+    public void actionPerformed(ActionEvent e) {//Iniciar ventana 
+        if(this.system.pPestagnas.pConfig.pOpciones.bJaulas == e.getSource()){                      //>>>>>CONFIGURACION JAULA<<<<<
             this.system.sConfigJaulas.iniciarCJaulas();
             this.system.sConfigJaulas.vCJaulas.pnlBotones.btnGuardar.addActionListener(this);
             this.system.sConfigJaulas.vCJaulas.pnlBotones.btnCancelar.addActionListener(this);
             this.system.sConfigJaulas.vCJaulas.setVisible(true);            
-        }else if(this.system.sConfigJaulas.vCJaulas.pnlBotones.btnGuardar == e.getSource()){                          //BOTON GUARDAR
-            this.system.sConfigJaulas.setDatosJaula();
-            this.system.sConfigJaulas.vCJaulas.hide();
+        }else if(this.system.sConfigJaulas.vCJaulas.pnlBotones.btnGuardar == e.getSource()){                          //boton GUARDAR
+           try{
+            this.system.sConfigJaulas.setDatosJaula();            
             this.system.sConfigJaulas.actualizarJaulas(this.system.pPestagnas);
-        }else if(this.system.sConfigJaulas.vCJaulas.pnlBotones.btnCancelar == e.getSource()){                         //BOTON CANCELAR
             this.system.sConfigJaulas.vCJaulas.hide();
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bDatosClinica == e.getSource()){          //Iniciar ventana CONFIGURACION CLINICA
+            }catch(Exception m){
+                String out = "Valores faltantes o mal ingresados\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sConfigJaulas.vCJaulas.pnlBotones.btnCancelar == e.getSource()){                         //boton CANCELAR
+            this.system.sConfigJaulas.vCJaulas.hide();
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bDatosClinica == e.getSource()){          //>>>>>CONFIGURACION CLINICA<<<<<
             this.system.sDatosClinica.iniciarDClinica();
             this.system.sDatosClinica.vDClinica.pnlBotones.btnGuardar.addActionListener(this);
             this.system.sDatosClinica.vDClinica.pnlBotones.btnCancelar.addActionListener(this);
             this.system.sDatosClinica.vDClinica.setVisible(true);                                
-        }else if(this.system.sDatosClinica.vDClinica.pnlBotones.btnGuardar == e.getSource()){                         //BOTON GUARDAR
+        }else if(this.system.sDatosClinica.vDClinica.pnlBotones.btnGuardar == e.getSource()){                         //boton GUARDAR
+            try{
             this.system.sDatosClinica.setDatosClinica();          
             this.system.sDatosClinica.vDClinica.hide();
-        }else if(this.system.sDatosClinica.vDClinica.pnlBotones.btnCancelar == e.getSource()){                        //BOTON CANCELAR
+            }catch(Exception m){
+                String out = "Valores faltantes o mal ingresados\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sDatosClinica.vDClinica.pnlBotones.btnCancelar == e.getSource()){                        //boton CANCELAR
             this.system.sDatosClinica.vDClinica.hide();
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bHorario == e.getSource()){               //Iniciar ventana CONFIGURACION HORARIO
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bHorario == e.getSource()){               //>>>>>CONFIGURACION HORARIO<<<<<
             this.system.sConfigHorario.iniciarCHorario();
             this.system.sConfigHorario.vCHorario.pnlBotones.btnAceptar.addActionListener(this);
             this.system.sConfigHorario.vCHorario.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtLV1, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtLV2, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtLV3, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtLV4, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtSD1, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtSD2, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtSD3, 2);
+            this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtSD4, 2);
             this.system.sConfigHorario.vCHorario.setVisible(true);
-        }else if(this.system.sConfigHorario.vCHorario.pnlBotones.btnAceptar == e.getSource()){                         //BOTON ACEPTAR
+        }else if(this.system.sConfigHorario.vCHorario.pnlBotones.btnAceptar == e.getSource()){                         //boton ACEPTAR
+            try{
             this.system.sConfigHorario.setDatosHorario();
             this.system.sConfigHorario.vCHorario.hide();
-        }else if(this.system.sConfigHorario.vCHorario.pnlBotones.btnCancelar == e.getSource()){                        //BOTON CANCELAR
+            }catch(Exception m){
+                String out = "Valores faltantes o mal ingresados\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sConfigHorario.vCHorario.pnlBotones.btnCancelar == e.getSource()){                        //boton CANCELAR
             this.system.sConfigHorario.vCHorario.hide();
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bAcerca == e.getSource()){                //Iniciar ventana CONFIGURACION ACERCA
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bAcerca == e.getSource()){                //>>>>>CONFIGURACION ACERCA<<<<<
             this.vAcerca = new VentanaAcerca();            
-        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAbrir == e.getSource()){    //Iniciar ventana CLIENTES
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bDirectorio == e.getSource()){            //>>>>>CONFIGURACION DIRECTORIO<<<<<            
+            this.system.sDirectorio.iniciarDirectorio();
+            this.system.sDirectorio.vDirectorio.setVisible(true);
+            this.system.sDirectorio.vDirectorio.pnlDatos.btnBuscar.addActionListener(this);
+            this.system.sDirectorio.vDirectorio.pnlBotones.btnAceptar.addActionListener(this);
+            this.system.sDirectorio.vDirectorio.pnlBotones.btnCancelar.addActionListener(this);
+        }else if(this.system.sDirectorio.vDirectorio.pnlDatos.btnBuscar == e.getSource()){
+            String ruta;
+            JFileChooser jf = new JFileChooser();           
+            jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            jf.showOpenDialog(this);            
+            File dir = jf.getSelectedFile();            
+            if(dir != null){
+                ruta = dir.getPath();
+                this.system.sDirectorio.vDirectorio.pnlDatos.txtDirectorio.setText(ruta);
+            }
+        }else if(this.system.sDirectorio.vDirectorio.pnlBotones.btnAceptar == e.getSource()){
+            this.system.sDirectorio.setDirectorio(this.system.sDirectorio.vDirectorio.pnlDatos.txtDirectorio.getText());
+            this.system.sDirectorio.vDirectorio.hide();
+        }else if(this.system.sDirectorio.vDirectorio.pnlBotones.btnCancelar == e.getSource()){
+            this.system.sDirectorio.vDirectorio.hide();
+        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAbrir == e.getSource()){    //>>>>>CLIENTES<<<<<
             try{                             
             this.system.sCliente.iniciarCliente(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);
             this.system.sCliente.vCliente.pnlBotones.btnAceptar.addActionListener(this);
@@ -176,12 +225,22 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "No hay una ficha seleccionada\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarC == e.getSource()){                           //BOTON AGREGAR
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarC == e.getSource()){                           //boton AGREGAR
+            try{
             String ciudad = JOptionPane.showInputDialog(null, "Introduce la ciudad");            
-            this.system.setCiudades(ciudad);           
-        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarR == e.getSource()){                           //BOTON AGREGAR
+            this.system.setCiudades(ciudad);
+            }catch(Exception m){
+                String out = "Valores faltantes o mal ingresados\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarR == e.getSource()){                           //boton AGREGAR
+            try{
             String region = JOptionPane.showInputDialog(null, "Introduce la región");            
             this.system.setRegiones(region);
+            }catch(Exception m){
+                String out = "Valores faltantes o mal ingresados\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAnnadir == e.getSource()){           
             this.system.sCliente.iniciarCliente(2, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);
             this.system.sCliente.vCliente.pnlBotones.btnGuardar.addActionListener(this);
@@ -193,22 +252,35 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte3, 3);
             this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte4, 1);
             this.system.sCliente.vCliente.setVisible(true);
-        }else if(this.system.sCliente.vCliente.pnlBotones.btnGuardar == e.getSource()){                          //BOTON GUARDAR
+        }else if(this.system.sCliente.vCliente.pnlBotones.btnGuardar == e.getSource()){                          //boton GUARDAR
+            try{
             this.system.sCliente.crearCliente(this.system.pPestagnas);
-            this.system.sCliente.vCliente.hide();            
-        }else if(this.system.sCliente.vCliente.pnlBotones.btnCancelar == e.getSource()){                         //BOTON CANCELAR
+            this.system.sCliente.vCliente.hide();       
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sCliente.vCliente.pnlBotones.btnCancelar == e.getSource()){                         //boton CANCELAR
             this.system.sCliente.vCliente.hide();  
-        }else if(this.system.sCliente.vCliente.pnlBotones.btnAceptar == e.getSource()){                       
+        }else if(this.system.sCliente.vCliente.pnlBotones.btnAceptar == e.getSource()){                          //boton ACEPTAR
+            try{
             int index = this.system.pPestagnas.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();  
             this.system.sCliente.editarCliente(index, this.system.pPestagnas);
             this.system.sFichaPaciente.vFPaciente.hide();
-        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAbrir == e.getSource()){   //Iniciar ventana PACIENTES    
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAbrir == e.getSource()){   //>>>>>PACIENTES<<<<<   
             try{
                 this.system.sFichaPaciente.iniciarFPaciente(1, this.system.pPestagnas);
                 this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);                
                 this.system.sFichaPaciente.vFPaciente.setVisible(true);
             }catch(Exception m){
                 String out = "No hay una ficha seleccionada\n";
@@ -221,24 +293,63 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.setVisible(true);
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnGuardar == e.getSource()){             //BOTON GUARDAR            
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnGuardar == e.getSource()){             //boton GUARDAR             
+           try{
             this.system.sFichaPaciente.crearFPaciente(this.system.pPestagnas);
-            this.system.sFichaPaciente.vFPaciente.hide();
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar == e.getSource()){                          //BOTON AGREGAR
+            if(!this.system.sFichaPaciente.nombreP.equals("")&&!this.system.sFichaPaciente.especie.equals("")&&!this.system.sFichaPaciente.raza.equals("")&&!this.system.sFichaPaciente.rut.equals("")){
+                if(this.system.booleano == true){
+                this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
+                    (String)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem(), 
+                    (int)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.getSelectedItem(), 
+                    this.system.pPestagnas);
+            }            
+            this.system.sFichaPaciente.vFPaciente.hide();   
+            }else{
+                String out = "Datos faltantes o incorrectos\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }  
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar == e.getSource()){                          //boton AGREGAR
             String especie = JOptionPane.showInputDialog(null, "Introduce una nueva especie");
             this.system.sFichaPaciente.setEspecie(especie);
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar == e.getSource()){             //BOTON ACEPTAR
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar == e.getSource()){             //boton ACEPTAR
             int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
-            this.system.sFichaPaciente.editarFPaciente(index, this.system.pPestagnas);
+            this.system.sFichaPaciente.editarFPaciente(index, this.system.pPestagnas);                       
+            this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
+                    (String)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem(), 
+                    (int)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.getSelectedItem(), 
+                    this.system.pPestagnas);           
             this.system.sFichaPaciente.vFPaciente.hide();
-            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda == e.getSource()){                     //BOTON BUSCAR
+            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda == e.getSource()){                     //boton BUSCAR
             String rut = JOptionPane.showInputDialog(null, "Introduce el rut con puntos y guion \n"+"Ej: 19.512.341-4");   
             if(this.system.gDatos.compararRut(rut,this.system.sCliente)==true){
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.txtCliente.setText(rut);
             }
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar == e.getSource()){            //BOTON CANCELAR
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar == e.getSource()){            //boton CANCELAR
             this.system.sFichaPaciente.vFPaciente.hide();
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi == e.getSource()){                                 //boton SI           
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.setEnabled(true);
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.setEnabled(true);
+            this.system.booleano = true;
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo == e.getSource()){                                 //rboton NO                                 
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.setEnabled(false);            
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.setEnabled(false);            
+            this.system.booleano = false;
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula == e.getSource()){                             //combobox TJAULA
+            if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("L")){
+                this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(0)));
+            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("M")){
+                this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(1)));
+            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("S")){
+                this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(2)));
+            }
         }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){  //Iniciar ventana PERSONAL 
             try{
             this.system.sPersonal.iniciarPersonal(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);            

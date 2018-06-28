@@ -18,7 +18,9 @@ public class PanelJaulas extends JPanel{
     
     public int cantidadJaulasL , cantidadJaulasM , cantidadJaulasS ;
     
-    public ArrayList<Jaula> jaulasL, jaulasS, jaulasM;
+    public ArrayList<Jaula> jaulasL = new ArrayList<>();
+    public ArrayList<Jaula> jaulasS = new ArrayList<>();
+    public ArrayList<Jaula> jaulasM = new ArrayList<>();
     
     public PanelJaulas(){
         this.iniciarComponentes();
@@ -51,9 +53,7 @@ public class PanelJaulas extends JPanel{
         
     }
         
-   private void crearJaulas(ArrayList<Jaula> jaulas, int tamanno, String letraTamanno, JPanel panel){
-        
-        jaulas = new ArrayList<>();
+   private void crearJaulas(ArrayList<Jaula> jaulas, int tamanno, String letraTamanno, JPanel panel){                
         
         TitledBorder border = new TitledBorder(letraTamanno);
         border.setTitleColor(new java.awt.Color(54,82,48));
@@ -92,6 +92,6 @@ public class PanelJaulas extends JPanel{
         this.cantidadJaulasS = cantidadJaulasS;
     }
    
-   
+    
           
 }

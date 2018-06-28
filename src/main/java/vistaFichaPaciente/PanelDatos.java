@@ -28,8 +28,8 @@ import javax.swing.border.TitledBorder;
 public class PanelDatos extends JPanel{
     
     private JLabel labPaciente, labRaza,labColor, labEspecie, labFechaNac, labSexo, labInternado, labJaula, labCliente;    
-    public JTextField txtPaciente,txtColor, txtRaza, txtFechaNacimiento, txtJaula, txtCliente;
-    public JComboBox cbTipo;    
+    public JTextField txtPaciente,txtColor, txtRaza, txtFechaNacimiento, txtCliente;
+    public JComboBox cbTipo, cbTJaula, cbNJaula;    
     public JRadioButton rbMacho, rbHembra;    
     public JRadioButton rbSi, rbNo; 
     public ButtonGroup grupoRB,grupoRB2;
@@ -39,7 +39,7 @@ public class PanelDatos extends JPanel{
     public static final String FORMATO = "%1$td-%1$tm-%1$tY";
     public SubPanelDatos subPanel;
     
-    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String jaula, boolean jaulaEnable){
+    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean jaulaEnable){
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
         
@@ -66,7 +66,7 @@ public class PanelDatos extends JPanel{
         this.txtColor = new JTextField(color, 20);
         caja.add(this.subPanel.generarSubPanelTF(pnlColor, labColor, txtColor, "Color                       ", 134,204,161));
         
-        JPanel pnlFecha = new JPanel(new FlowLayout());
+        JPanel pnlFecha = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labFechaNac = new JLabel("Fecha Nac.             ");
         pnlFecha.add(this.labFechaNac);
         this.txtFechaNacimiento = new JTextField(fNac,20);
@@ -82,7 +82,7 @@ public class PanelDatos extends JPanel{
         pnlFecha.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlFecha);
         
-        JPanel pnlCliente = new JPanel(new FlowLayout());
+        JPanel pnlCliente = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labCliente = new JLabel("RUT Cliente            ");
         pnlCliente.add(this.labCliente);
         this.txtCliente = new JTextField(rut,17);
@@ -116,11 +116,19 @@ public class PanelDatos extends JPanel{
         grupoRB2.add(this.rbNo);
         pnlInternado.add(this.rbSi);
         pnlInternado.add(this.rbNo);
-        this.labJaula = new JLabel("Jaula");
+        this.labJaula = new JLabel(" || Tamaño Jaula");
         pnlInternado.add(this.labJaula);
-        this.txtJaula = new JTextField(jaula, 2);
-        this.txtJaula.setEnabled(jaulaEnable);
-        pnlInternado.add(this.txtJaula);
+        this.cbTJaula = new JComboBox();
+        this.cbTJaula.addItem("S");
+        this.cbTJaula.addItem("M");
+        this.cbTJaula.addItem("L");
+        this.cbTJaula.setEnabled(jaulaEnable);
+        pnlInternado.add(this.cbTJaula);
+        this.labJaula = new JLabel("Nro Jaula");
+        pnlInternado.add(this.labJaula);
+        this.cbNJaula = new JComboBox();
+        this.cbNJaula.setEnabled(jaulaEnable);
+        pnlInternado.add(this.cbNJaula);
         pnlInternado.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlInternado);
         
@@ -128,8 +136,8 @@ public class PanelDatos extends JPanel{
         this.add(caja);        
     }
 
-    public PanelDatos(String nombrePaciente, String raza, String color, String fNac, String rut, String jaula, boolean jaulaEnable) {
-        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, jaula , jaulaEnable);
+    public PanelDatos(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean jaulaEnable) {
+        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, tamannoJaula, nroJaula , jaulaEnable);
     }
     
 }

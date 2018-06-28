@@ -6,8 +6,6 @@
 package vistaConfiguracion;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import vistaDatosClinica.VentanaDClinica;
 import vistaHorario.VentanaHorario;
@@ -38,35 +36,12 @@ public class PestagnaConfig extends JPanel {
         this.setName("Configuración");
         
         this.pOpciones = new PanelOpciones();
-        this.pLogo = new PanelLogo();
-        
-//        this.pOpciones.bDatosClinica.addActionListener(this);
-//        this.pOpciones.bHorario.addActionListener(this);
-//        this.pOpciones.bJaulas.addActionListener(this);
-        
-        this.pOpciones.bPersonalizar.setEnabled(false);
-        
-//        this.pOpciones.bPersonalizar.addActionListener(this);
-//        this.pOpciones.bAcerca.addActionListener(this);
-        
+        this.pLogo = new PanelLogo();                        
+                
         this.add(pLogo, BorderLayout.EAST);
         this.add(pOpciones, BorderLayout.CENTER);                
         
     }
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if(this.pOpciones.bDatosClinica == e.getSource()){
-//            this.vDClinica = new VentanaDClinica();
-//        }else if(this.pOpciones.bHorario == e.getSource()){
-//            this.vHorario = new VentanaHorario();
-//        }else if(this.pOpciones.bJaulas == e.getSource()){
-//            this.vCJaulas = new VentanaCJaulas();
-//        }else if(this.pOpciones.bPersonalizar == e.getSource()){
-//            this.vPersonalizar = new VentanaPersonalizacion();
-//        }else if(this.pOpciones.bAcerca == e.getSource()){
-//            this.vAcerca = new VentanaAcerca();
-//        }
-//    }
     
 }

@@ -21,7 +21,8 @@ public class Paciente {
     private String sexo;
     private String internado;
     private String rutCliente;
-    private int jaula;
+    private String tamannoJaula;
+    private int nroJaula;
     private String antecedentes;
 
     public String getId() {
@@ -88,12 +89,20 @@ public class Paciente {
         this.internado = internado;
     }
 
-    public int getJaula() {
-        return jaula;
+    public String getTamannoJaula() {
+        return tamannoJaula;
     }
 
-    public void setJaula(int jaula) {
-        this.jaula = jaula;
+    public void setTamannoJaula(String tamannoJaula) {
+        this.tamannoJaula = tamannoJaula;
+    }
+    
+    public int getNroJaula() {
+        return nroJaula;
+    }
+
+    public void setNroJaula(int jaula) {
+        this.nroJaula = jaula;
     }
     
     public String getRutCliente(){
@@ -115,7 +124,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, int jaula, String rutCliente, String antMed) {
+    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String tamannoJaula, int jaula, String rutCliente, String antMed) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -124,7 +133,8 @@ public class Paciente {
         this.fNacimiento = fNacimiento;
         this.sexo = sexo;
         this.internado = internado;
-        this.jaula = jaula;
+        this.tamannoJaula = tamannoJaula;
+        this.nroJaula = jaula;
         this.rutCliente = rutCliente;
         this.antecedentes = antMed;
     }

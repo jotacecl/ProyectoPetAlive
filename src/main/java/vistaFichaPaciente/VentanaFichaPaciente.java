@@ -23,9 +23,9 @@ public class VentanaFichaPaciente extends JFrame{
     public  PanelBotonesP pnlBotones;
     
     
-    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String jaula, boolean booleano, int btnSeleccionado, String antMed){        
+    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean jaulaBoolean, int btnSeleccionado, String antMed){        
         
-        this.pnlDatos = new PanelDatos(nombrePaciente, raza, color, fNac, rut, jaula, booleano);   
+        this.pnlDatos = new PanelDatos(nombrePaciente, raza, color, fNac, rut, tamannoJaula, nroJaula, jaulaBoolean);   
         
         this.pnlAMedicos = new PanelAMedicos(antMed);
         
@@ -44,8 +44,8 @@ public class VentanaFichaPaciente extends JFrame{
         pack();
     }
 
-    public VentanaFichaPaciente(String nombrePaciente, String raza, String color, String fNac, String rut, String jaula, boolean booleano, int btnSeleccionado, String antMed) {
-        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, jaula, booleano, btnSeleccionado, antMed);
+    public VentanaFichaPaciente(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean booleano, int btnSeleccionado, String antMed) {
+        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, tamannoJaula, nroJaula, booleano, btnSeleccionado, antMed);
     }
    
     

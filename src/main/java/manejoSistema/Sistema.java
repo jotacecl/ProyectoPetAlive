@@ -27,9 +27,12 @@ public class Sistema {
     public SisCitas sCitas;
     public SisProducto sProductos;
     public SisServicio sServicio;
+    public SisDirectorio sDirectorio;
     
     public final ArrayList<String> listaCiudades = new ArrayList<>();    
-    public final ArrayList<String> listaRegiones = new ArrayList<>();                
+    public final ArrayList<String> listaRegiones = new ArrayList<>();
+    
+    public boolean booleano;
     
     public Sistema(){
         this.iniciarComponentes();        
@@ -46,6 +49,7 @@ public class Sistema {
         this.sCitas = new SisCitas();
         this.sProductos = new SisProducto();
         this.sServicio = new SisServicio();
+        this.sDirectorio = new SisDirectorio();
         
         this.pPestagnas = new PestagnasInicio();
         this.sDatosClinica.iniciarDClinica();
@@ -57,6 +61,7 @@ public class Sistema {
         this.sCitas.iniciarCitas(2, this.pPestagnas);
         this.sProductos.iniciarProductos(2, this.pPestagnas);
         this.sServicio.iniciarServicios(2, this.pPestagnas);
+        this.sDirectorio.iniciarDirectorio();
     }                
     
     public void setCiudades(String ciudad){
@@ -92,6 +97,9 @@ public class Sistema {
         }else{
             System.out.println("null");
         } 
-    }
+    }  
+    
+     
+          
                               
 }
