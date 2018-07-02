@@ -24,6 +24,7 @@ public class Paciente {
     private String tamannoJaula;
     private int nroJaula;
     private String antecedentes;
+    private boolean tratamiento;
 
     public String getId() {
         return id;
@@ -121,10 +122,18 @@ public class Paciente {
         this.antecedentes = antecedentes;
     }        
 
+    public boolean isTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(boolean tratamiento) {
+        this.tratamiento = tratamiento;
+    }
+    
     public Paciente() {
     }
 
-    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String tamannoJaula, int jaula, String rutCliente, String antMed) {
+    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String tamannoJaula, int jaula, String rutCliente, String antMed, boolean tratamiento) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -137,6 +146,7 @@ public class Paciente {
         this.nroJaula = jaula;
         this.rutCliente = rutCliente;
         this.antecedentes = antMed;
+        this.tratamiento = tratamiento;
     }
     
     

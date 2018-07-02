@@ -7,10 +7,6 @@ package vistaConfiguracion;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import vistaDatosClinica.VentanaDClinica;
-import vistaHorario.VentanaHorario;
-import vistaJaulas.VentanaCJaulas;
-import vistaPersonalizacion.VentanaPersonalizacion;
 
 /**
  *
@@ -19,12 +15,7 @@ import vistaPersonalizacion.VentanaPersonalizacion;
 public class PestagnaConfig extends JPanel {
     
     public PanelOpciones pOpciones;
-    public PanelLogo pLogo;
-    private VentanaDClinica vDClinica;
-    private VentanaHorario vHorario;
-    public VentanaCJaulas vCJaulas;
-    private VentanaPersonalizacion vPersonalizar;
-    private VentanaAcerca vAcerca;    
+    public PanelLogo pLogo;   
     
     public PestagnaConfig(){        
         this.iniciarComponentes();

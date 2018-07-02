@@ -77,7 +77,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
-        this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);
+        this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);        
         
         //Botones personal
         this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir.addActionListener(this);
@@ -120,6 +120,15 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sDirectorio.vDirectorio.pnlDatos.btnBuscar.addActionListener(this);
         this.system.sDirectorio.vDirectorio.pnlBotones.btnAceptar.addActionListener(this);
         this.system.sDirectorio.vDirectorio.pnlBotones.btnCancelar.addActionListener(this);
+        
+        //Botones tratamiento
+        this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento.addActionListener(this);
+        this.system.sTratamiento.vTrat.pnlBotones.btnAceptar.addActionListener(this);
+        this.system.sTratamiento.vTrat.pnlBotones.btnGuardar.addActionListener(this);
+        this.system.sTratamiento.vTrat.pnlBotones.btnInsumos.addActionListener(this);
+        
+        //Boton documento
+        this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos.addActionListener(this);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Veterinaria");
@@ -280,7 +289,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
-                this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);                
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento.addActionListener(this); 
+                this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento.setEnabled(true);
+                this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos.setEnabled(true);
                 this.system.sFichaPaciente.vFPaciente.setVisible(true);
             }catch(Exception m){
                 String out = "No hay una ficha seleccionada\n";
@@ -296,6 +309,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);
+            this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento.setEnabled(false);
+            this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos.setEnabled(false);
             this.system.sFichaPaciente.vFPaciente.setVisible(true);
         }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnGuardar == e.getSource()){             //boton GUARDAR             
            try{
@@ -316,10 +331,10 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar == e.getSource()){                          //boton AGREGAR
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar == e.getSource()){                               //boton AGREGAR
             String especie = JOptionPane.showInputDialog(null, "Introduce una nueva especie");
             this.system.sFichaPaciente.setEspecie(especie);
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar == e.getSource()){             //boton ACEPTAR
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar == e.getSource()){                  //boton ACEPTAR
             int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
             this.system.sFichaPaciente.editarFPaciente(index, this.system.pPestagnas);                       
             this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
@@ -327,22 +342,22 @@ public class VentanaInicio extends JFrame implements ActionListener{
                     (int)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.getSelectedItem(), 
                     this.system.pPestagnas);           
             this.system.sFichaPaciente.vFPaciente.hide();
-            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda == e.getSource()){                     //boton BUSCAR
+            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda == e.getSource()){                          //boton BUSCAR
             String rut = JOptionPane.showInputDialog(null, "Introduce el rut con puntos y guion \n"+"Ej: 19.512.341-4");   
             if(this.system.gDatos.compararRut(rut,this.system.sCliente)==true){
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.txtCliente.setText(rut);
             }
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar == e.getSource()){            //boton CANCELAR
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar == e.getSource()){                 //boton CANCELAR
             this.system.sFichaPaciente.vFPaciente.hide();
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi == e.getSource()){                                 //boton SI           
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi == e.getSource()){                                         //boton SI           
             this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.setEnabled(true);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.setEnabled(true);
             this.system.booleano = true;
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo == e.getSource()){                                 //rboton NO                                 
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo == e.getSource()){                                         //rboton NO                                 
             this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.setEnabled(false);            
             this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.setEnabled(false);            
             this.system.booleano = false;
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula == e.getSource()){                             //combobox TJAULA
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula == e.getSource()){                                  //combobox TJAULA
             if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("L")){
                 this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(0)));
             }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("M")){
@@ -350,7 +365,31 @@ public class VentanaInicio extends JFrame implements ActionListener{
             }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("S")){
                 this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(2)));
             }
-        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){  //Iniciar ventana PERSONAL 
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento == e.getSource()){                     //>>>>>TRATAMIENTO<<<<<<
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            int idPaciente = Integer.parseInt(this.system.sFichaPaciente.listaPacientes.get(index).getId());
+            boolean tratamiento = this.system.sFichaPaciente.listaPacientes.get(index).isTratamiento();
+            this.system.sTratamiento.iniciarTratamiento(idPaciente,tratamiento);
+            this.system.sTratamiento.vTrat.pnlBotones.btnGuardar.addActionListener(this);
+            this.system.sTratamiento.vTrat.pnlBotones.btnInsumos.addActionListener(this);
+            this.system.sTratamiento.vTrat.pnlBotones.btnAceptar.addActionListener(this);
+            this.system.sTratamiento.vTrat.setVisible(true);
+        }else if(this.system.sTratamiento.vTrat.pnlBotones.btnGuardar == e.getSource()){                                         //boton GUARDAR
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            int idPaciente = Integer.parseInt(this.system.sFichaPaciente.listaPacientes.get(index).getId());
+            this.system.sTratamiento.crearTratamiento(idPaciente);
+            this.system.sFichaPaciente.listaPacientes.get(index).setTratamiento(true);
+            this.system.sTratamiento.vTrat.hide();
+        }else if(this.system.sTratamiento.vTrat.pnlBotones.btnAceptar == e.getSource()){
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            int idPaciente = Integer.parseInt(this.system.sFichaPaciente.listaPacientes.get(index).getId());
+            this.system.sTratamiento.editarTratamiento(index);
+            this.system.sTratamiento.vTrat.hide();
+        }else if(this.system.sTratamiento.vTrat.pnlBotones.btnInsumos == e.getSource()){                                         //boton INSUMOS
+            
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos == e.getSource()){                      //>>>>>DOCUMENTOS<<<<<<
+            this.system.abrirExplorer(this.system.sDirectorio.almacenDirectorio.get(0));
+        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){                      //>>>>>PERSONAL<<<<<<
             try{
             this.system.sPersonal.iniciarPersonal(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);            
             this.system.sPersonal.vPersonal.pnlBotones.btnAceptar.addActionListener(this);

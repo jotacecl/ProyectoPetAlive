@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  */
 public class PanelBotonesP extends JPanel{
     
-    public JButton btnTratamiento, btnDiagnostico, btnPagar;  
+    public JButton btnTratamiento, btnDocumentos;  
     public PanelBotones pnlBotones;
     public SubPanelDatos subPanel;
 
@@ -27,6 +27,7 @@ public class PanelBotonesP extends JPanel{
     }        
     
     private void iniciarComponentes(int btnSeleccionado){
+        this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
         Box caja = Box.createVerticalBox();        
         
@@ -37,11 +38,8 @@ public class PanelBotonesP extends JPanel{
         this.btnTratamiento = new JButton("Tratamiento");
         pnlBotones1.add(this.btnTratamiento);        
         
-        this.btnDiagnostico = new JButton ("Diagnostico");
-        pnlBotones1.add(this.btnDiagnostico);
-        
-        this.btnPagar = new JButton("Pagar tratamiento");
-        pnlBotones1.add(this.btnPagar);
+        this.btnDocumentos = new JButton ("Documentos");
+        pnlBotones1.add(this.btnDocumentos);                
         
         pnlBotones1.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlBotones1);

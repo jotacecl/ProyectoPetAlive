@@ -17,7 +17,7 @@ import vistaVentanaTratamiento.VentanaTratamiento;
 public class VentanaFichaPaciente extends JFrame{
     
     private VentanaInsumos vIns;
-    private VentanaTratamiento vTrat;
+    
     public PanelDatos pnlDatos;
     public PanelAMedicos pnlAMedicos;
     public  PanelBotonesP pnlBotones;

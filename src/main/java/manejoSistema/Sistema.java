@@ -5,6 +5,7 @@
  */
 package manejoSistema;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import vistaVentanaInicio.PestagnasInicio;
@@ -28,6 +29,7 @@ public class Sistema {
     public SisProducto sProductos;
     public SisServicio sServicio;
     public SisDirectorio sDirectorio;
+    public SisTratamiento sTratamiento;
     
     public final ArrayList<String> listaCiudades = new ArrayList<>();    
     public final ArrayList<String> listaRegiones = new ArrayList<>();
@@ -50,6 +52,7 @@ public class Sistema {
         this.sProductos = new SisProducto();
         this.sServicio = new SisServicio();
         this.sDirectorio = new SisDirectorio();
+        this.sTratamiento = new SisTratamiento();
         
         this.pPestagnas = new PestagnasInicio();
         this.sDatosClinica.iniciarDClinica();
@@ -62,6 +65,7 @@ public class Sistema {
         this.sProductos.iniciarProductos(2, this.pPestagnas);
         this.sServicio.iniciarServicios(2, this.pPestagnas);
         this.sDirectorio.iniciarDirectorio();
+        this.sTratamiento.iniciarTratamiento(0, false);
     }                
     
     public void setCiudades(String ciudad){
@@ -99,7 +103,14 @@ public class Sistema {
         } 
     }  
     
-     
-          
-                              
+    public void abrirExplorer(String dir){
+        Runtime r = Runtime.getRuntime();
+		Process p = null;
+		try {
+			p = r.exec("explorer.exe " + dir);
+		} catch (IOException e) {
+			System.out.println("Error al ejecutar");
+		}
+    }
+                                                
 }

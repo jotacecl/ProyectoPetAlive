@@ -18,14 +18,14 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelTexto extends JPanel{
     
-    private JTextArea areaTexto;
+    public JTextArea areaTexto;
     private JLabel labTrat;
     
-    public PanelTexto(){
-        this.iniciarComponentes();
+    public PanelTexto(String tratamiento){
+        this.iniciarComponentes(tratamiento);
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(String tratamiento){
         Box caja = Box.createVerticalBox();
         
         TitledBorder border = new TitledBorder("");       
@@ -39,6 +39,7 @@ public class PanelTexto extends JPanel{
         
         JPanel pnlArea = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.areaTexto = new JTextArea(20,45);
+        this.areaTexto.setText(tratamiento);
         pnlArea.add(this.areaTexto);
         pnlArea.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlArea);

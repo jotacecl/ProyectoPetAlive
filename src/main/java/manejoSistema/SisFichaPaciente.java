@@ -20,7 +20,7 @@ public class SisFichaPaciente {
     private final ArrayList<String> listaEspecies = new ArrayList<>();
     public final ArrayList<Paciente> listaPacientes = new ArrayList<>();
     public String nombreP, especie, raza, color, fNac, tamannoJaula, internado, sexo, antMed, rut;
-    private int nroJaula;
+    private int nroJaula, idPaciente;
     
     public void iniciarFPaciente(int btnSeleccionado, PestagnasInicio p){
         int index = p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
@@ -86,7 +86,7 @@ public class SisFichaPaciente {
         
         if(!this.nombreP.equals("")&&!this.especie.equals("")&&!this.raza.equals("")&&!this.rut.equals("")){
                             
-        Paciente p = new Paciente(Integer.toString(this.listaPacientes.size()),
+        Paciente p = new Paciente(Integer.toString(this.idPaciente),
                                     this.nombreP,
                                     this.especie,
                                     this.raza,
@@ -97,7 +97,8 @@ public class SisFichaPaciente {
                                     this.tamannoJaula,
                                     this.nroJaula,
                                     this.rut,
-                                    this.antMed);
+                                    this.antMed,
+                                    false);
         this.listaPacientes.add(p);        
         
         Object[] fila = new Object[9];
@@ -145,6 +146,7 @@ public class SisFichaPaciente {
     }
     
     public void getAllDataPaciente(){
+        this.idPaciente = this.listaPacientes.size();
         this.nombreP = this.vFPaciente.pnlDatos.txtPaciente.getText();
         this.especie = (String)this.vFPaciente.pnlDatos.cbTipo.getSelectedItem();
         this.raza = this.vFPaciente.pnlDatos.txtRaza.getText();
@@ -196,5 +198,11 @@ public class SisFichaPaciente {
         }else{
             System.out.println("null");
         }                
+    }
+    
+    public void setTratamiento(boolean tratamiento, PestagnasInicio p){
+        int index = p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+        this.listaPacientes.get(index).setTratamiento(tratamiento);
+        
     }
 }
