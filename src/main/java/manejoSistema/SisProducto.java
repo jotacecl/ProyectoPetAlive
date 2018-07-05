@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package manejoSistema;
 
 import java.util.ArrayList;
@@ -123,6 +119,24 @@ public class SisProducto {
         }else{
             System.out.println("null");
         } 
-    }    
+    }  
+    
+    public void editarTipo(String tipoEditado){
+         if(tipoEditado != null){
+             this.eliminarTipo();
+             this.setTipo(tipoEditado);
+         }else{
+            System.out.println("null");
+        } 
+    }
+    
+    public void eliminarTipo(){
+        for(int i=0; i<listaTipoProductos.size(); i++){
+            if((String)this.vProducto.pnlDatos.cbTipo.getSelectedItem() == this.listaTipoProductos.get(i)){
+                this.listaTipoProductos.remove(i);
+            }
+        }
+        this.vProducto.pnlDatos.cbTipo.removeItemAt(this.vProducto.pnlDatos.cbTipo.getSelectedIndex());
+    }
     
 }

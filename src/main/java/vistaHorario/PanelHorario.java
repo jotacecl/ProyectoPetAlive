@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaHorario;
 
 import javax.swing.Box;
@@ -89,8 +85,7 @@ public class PanelHorario extends JPanel{
         
         this.setBackground(new java.awt.Color(134, 204, 161));
         this.add(caja);
-        
-        
+                
     }
     
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaFichaPaciente;
 
 import com.toedter.calendar.JDateChooser;
@@ -35,7 +31,7 @@ public class PanelDatos extends JPanel{
     public ButtonGroup grupoRB,grupoRB2;
     public JDateChooser calendario;
     public BotonIcono btnBusqueda;
-    public JButton btnAgregar;
+    public JButton btnAgregar, btnEditar, btnEliminar;
     public static final String FORMATO = "%1$td-%1$tm-%1$tY";
     public SubPanelDatos subPanel;
     
@@ -56,7 +52,9 @@ public class PanelDatos extends JPanel{
         JPanel pnlEspe = new JPanel(new FlowLayout());        
         this.cbTipo = new JComboBox();      
         this.btnAgregar = new JButton("+");
-        caja.add(this.subPanel.generarSubPanelCB(pnlEspe, labEspecie, cbTipo, "Especie                  ", 134,204,161, btnAgregar));
+        this.btnEliminar = new JButton("-");
+        this.btnEditar = new JButton("edit");
+        caja.add(this.subPanel.generarSubPanelCB(pnlEspe, labEspecie, cbTipo, "Especie                  ", 134,204,161, btnAgregar, btnEliminar, btnEditar));
         
         JPanel pnlRaza = new JPanel(new FlowLayout());
         this.txtRaza = new JTextField(raza,20);
@@ -70,15 +68,15 @@ public class PanelDatos extends JPanel{
         this.labFechaNac = new JLabel("Fecha Nac.             ");
         pnlFecha.add(this.labFechaNac);
         this.txtFechaNacimiento = new JTextField(fNac,20);
-        JPanel subPanel = new JPanel();
-        subPanel.setPreferredSize(new Dimension(226,25));
-        subPanel.setLayout(new GridLayout(1,1));
-        subPanel.add(this.calendario);
+        JPanel sPanel = new JPanel();
+        sPanel.setPreferredSize(new Dimension(226,25));
+        sPanel.setLayout(new GridLayout(1,1));
+        sPanel.add(this.calendario);
         
         String fechaSeleccionada = String.format(FORMATO, this.calendario.getDate());
         this.txtFechaNacimiento.setText(fechaSeleccionada);
         
-        pnlFecha.add(subPanel);
+        pnlFecha.add(sPanel);
         pnlFecha.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlFecha);
         

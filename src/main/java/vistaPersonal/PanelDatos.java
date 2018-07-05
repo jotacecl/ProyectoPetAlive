@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaPersonal;
 
 import componentes.SubPanelDatos;
@@ -28,7 +24,7 @@ public class PanelDatos extends JPanel{
     public JTextField rutParte1, rutParte2, rutParte3, rutParte4;
     public JComboBox cbCiudad, cbRegion, cbCargo;
     public SubPanelDatos subPanel;
-    public JButton btnAgregarC, btnAgregarR, btnAgregarCG;
+    public JButton btnAgregarC, btnAgregarR, btnEliminarC, btnEliminarR, btnEditarC, btnEditarR, btnAgregarCG, btnEliminarCG, btnEditarCG;
     
     public PanelDatos(String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
         this.iniciarComponentes(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
@@ -77,13 +73,17 @@ public class PanelDatos extends JPanel{
         
         JPanel pnlCiudad = new JPanel();
         this.btnAgregarC = new JButton("+");
+        this.btnEliminarC = new JButton("-");
+        this.btnEditarC = new JButton("edit");
         this.cbCiudad = new JComboBox();
-        caja.add(this.subPanel.generarSubPanelCB(pnlCiudad, labCiudad, cbCiudad, "Ciudad      ", 134, 204, 161, btnAgregarC));
+        caja.add(this.subPanel.generarSubPanelCB(pnlCiudad, labCiudad, cbCiudad, "Ciudad      ", 134, 204, 161, btnAgregarC, btnEliminarC, btnEditarC));
         
         JPanel pnlRegion = new JPanel();
         this.btnAgregarR = new JButton("+");
+        this.btnEliminarR = new JButton("-");
+        this.btnEditarR = new JButton("edit");
         this.cbRegion = new JComboBox();
-        caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región      ", 134, 204, 161, btnAgregarR));
+        caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región      ", 134, 204, 161, btnAgregarR, btnEliminarR, btnEditarR));
         
         JPanel pnlTelefono = new JPanel();
         this.txtTelefono = new JTextField(telefono,20);
@@ -99,8 +99,10 @@ public class PanelDatos extends JPanel{
         
         JPanel pnlCargo = new JPanel();
         this.btnAgregarCG = new JButton("+");
+        this.btnEliminarCG = new JButton("-");
+        this.btnEditarCG = new JButton("edit");
         this.cbCargo = new JComboBox();
-        caja.add(this.subPanel.generarSubPanelCB(pnlCargo, labCargo, cbCargo, "Cargo       ", 134, 204, 161, btnAgregarCG));
+        caja.add(this.subPanel.generarSubPanelCB(pnlCargo, labCargo, cbCargo, "Cargo       ", 134, 204, 161, btnAgregarCG, btnEliminarCG, btnEditarCG));
         
         this.setBackground(new java.awt.Color(134,204,161));
         

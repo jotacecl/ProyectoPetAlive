@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaVentanaInsumos;
 
+import componentes.SubPanelDatos;
 import java.awt.FlowLayout;
 import javax.swing.Box;
 import javax.swing.JLabel;
@@ -17,13 +14,11 @@ import javax.swing.border.TitledBorder;
  * @author HernySenpai
  */
 public class PanelIngresoIns extends JPanel {
-    private JLabel insumo;
-    private JLabel cantidad;
-    private JLabel costo;
     
-    private JTextField ingInsumo;
-    private JTextField ingCantidad;
-    private JTextField ingCosto;
+    private JLabel labInsumo, labCantidad, labCosto;       
+    public JTextField txtInsumo, txtCantidad, txtCosto;    
+    
+    public SubPanelDatos subPanel;   
 
     public PanelIngresoIns() {
         this.iniciarComponentes();
@@ -32,39 +27,29 @@ public class PanelIngresoIns extends JPanel {
     
     
     private void iniciarComponentes(){
-        Box caja = Box.createVerticalBox();
-        
         TitledBorder border = new TitledBorder("Ingrese los datos solicitados");
         border.setTitleColor(new java.awt.Color(54,82,48));
         this.setBorder(border);
         
-        JPanel pnlInsumo = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.insumo = new JLabel("Insumo/Procedimiento");
-        pnlInsumo.add(this.insumo);        
-        this.ingInsumo = new JTextField("",20);
-        pnlInsumo.add(ingInsumo);
-        pnlInsumo.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlInsumo);
+        Box caja = Box.createVerticalBox();        
         
-        JPanel pnlCantidad = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.cantidad = new JLabel("Cantidad                          ");
-        pnlCantidad.add(this.cantidad);        
-        this.ingCantidad = new JTextField("",20);
-        pnlCantidad.add(this.ingCantidad);
-        pnlCantidad.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlCantidad);
+        subPanel = new SubPanelDatos();                
         
-        JPanel pnlCosto = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.costo = new JLabel("Costo                                ");
-        pnlCosto.add(this.costo);        
-        this.ingCosto = new JTextField("",20);
-        pnlCosto.add(ingCosto);
-        pnlCosto.setBackground(new java.awt.Color(134, 204, 161));
-        caja.add(pnlCosto);
+        JPanel pnlInsumo = new JPanel(new FlowLayout(FlowLayout.LEFT));                      
+        this.txtInsumo = new JTextField("",20);                
+        caja.add(this.subPanel.generarSubPanelTF(pnlInsumo, labInsumo, txtInsumo, "Insumo/Procedimiento", 134,204,161));
         
-        this.setBackground(new java.awt.Color(134, 204, 161));
+        JPanel pnlCantidad = new JPanel(new FlowLayout(FlowLayout.LEFT));     
+        this.txtCantidad = new JTextField("",20);
+        caja.add(this.subPanel.generarSubPanelTF(pnlCantidad, labCantidad, txtCantidad, "Cantidad                          ", 134,204,161));
         
+        JPanel pnlCosto = new JPanel(new FlowLayout(FlowLayout.LEFT));   
+        this.txtCosto = new JTextField("",20);
+        caja.add(this.subPanel.generarSubPanelTF(pnlCosto, labCosto, txtCosto, "Costo                                ", 134,204,161));
+        
+        this.setBackground(new java.awt.Color(134, 204, 161));        
         this.add(caja);
         
     }
+    
 }

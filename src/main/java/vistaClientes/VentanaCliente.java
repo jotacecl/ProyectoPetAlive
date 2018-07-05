@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaClientes;
 
 import java.awt.BorderLayout;
@@ -17,16 +13,16 @@ public class VentanaCliente extends JFrame{
     public PanelBotones pnlBotones;
     public PanelDatos pnlDatos;
     
-    public VentanaCliente(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
-        this.iniciarComponentes(btnSelect, nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
+    public VentanaCliente(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email, String deuda){
+        this.iniciarComponentes(btnSelect, nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email, deuda);
     }
     
-    private void iniciarComponentes(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
+    private void iniciarComponentes(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email, String deuda){
                      
         this.pnlDatos = new PanelDatos(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
         this.add(this.pnlDatos, BorderLayout.CENTER);
         
-        this.pnlBotones = new PanelBotones(btnSelect);
+        this.pnlBotones = new PanelBotones(btnSelect, deuda);
         this.add(this.pnlBotones, BorderLayout.SOUTH);
         
         this.setBackground(new java.awt.Color(134, 204, 161));

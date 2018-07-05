@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package componentes;
 
 import java.awt.FlowLayout;
@@ -37,13 +33,15 @@ public class SubPanelDatos {
         return panel;
     }
     
-    public JPanel generarSubPanelCB(JPanel panel, JLabel label, JComboBox cb, String sLabel, int R, int G, int B, JButton btnAgregar){
+    public JPanel generarSubPanelCB(JPanel panel, JLabel label, JComboBox cb, String sLabel, int R, int G, int B, JButton btnAgregar, JButton btnEliminar, JButton btnEditar){
         panel = new JPanel(new FlowLayout(FlowLayout.LEFT)); 
         label = new JLabel(sLabel);
         cb.addItem("    ");
         panel.add(label);
         panel.add(cb);    
         panel.add(btnAgregar);
+        panel.add(btnEliminar);
+        panel.add(btnEditar);
         panel.setBackground(new java.awt.Color(R, G, B)); 
         return panel;
     }

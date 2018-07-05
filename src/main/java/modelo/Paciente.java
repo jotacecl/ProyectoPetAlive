@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,7 +20,9 @@ public class Paciente {
     private String tamannoJaula;
     private int nroJaula;
     private String antecedentes;
-    private boolean tratamiento;
+    private String tratamiento;
+    private ArrayList<Insumo> listaInsumos = new ArrayList<>();
+    private int costoInsumos;
 
     public String getId() {
         return id;
@@ -122,18 +120,30 @@ public class Paciente {
         this.antecedentes = antecedentes;
     }        
 
-    public boolean isTratamiento() {
+    public String getTratamiento() {
         return tratamiento;
     }
 
-    public void setTratamiento(boolean tratamiento) {
+    public void setTratamiento(String tratamiento) {
         this.tratamiento = tratamiento;
+    }
+
+    public ArrayList<Insumo> getListaInsumos() {
+        return listaInsumos;
+    }  
+    
+    public int getCostoInsumos() {
+        return costoInsumos;
+    }
+
+    public void setCostoInsumos(int costoInsumos) {
+        this.costoInsumos = costoInsumos;
     }
     
     public Paciente() {
-    }
+    }   
 
-    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String tamannoJaula, int jaula, String rutCliente, String antMed, boolean tratamiento) {
+    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String rutCliente, String tamannoJaula, int nroJaula, String antecedentes) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -142,12 +152,10 @@ public class Paciente {
         this.fNacimiento = fNacimiento;
         this.sexo = sexo;
         this.internado = internado;
-        this.tamannoJaula = tamannoJaula;
-        this.nroJaula = jaula;
         this.rutCliente = rutCliente;
-        this.antecedentes = antMed;
-        this.tratamiento = tratamiento;
-    }
-    
+        this.tamannoJaula = tamannoJaula;
+        this.nroJaula = nroJaula;
+        this.antecedentes = antecedentes;
+    }                  
     
 }

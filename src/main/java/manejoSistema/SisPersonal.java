@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package manejoSistema;
 
 import java.util.ArrayList;
@@ -51,7 +47,6 @@ public class SisPersonal {
         this.nombre = this.listaPersonal.get(index).getNombre();
         this.apellido = this.listaPersonal.get(index).getApellido();
         this.rut = this.listaPersonal.get(index).getRut();
-//        this.separarRut(this.rut);
         this.direccion = this.listaPersonal.get(index).getDireccion();
         this.ciudad = this.listaPersonal.get(index).getCiudad();
         this.region = this.listaPersonal.get(index).getRegion();
@@ -160,6 +155,24 @@ public class SisPersonal {
         }else{
             System.out.println("null");
         } 
+    }
+    
+    public void editarCargo(String cargoEditado){
+        if(cargoEditado != null){
+            this.eliminarCargo();
+            this.setCargo(cargoEditado);
+        }else{
+            System.out.println("null");
+        }
+    }
+    
+    public void eliminarCargo(){
+        for(int i=0; i<listaCargos.size(); i++){
+            if((String)this.vPersonal.pnlDatos.cbCargo.getSelectedItem()==this.listaCargos.get(i)){
+                this.listaCargos.remove(i);
+            }
+        }
+        this.vPersonal.pnlDatos.cbCargo.removeItemAt(this.vPersonal.pnlDatos.cbCargo.getSelectedIndex());
     }
     
 }

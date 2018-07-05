@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package manejoSistema;
 
 import java.util.ArrayList;
@@ -93,12 +89,11 @@ public class SisFichaPaciente {
                                     this.color,
                                     this.fNac,
                                     this.sexo,
-                                    this.internado,
-                                    this.tamannoJaula,
-                                    this.nroJaula,
+                                    this.internado,                                
                                     this.rut,
-                                    this.antMed,
-                                    false);
+                                    this.tamannoJaula,   
+                                    this.nroJaula,
+                                    this.antMed);
         this.listaPacientes.add(p);        
         
         Object[] fila = new Object[9];
@@ -187,7 +182,25 @@ public class SisFichaPaciente {
         }else{
             System.out.println("null");
         } 
-    }    
+    }
+    
+    public void editarEspecia(String especieEditada){
+        if(especieEditada != null){
+            this.eliminarEspecie();
+            this.setEspecie(especieEditada);
+        }else{
+            System.out.println("null");
+        } 
+    }
+
+    public void eliminarEspecie(){
+        for(int i =0; i<listaEspecies.size(); i++){
+            if((String)this.vFPaciente.pnlDatos.cbTipo.getSelectedItem()==this.listaEspecies.get(i)){
+                this.listaEspecies.remove(i);
+            }
+        }
+        this.vFPaciente.pnlDatos.cbTipo.removeItemAt(this.vFPaciente.pnlDatos.cbTipo.getSelectedIndex());
+    }
     
     public void setJaulas(int cantidadJaulas){
         if(cantidadJaulas != -1){                       
@@ -200,9 +213,4 @@ public class SisFichaPaciente {
         }                
     }
     
-    public void setTratamiento(boolean tratamiento, PestagnasInicio p){
-        int index = p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
-        this.listaPacientes.get(index).setTratamiento(tratamiento);
-        
-    }
 }

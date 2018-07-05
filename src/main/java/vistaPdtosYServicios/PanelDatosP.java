@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaPdtosYServicios;
 
 import componentes.SubPanelDatos;
@@ -23,7 +19,7 @@ public class PanelDatosP extends JPanel{
     private JLabel labID, labNombre, labTipo, labDescripcion, labStock, labPrecio;
     public JTextField txtID, txtNombre, txtDescripcion, txtStock, txtPrecio;
     public JComboBox cbTipo;
-    public JButton btnAgregar;
+    public JButton btnAgregar, btnEliminar, btnEditar;
     public SubPanelDatos subPanel;
     
     public PanelDatosP(String idProducto, String nombre, String descripcion, String stock, String precio){
@@ -50,7 +46,9 @@ public class PanelDatosP extends JPanel{
         JPanel pnlTipo = new JPanel();
         this.cbTipo = new JComboBox();
         this.btnAgregar = new JButton("+");
-        caja.add(this.subPanel.generarSubPanelCB(pnlTipo, labTipo, cbTipo, "Tipo               ", 134, 204, 161, btnAgregar));
+        this.btnEliminar = new JButton("-");
+        this.btnEditar = new JButton("edit");
+        caja.add(this.subPanel.generarSubPanelCB(pnlTipo, labTipo, cbTipo, "Tipo               ", 134, 204, 161, btnAgregar, btnEliminar, btnEditar));
         
         JPanel pnlDescripcion = new JPanel();
         this.txtDescripcion = new JTextField(descripcion,20);

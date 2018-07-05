@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaVentanaInicio;
 
 import java.awt.event.ActionEvent;
@@ -61,7 +57,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAnnadir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnCancelar.addActionListener(this);
         this.system.sCliente.vCliente.pnlDatos.btnAgregarC.addActionListener(this);
+        this.system.sCliente.vCliente.pnlDatos.btnEditarC.addActionListener(this);
+        this.system.sCliente.vCliente.pnlDatos.btnEliminarC.addActionListener(this);
         this.system.sCliente.vCliente.pnlDatos.btnAgregarR.addActionListener(this);
+        this.system.sCliente.vCliente.pnlDatos.btnEditarR.addActionListener(this);
+        this.system.sCliente.vCliente.pnlDatos.btnEliminarR.addActionListener(this);
         this.system.sCliente.vCliente.pnlBotones.btnGuardar.addActionListener(this);
         this.system.sCliente.vCliente.pnlBotones.btnAceptar.addActionListener(this);    
         this.system.sCliente.vCliente.pnlBotones.btnCancelar.addActionListener(this);
@@ -75,6 +75,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
+        this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEliminar.addActionListener(this);
+        this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEditar.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
         this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.addActionListener(this);        
@@ -87,8 +89,14 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sPersonal.vPersonal.pnlBotones.btnAceptar.addActionListener(this);
         this.system.sPersonal.vPersonal.pnlBotones.btnCancelar.addActionListener(this);  
         this.system.sPersonal.vPersonal.pnlDatos.btnAgregarC.addActionListener(this);
+        this.system.sPersonal.vPersonal.pnlDatos.btnEliminarC.addActionListener(this);
+        this.system.sPersonal.vPersonal.pnlDatos.btnEditarC.addActionListener(this);
         this.system.sPersonal.vPersonal.pnlDatos.btnAgregarCG.addActionListener(this);
+        this.system.sPersonal.vPersonal.pnlDatos.btnEliminarCG.addActionListener(this);
+        this.system.sPersonal.vPersonal.pnlDatos.btnEditarCG.addActionListener(this);
         this.system.sPersonal.vPersonal.pnlDatos.btnAgregarR.addActionListener(this);
+        this.system.sPersonal.vPersonal.pnlDatos.btnEliminarR.addActionListener(this);
+        this.system.sPersonal.vPersonal.pnlDatos.btnEditarR.addActionListener(this);
         
         //Botones cita
         this.system.pPestagnas.pCitas.pnlBotones.btnAbrir.addActionListener(this);
@@ -107,6 +115,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.sProductos.vProducto.pnlBotones.btnGuardar.addActionListener(this);
         this.system.sProductos.vProducto.pnlBotones.btnCancelar.addActionListener(this);
         this.system.sProductos.vProducto.pnlDatos.btnAgregar.addActionListener(this);
+        this.system.sProductos.vProducto.pnlDatos.btnEliminar.addActionListener(this);
+        this.system.sProductos.vProducto.pnlDatos.btnEditar.addActionListener(this);
         
         //Botones servicios
         this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAbrir.addActionListener(this);
@@ -124,11 +134,15 @@ public class VentanaInicio extends JFrame implements ActionListener{
         //Botones tratamiento
         this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento.addActionListener(this);
         this.system.sTratamiento.vTrat.pnlBotones.btnAceptar.addActionListener(this);
-        this.system.sTratamiento.vTrat.pnlBotones.btnGuardar.addActionListener(this);
-        this.system.sTratamiento.vTrat.pnlBotones.btnInsumos.addActionListener(this);
+        this.system.sTratamiento.vTrat.pnlBotones.btnGuardar.addActionListener(this);        
         
         //Boton documento
         this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos.addActionListener(this);
+        
+        //Boton insumos
+        this.system.sTratamiento.vTrat.pnlBotones.btnInsumos.addActionListener(this);
+        this.system.sInsumos.vInsumos.pnlBotones.btnAgregar.addActionListener(this);
+        this.system.sInsumos.vInsumos.pnlBotones.btnEliminar.addActionListener(this);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Veterinaria");
@@ -224,6 +238,10 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sCliente.vCliente.pnlBotones.btnAceptar.addActionListener(this);
             this.system.sCliente.vCliente.pnlDatos.btnAgregarC.addActionListener(this);
             this.system.sCliente.vCliente.pnlDatos.btnAgregarR.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEditarR.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEliminarR.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEditarC.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEliminarC.addActionListener(this);
             this.system.sCliente.vCliente.pnlBotones.btnCancelar.addActionListener(this);    
             this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte1, 2);
             this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte2, 3);
@@ -234,7 +252,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "No hay una ficha seleccionada\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarC == e.getSource()){                           //boton AGREGAR
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarC == e.getSource()){                           //boton AGREGAR CIUDAD
             try{
             String ciudad = JOptionPane.showInputDialog(null, "Introduce la ciudad");            
             this.system.setCiudades(ciudad);
@@ -242,7 +260,17 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "Valores faltantes o mal ingresados\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarR == e.getSource()){                           //boton AGREGAR
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnEditarC == e.getSource()){                           //boton EDITAR CIUDAD
+            try{
+            String ciudad = JOptionPane.showInputDialog(null, "Introduce la ciudad");            
+            this.system.editarCiudad(ciudad,1);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnEliminarC == e.getSource()){                         //boton ELIMINAR CIUDAD
+            this.system.eliminarCiudad(1);
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnAgregarR == e.getSource()){                           //boton AGREGAR REGION
             try{
             String region = JOptionPane.showInputDialog(null, "Introduce la región");            
             this.system.setRegiones(region);
@@ -250,11 +278,25 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "Valores faltantes o mal ingresados\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnEditarR == e.getSource()){                           //boton EDITAR REGION
+            try{
+            String region = JOptionPane.showInputDialog(null, "Introduce la región");            
+            this.system.editarRegion(region, 1);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sCliente.vCliente.pnlDatos.btnEliminarR == e.getSource()){                         //boton ELIMINAR REGION
+            this.system.eliminarRegion(1);
         }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAnnadir == e.getSource()){           
             this.system.sCliente.iniciarCliente(2, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);
             this.system.sCliente.vCliente.pnlBotones.btnGuardar.addActionListener(this);
             this.system.sCliente.vCliente.pnlDatos.btnAgregarC.addActionListener(this);
             this.system.sCliente.vCliente.pnlDatos.btnAgregarR.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEditarR.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEliminarR.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEditarC.addActionListener(this);
+            this.system.sCliente.vCliente.pnlDatos.btnEliminarC.addActionListener(this);
             this.system.sCliente.vCliente.pnlBotones.btnCancelar.addActionListener(this);
             this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte1, 2);
             this.system.gDatos.limitarCaracteres(this.system.sCliente.vCliente.pnlDatos.rutParte2, 3);
@@ -275,7 +317,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             try{
             int index = this.system.pPestagnas.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();  
             this.system.sCliente.editarCliente(index, this.system.pPestagnas);
-            this.system.sFichaPaciente.vFPaciente.hide();
+            this.system.sCliente.vCliente.hide();
             }catch(Exception m){
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
@@ -286,6 +328,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEliminar.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEditar.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
@@ -300,11 +344,23 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
             
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEliminar == e.getSource()){
+            this.system.sFichaPaciente.eliminarEspecie();
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEditar == e.getSource()){
+            try{
+                String especieEditada = JOptionPane.showInputDialog(null, "Introduce la especie");
+                this.system.sFichaPaciente.editarEspecia(especieEditada);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }            
         }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAnnadir == e.getSource()){
             this.system.sFichaPaciente.iniciarFPaciente(2, this.system.pPestagnas);
             this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnGuardar.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.btnAgregar.addActionListener(this);
+            this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEliminar.addActionListener(this);
+                this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEditar.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnCancelar.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.rbSi.addActionListener(this);
             this.system.sFichaPaciente.vFPaciente.pnlDatos.rbNo.addActionListener(this);
@@ -366,37 +422,48 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(2)));
             }
         }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento == e.getSource()){                     //>>>>>TRATAMIENTO<<<<<<
-            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
-            int idPaciente = Integer.parseInt(this.system.sFichaPaciente.listaPacientes.get(index).getId());
-            boolean tratamiento = this.system.sFichaPaciente.listaPacientes.get(index).isTratamiento();
-            this.system.sTratamiento.iniciarTratamiento(idPaciente,tratamiento);
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();                       
+            this.system.sTratamiento.iniciarTratamiento(this.system.sFichaPaciente, index);
             this.system.sTratamiento.vTrat.pnlBotones.btnGuardar.addActionListener(this);
             this.system.sTratamiento.vTrat.pnlBotones.btnInsumos.addActionListener(this);
             this.system.sTratamiento.vTrat.pnlBotones.btnAceptar.addActionListener(this);
             this.system.sTratamiento.vTrat.setVisible(true);
         }else if(this.system.sTratamiento.vTrat.pnlBotones.btnGuardar == e.getSource()){                                         //boton GUARDAR
-            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
-            int idPaciente = Integer.parseInt(this.system.sFichaPaciente.listaPacientes.get(index).getId());
-            this.system.sTratamiento.crearTratamiento(idPaciente);
-            this.system.sFichaPaciente.listaPacientes.get(index).setTratamiento(true);
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();            
+            this.system.sTratamiento.setTratamiento(this.system.sFichaPaciente, index);
             this.system.sTratamiento.vTrat.hide();
         }else if(this.system.sTratamiento.vTrat.pnlBotones.btnAceptar == e.getSource()){
-            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
-            int idPaciente = Integer.parseInt(this.system.sFichaPaciente.listaPacientes.get(index).getId());
-            this.system.sTratamiento.editarTratamiento(index);
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();            
+            this.system.sTratamiento.setTratamiento(this.system.sFichaPaciente, index);
             this.system.sTratamiento.vTrat.hide();
-        }else if(this.system.sTratamiento.vTrat.pnlBotones.btnInsumos == e.getSource()){                                         //boton INSUMOS
-            
         }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.btnDocumentos == e.getSource()){                      //>>>>>DOCUMENTOS<<<<<<
             this.system.abrirExplorer(this.system.sDirectorio.almacenDirectorio.get(0));
+        }else if(this.system.sTratamiento.vTrat.pnlBotones.btnInsumos == e.getSource()){                                //>>>>>INSUMOS<<<<<<
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            this.system.sInsumos.iniciarInsumos(this.system.sFichaPaciente, index);
+            this.system.sInsumos.vInsumos.setVisible(true);
+            this.system.sInsumos.vInsumos.pnlBotones.btnAgregar.addActionListener(this);
+            this.system.sInsumos.vInsumos.pnlBotones.btnEliminar.addActionListener(this);
+        }else if(this.system.sInsumos.vInsumos.pnlBotones.btnAgregar == e.getSource()){
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            this.system.sInsumos.crearInsumo(this.system.sFichaPaciente, index, this.system.sCliente);
+        }else if(this.system.sInsumos.vInsumos.pnlBotones.btnEliminar == e.getSource()){
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            this.system.sInsumos.eliminarInsumo(this.system.sFichaPaciente, index, this.system.sCliente);
         }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){                      //>>>>>PERSONAL<<<<<<
             try{
             this.system.sPersonal.iniciarPersonal(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);            
             this.system.sPersonal.vPersonal.pnlBotones.btnAceptar.addActionListener(this);
             this.system.sPersonal.vPersonal.pnlBotones.btnCancelar.addActionListener(this);  
             this.system.sPersonal.vPersonal.pnlDatos.btnAgregarC.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEliminarC.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEditarC.addActionListener(this);
             this.system.sPersonal.vPersonal.pnlDatos.btnAgregarCG.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEliminarCG.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEditarCG.addActionListener(this);
             this.system.sPersonal.vPersonal.pnlDatos.btnAgregarR.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEliminarR.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEditarR.addActionListener(this);
             this.system.sPersonal.vPersonal.setVisible(true);
             }catch(Exception m){
                 String out = "No hay una ficha seleccionada\n";              
@@ -407,8 +474,14 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sPersonal.vPersonal.pnlBotones.btnGuardar.addActionListener(this);            
             this.system.sPersonal.vPersonal.pnlBotones.btnCancelar.addActionListener(this);  
             this.system.sPersonal.vPersonal.pnlDatos.btnAgregarC.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEliminarC.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEditarC.addActionListener(this);
             this.system.sPersonal.vPersonal.pnlDatos.btnAgregarCG.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEliminarCG.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEditarCG.addActionListener(this);
             this.system.sPersonal.vPersonal.pnlDatos.btnAgregarR.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEliminarR.addActionListener(this);
+            this.system.sPersonal.vPersonal.pnlDatos.btnEditarR.addActionListener(this);
             this.system.sPersonal.vPersonal.setVisible(true);
         }else if(this.system.sPersonal.vPersonal.pnlBotones.btnGuardar == e.getSource()){
             this.system.sPersonal.crearPersonal(this.system.pPestagnas);
@@ -422,12 +495,42 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.sPersonal.vPersonal.pnlDatos.btnAgregarC == e.getSource()){
             String ciudad = JOptionPane.showInputDialog(null, "Introduce la ciudad");            
             this.system.setCiudades(ciudad); 
+        }else if(this.system.sPersonal.vPersonal.pnlDatos.btnEliminarC == e.getSource()){
+            this.system.eliminarCiudad(2);
+        }else if(this.system.sPersonal.vPersonal.pnlDatos.btnEditarC == e.getSource()){
+            try{
+            String ciudad = JOptionPane.showInputDialog(null, "Introduce la ciudad");            
+            this.system.editarCiudad(ciudad,2);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.sPersonal.vPersonal.pnlDatos.btnAgregarR == e.getSource()){
             String region = JOptionPane.showInputDialog(null, "Introduce la región");            
             this.system.setRegiones(region); 
+        }else if(this.system.sPersonal.vPersonal.pnlDatos.btnEliminarR == e.getSource()){
+            this.system.eliminarRegion(2);
+        }else if(this.system.sPersonal.vPersonal.pnlDatos.btnEditarR == e.getSource()){
+            try{
+            String region = JOptionPane.showInputDialog(null, "Introduce la región");            
+            this.system.editarRegion(region,2);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.sPersonal.vPersonal.pnlDatos.btnAgregarCG == e.getSource()){
             String cargo = JOptionPane.showInputDialog(null, "Introduce el cargo/rol");            
             this.system.sPersonal.setCargo(cargo); 
+        }else if(this.system.sPersonal.vPersonal.pnlDatos.btnEliminarCG == e.getSource()){
+            this.system.sPersonal.eliminarCargo();
+        }else if(this.system.sPersonal.vPersonal.pnlDatos.btnEditarCG == e.getSource()){
+            try{
+                String cargoEditado = JOptionPane.showInputDialog(null, "Introduce el cargo/rol");
+                this.system.sPersonal.editarCargo(cargoEditado);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.pPestagnas.pCitas.pnlBotones.btnAbrir == e.getSource()){       //Iniciar ventana CITAS
             try{            
             this.system.sCitas.iniciarCitas(1, this.system.pPestagnas);
@@ -467,6 +570,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sProductos.vProducto.pnlBotones.btnAceptar.addActionListener(this);
             this.system.sProductos.vProducto.pnlBotones.btnCancelar.addActionListener(this);
             this.system.sProductos.vProducto.pnlDatos.btnAgregar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlDatos.btnEliminar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlDatos.btnEditar.addActionListener(this);
             this.system.sProductos.vProducto.setVisible(true);
             }catch(Exception m){
                 String out = "No hay un producto seleccionado\n";              
@@ -477,6 +582,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sProductos.vProducto.pnlBotones.btnGuardar.addActionListener(this);
             this.system.sProductos.vProducto.pnlBotones.btnCancelar.addActionListener(this);
             this.system.sProductos.vProducto.pnlDatos.btnAgregar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlDatos.btnEliminar.addActionListener(this);
+            this.system.sProductos.vProducto.pnlDatos.btnEditar.addActionListener(this);
             this.system.sProductos.vProducto.setVisible(true);
         }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnEliminar == e.getSource()){
             
@@ -490,8 +597,23 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.sProductos.vProducto.pnlBotones.btnCancelar == e.getSource()){
             this.system.sProductos.vProducto.hide();
         }else if(this.system.sProductos.vProducto.pnlDatos.btnAgregar == e.getSource()){
-            String tipo = JOptionPane.showInputDialog(null, "Introduce el tipo de producto que deseas añadir");
-            this.system.sProductos.setTipo(tipo);
+            try{
+                String tipo = JOptionPane.showInputDialog(null, "Introduce el tipo de producto que deseas añadir");
+                this.system.sProductos.setTipo(tipo);
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos\n";              
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
+        }else if(this.system.sProductos.vProducto.pnlDatos.btnEliminar == e.getSource()){
+            this.system.sProductos.eliminarTipo();
+        }else if(this.system.sProductos.vProducto.pnlDatos.btnEditar == e.getSource()){
+            try{
+                String tipoEditado = JOptionPane.showInputDialog(null, "Introduce el tipo de producto");
+                this.system.sProductos.editarTipo(tipoEditado);
+            }catch(Exception m){
+                String out = "No hay una opción seleccionada";              
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAbrir == e.getSource()){ //Iniciar ventana SERVICIOS
             try{
                 this.system.sServicio.iniciarServicios(1, this.system.pPestagnas);
@@ -499,7 +621,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 this.system.sServicio.vServicio.pnlBotones.btnCancelar.addActionListener(this);
                 this.system.sServicio.vServicio.setVisible(true);
             }catch(Exception m){
-                String out = "No hay un producto seleccionado\n";              
+                String out = "No hay un servicio seleccionado";              
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
         }else if(this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnAnnadir == e.getSource()){

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package manejoSistema;
 
 import java.io.IOException;
@@ -30,6 +26,7 @@ public class Sistema {
     public SisServicio sServicio;
     public SisDirectorio sDirectorio;
     public SisTratamiento sTratamiento;
+    public SisInsumos sInsumos;
     
     public final ArrayList<String> listaCiudades = new ArrayList<>();    
     public final ArrayList<String> listaRegiones = new ArrayList<>();
@@ -53,6 +50,7 @@ public class Sistema {
         this.sServicio = new SisServicio();
         this.sDirectorio = new SisDirectorio();
         this.sTratamiento = new SisTratamiento();
+        this.sInsumos = new SisInsumos();
         
         this.pPestagnas = new PestagnasInicio();
         this.sDatosClinica.iniciarDClinica();
@@ -65,7 +63,8 @@ public class Sistema {
         this.sProductos.iniciarProductos(2, this.pPestagnas);
         this.sServicio.iniciarServicios(2, this.pPestagnas);
         this.sDirectorio.iniciarDirectorio();
-        this.sTratamiento.iniciarTratamiento(0, false);
+        this.sTratamiento.iniciarTratamiento(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
+        this.sInsumos.iniciarInsumos(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
     }                
     
     public void setCiudades(String ciudad){
@@ -86,6 +85,33 @@ public class Sistema {
         
     }
     
+    public void editarCiudad(String ciudadEditada, int ventanaSeleccionada){
+        if(ciudadEditada != null){
+            this.eliminarCiudad(ventanaSeleccionada);
+            this.setCiudades(ciudadEditada);
+        }else{
+            System.out.println("null");
+        }      
+    }
+    
+    public void eliminarCiudad(int ventanaSeleccionada){
+        if(ventanaSeleccionada == 1){
+            for(int i=0; i<listaCiudades.size(); i++){            
+                if( (String)this.sCliente.vCliente.pnlDatos.cbCiudad.getSelectedItem()==this.listaCiudades.get(i) ){
+                    this.listaCiudades.remove(i);
+                }
+            }
+        }else if(ventanaSeleccionada == 2){
+            for(int i=0; i<listaCiudades.size(); i++){            
+                if( (String)this.sPersonal.vPersonal.pnlDatos.cbCiudad.getSelectedItem()==this.listaCiudades.get(i) ){
+                    this.listaCiudades.remove(i);
+                }
+            }        
+        }   
+        this.sCliente.vCliente.pnlDatos.cbCiudad.removeItemAt(this.sCliente.vCliente.pnlDatos.cbCiudad.getSelectedIndex());
+        this.sPersonal.vPersonal.pnlDatos.cbCiudad.removeItemAt(this.sPersonal.vPersonal.pnlDatos.cbCiudad.getSelectedIndex());
+    }
+    
     public void setRegiones(String region){
         
         if(region != null){
@@ -101,7 +127,34 @@ public class Sistema {
         }else{
             System.out.println("null");
         } 
-    }  
+    } 
+    
+    public void editarRegion(String regionEditada, int ventanaSeleccionada){
+        if(regionEditada != null){
+            this.eliminarRegion(ventanaSeleccionada);
+            this.setRegiones(regionEditada);
+        }else{
+            System.out.println("null");
+        } 
+    }
+    
+    public void eliminarRegion(int ventanaSeleccionada){ 
+        if(ventanaSeleccionada == 1){
+            for(int i=0; i<listaRegiones.size(); i++){
+                if((String)this.sCliente.vCliente.pnlDatos.cbRegion.getSelectedItem()==this.listaRegiones.get(i)){
+                    this.listaRegiones.remove(i);
+                }
+            }
+        }else if(ventanaSeleccionada == 2){
+            for(int i=0; i<listaRegiones.size(); i++){
+                if((String)this.sPersonal.vPersonal.pnlDatos.cbRegion.getSelectedItem()==this.listaRegiones.get(i)){
+                    this.listaRegiones.remove(i);
+                }
+            }
+        }        
+        this.sCliente.vCliente.pnlDatos.cbRegion.removeItemAt(this.sCliente.vCliente.pnlDatos.cbRegion.getSelectedIndex());
+        this.sPersonal.vPersonal.pnlDatos.cbRegion.removeItemAt(this.sPersonal.vPersonal.pnlDatos.cbRegion.getSelectedIndex());
+    }
     
     public void abrirExplorer(String dir){
         Runtime r = Runtime.getRuntime();

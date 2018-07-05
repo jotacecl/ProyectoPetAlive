@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaClientes;
 
 import componentes.SubPanelDatos;
@@ -27,7 +23,7 @@ public class PanelDatos extends JPanel {
     public JTextField txtNombre, txtApellidos, txtTelefono, txtMovil, txtDireccion, txtEmail;  
     public JTextField rutParte1, rutParte2, rutParte3, rutParte4;
     public JComboBox cbCiudad, cbRegion;
-    public JButton btnAgregarC, btnAgregarR;
+    public JButton btnAgregarC, btnAgregarR, btnEliminarC, btnEliminarR, btnEditarC, btnEditarR;
     public SubPanelDatos subPanel;    
 
     public PanelDatos(String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email) {
@@ -73,12 +69,16 @@ public class PanelDatos extends JPanel {
         JPanel pnlCiudad = new JPanel(new FlowLayout(FlowLayout.LEFT));      
         this.cbCiudad = new JComboBox();            
         this.btnAgregarC = new JButton("+");
-        caja.add(this.subPanel.generarSubPanelCB(pnlCiudad, labCiudad, cbCiudad, "Ciudad       ", 134,204,161, btnAgregarC));
+        this.btnEliminarC = new JButton("-");
+        this.btnEditarC = new JButton("edit");
+        caja.add(this.subPanel.generarSubPanelCB(pnlCiudad, labCiudad, cbCiudad, "Ciudad       ", 134,204,161, btnAgregarC, btnEliminarC, btnEditarC));
         
         JPanel pnlRegion = new JPanel(new FlowLayout(FlowLayout.LEFT));    
         this.cbRegion = new JComboBox();
         this.btnAgregarR = new JButton("+");
-        caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región       ", 134,204,161, btnAgregarR));
+        this.btnEliminarR = new JButton("-");
+        this.btnEditarR = new JButton("edit");
+        caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región       ", 134,204,161, btnAgregarR, btnEliminarR, btnEditarR));
         
         JPanel pnlDir = new JPanel(new FlowLayout(FlowLayout.LEFT));      
         this.txtDireccion = new JTextField(direccion,20);

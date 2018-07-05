@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package manejoSistema;
 
 import java.util.ArrayList;
@@ -18,7 +14,7 @@ public class SisCliente {
        
     public VentanaCliente vCliente;
     public final ArrayList<Cliente> listaClientes = new ArrayList<>();
-    private String nombre,apellido, rut,rutPart1, rutPart2, rutPart3, rutPart4,direccion,ciudad,region,telefono,movil,email;
+    private String nombre,apellido, rut,rutPart1, rutPart2, rutPart3, rutPart4,direccion,ciudad,region,telefono,movil,email, deuda;
     private GestorDatos gDatos;
     private ArrayList<String> partesRut = new ArrayList<>();
 
@@ -31,7 +27,7 @@ public class SisCliente {
         if(btnSeleccionado == 1){          
             this.setDatosCliente(index, listaCiudades, listaRegiones);
         }else if(btnSeleccionado == 2){
-            this.vCliente = new VentanaCliente(2,"","","","","","","","","","");
+            this.vCliente = new VentanaCliente(2,"","","","","","","","","","","");
             if(this.vCliente.pnlDatos.cbCiudad.getItemAt(1) != ("    ")){
                 this.vCliente.pnlDatos.cbCiudad.removeAllItems();
                 for(Object l:listaCiudades){
@@ -61,8 +57,9 @@ public class SisCliente {
         this.telefono = Integer.toString(this.listaClientes.get(index).getTelefono());
         this.movil = Integer.toString(this.listaClientes.get(index).getMovil());
         this.email = this.listaClientes.get(index).getEmail();
+        this.deuda = Integer.toString(this.listaClientes.get(index).getDeuda());
             
-        this.vCliente = new VentanaCliente(1,nombre,apellido,rutPart1,rutPart2, rutPart3, rutPart4,direccion,telefono,movil,email);
+        this.vCliente = new VentanaCliente(1,nombre,apellido,rutPart1,rutPart2, rutPart3, rutPart4,direccion,telefono,movil,email,deuda);
         this.vCliente.pnlDatos.cbCiudad.removeAllItems();
         for(Object l:listaCiudades){
         this.vCliente.pnlDatos.cbCiudad.addItem(l);

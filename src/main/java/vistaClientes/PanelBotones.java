@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaClientes;
 
 import java.awt.FlowLayout;
@@ -20,18 +16,18 @@ public class PanelBotones extends JPanel {
     public JTextField txtDeuda;
     private JLabel labDeuda;
     
-    public PanelBotones(int btnSelect){
-        this.iniciarComponentes(btnSelect);
+    public PanelBotones(int btnSelect, String deuda){
+        this.iniciarComponentes(btnSelect, deuda);
     }
     
-    private void iniciarComponentes(int btnSelect){
+    private void iniciarComponentes(int btnSelect, String deuda){
         
         FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
         
         this.labDeuda = new JLabel("Deuda ");
         this.add(this.labDeuda);
         
-        this.txtDeuda = new JTextField("$0");
+        this.txtDeuda = new JTextField(deuda);
         this.txtDeuda.setEditable(false);
         this.add(this.txtDeuda);
         

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistaVentanaInsumos;
 
 import java.awt.FlowLayout;
@@ -14,8 +10,8 @@ import javax.swing.JPanel;
  * @author HernySenpai
  */
 public class PanelBotones extends JPanel {
-    public JButton agregar;
-    public JButton eliminar;
+    public JButton btnAgregar;
+    public JButton btnEliminar;
 
     public PanelBotones() {
         this.iniciarComponentes();
@@ -24,11 +20,11 @@ public class PanelBotones extends JPanel {
     private void iniciarComponentes(){
         FlowLayout distribucion = new FlowLayout(FlowLayout.RIGHT);
         
-        this.agregar = new JButton("Agregar");
-        this.add(this.agregar);
+        this.btnAgregar = new JButton("Agregar");
+        this.add(this.btnAgregar);
         
-        this.eliminar = new JButton ("Eliminar");
-        this.add(this.eliminar);
+        this.btnEliminar = new JButton ("Eliminar");
+        this.add(this.btnEliminar);
         
         this.setBackground(new java.awt.Color(134, 204, 161));
         
