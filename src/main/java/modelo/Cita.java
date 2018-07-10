@@ -19,7 +19,9 @@ public class Cita {
     }
 
     public Cita(String idPaciente, String paciente, String rutCliente, String fechaIngreso, String fechaCita, String motivoCita) {
-        this.idPaciente = idPaciente;
+        if(!idPaciente.isEmpty()){
+            this.idPaciente = idPaciente;
+        }        
         this.paciente = paciente;
         this.rutCliente = rutCliente;
         this.fechaIngreso = fechaIngreso;

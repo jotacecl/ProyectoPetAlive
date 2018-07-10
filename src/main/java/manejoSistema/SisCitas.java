@@ -38,7 +38,7 @@ public class SisCitas {
     
     public void crearCita(PestagnasInicio p){
         this.getAllDataCita();
-        
+                
         Cita c = new Cita(this.idPaciente,
                             this.paciente,
                             this.rutCliente,
@@ -54,7 +54,8 @@ public class SisCitas {
         fila[3] = c.getFechaIngreso();
         fila[4] = c.getFechaCita();
         fila[5] = c.getMotivoCita();        
-        p.pCitas.pnlTabla.modelo.addRow(fila);
+        p.pCitas.pnlTabla.modelo.addRow(fila);                           
+        
     }
     
     public void editarCita(int index, PestagnasInicio p){
@@ -79,7 +80,7 @@ public class SisCitas {
                 
     }
     
-    public void getAllDataCita(){
+    public void getAllDataCita(){        
         this.idPaciente = this.vCitas.pnlDatos.txtID.getText();
         this.paciente = this.vCitas.pnlDatos.txtPaciente.getText();
         this.rutCliente = this.vCitas.pnlDatos.txtRUT.getText();
