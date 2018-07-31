@@ -3,7 +3,7 @@ package app;
 
 
 
-import vistaVentanaInicio.VentanaInicio;
+import vista.vistaInicio.VentanaInicio;
 
 
 /**
