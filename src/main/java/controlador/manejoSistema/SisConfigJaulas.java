@@ -1,6 +1,7 @@
 
 package controlador.manejoSistema;
 
+import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
 import vista.vistaJaulas.VentanaCJaulas;
 import vista.vistaInicio.PestagnasInicio;
@@ -11,8 +12,15 @@ import vista.vistaInicio.PestagnasInicio;
  */
 public class SisConfigJaulas {
     
+    public ManejoDeDatos mD;
     public VentanaCJaulas vCJaulas;
     public final ArrayList<String> cantidadJaulas = new ArrayList<>(3);
+
+    public SisConfigJaulas() {
+        this.mD = new ManejoDeDatos();
+    }
+    
+    
     
     /**
      * Metodo para iniciar la ventana de Configuracion de Jaulas.
@@ -38,7 +46,7 @@ public class SisConfigJaulas {
         }
         this.cantidadJaulas.set(0, this.vCJaulas.pnlCJaulas.txtCL.getText());
         this.cantidadJaulas.set(1, this.vCJaulas.pnlCJaulas.txtCM.getText());
-        this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText());
+        this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText());       
     }
     
     /**
