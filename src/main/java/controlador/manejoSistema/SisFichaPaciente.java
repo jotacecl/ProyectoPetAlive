@@ -38,7 +38,7 @@ public class SisFichaPaciente {
         if(btnSeleccionado == 1){
             this.setDatosFPaciente(index);
         }else if(btnSeleccionado == 2){
-            this.vFPaciente = new VentanaFichaPaciente("","","","","","","", false, 3, "");
+            this.vFPaciente = new VentanaFichaPaciente(null, false, 3);
             this.vFPaciente.pnlDatos.cbTipo.removeAllItems();
             for(Object l:listaEspecies){
                 this.vFPaciente.pnlDatos.cbTipo.addItem(l);
@@ -51,41 +51,22 @@ public class SisFichaPaciente {
      * @param index 
      */
     public void setDatosFPaciente(int index){
-        this.nombreP = this.listaPacientes.get(index).getNombre();
-        this.especie = this.listaPacientes.get(index).getEspecie();
-        this.raza = this.listaPacientes.get(index).getRaza();
-        this.color = this.listaPacientes.get(index).getColor();
-        this.fNac = this.listaPacientes.get(index).getfNacimiento();
-        this.sexo = this.listaPacientes.get(index).getSexo();
-        this.internado = this.listaPacientes.get(index).getInternado();
-        this.tamannoJaula = this.listaPacientes.get(index).getTamannoJaula();
-        this.nroJaula = this.listaPacientes.get(index).getNroJaula();
-        this.rut = this.listaPacientes.get(index).getRutCliente();
+        
+        Paciente p = this.listaPacientes.get(index);
+                
         this.antMed = this.listaPacientes.get(index).getAntecedentes();
         
         if(this.internado.equals("si")){
-            this.vFPaciente = new VentanaFichaPaciente(nombreP, 
-                    raza, 
-                    color, 
-                    fNac, 
-                    rut, 
-                    tamannoJaula, 
-                    Integer.toString(nroJaula), 
+            this.vFPaciente = new VentanaFichaPaciente(
+                    p, 
                     true, 
-                    2, 
-                    antMed);
+                    2);
             this.vFPaciente.pnlDatos.grupoRB2.setSelected(this.vFPaciente.pnlDatos.rbSi.getModel(), true);
         }else if(this.internado.equals("no")){
-            this.vFPaciente = new VentanaFichaPaciente(nombreP, 
-                    raza, 
-                    color, 
-                    fNac, 
-                    rut, 
-                    tamannoJaula, 
-                    Integer.toString(nroJaula), 
+            this.vFPaciente = new VentanaFichaPaciente(
+                    p, 
                     false, 
-                    2, 
-                    antMed);
+                    2);
             this.vFPaciente.pnlDatos.grupoRB2.setSelected(this.vFPaciente.pnlDatos.rbNo.getModel(), true);
         }
         

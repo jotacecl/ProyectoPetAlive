@@ -2,6 +2,7 @@
 package vista.componentes;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,6 +25,7 @@ public class PanelTabla extends JPanel{
     }
 
     private void iniciarComponentes(String nameTable) { 
+        this.setLayout(new GridLayout());
         
         TitledBorder border = new TitledBorder(nameTable);
         border.setTitleColor(new java.awt.Color(54,82,48));
@@ -33,7 +35,7 @@ public class PanelTabla extends JPanel{
             public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
         };
         
-        this.tabla = new JTable();            
+        this.tabla = new JTable();          
         
         this.tabla.setGridColor(new java.awt.Color(227,225,143));
         this.tabla.setModel(modelo);              

@@ -108,11 +108,11 @@ public class PanelDatos extends JPanel{
         JPanel pnlFCita = new JPanel();
         this.labFCita = new JLabel("Fecha Cita        ");        
         pnlFCita.add(this.labFCita);
-        JPanel subPanel = new JPanel();
-        subPanel.setPreferredSize(new Dimension(226,25));
-        subPanel.setLayout(new GridLayout(1,1));
-        subPanel.add(this.calendario);
-        pnlFCita.add(subPanel);
+        JPanel subPnl = new JPanel();
+        subPnl.setPreferredSize(new Dimension(226,25));
+        subPnl.setLayout(new GridLayout(1,1));
+        subPnl.add(this.calendario);
+        pnlFCita.add(subPnl);
         pnlFCita.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlFCita);
         

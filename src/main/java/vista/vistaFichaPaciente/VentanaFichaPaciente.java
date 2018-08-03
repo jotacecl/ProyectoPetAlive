@@ -2,7 +2,8 @@
 package vista.vistaFichaPaciente;
 
 import java.awt.BorderLayout;
-import javax.swing.JFrame;;
+import javax.swing.JFrame;import modelo.Paciente;
+;
 
 /**
  *
@@ -15,11 +16,11 @@ public class VentanaFichaPaciente extends JFrame{
     public  PanelBotonesP pnlBotones;
     
     
-    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean jaulaBoolean, int btnSeleccionado, String antMed){        
+    private void iniciarComponentes(Paciente p, boolean jaulaBoolean, int btnSeleccionado){        
         
-        this.pnlDatos = new PanelDatos(nombrePaciente, raza, color, fNac, rut, tamannoJaula, nroJaula, jaulaBoolean);   
+        this.pnlDatos = new PanelDatos(p, jaulaBoolean);   
         
-        this.pnlAMedicos = new PanelAMedicos(antMed);
+        this.pnlAMedicos = new PanelAMedicos(p);
         
         this.pnlBotones = new PanelBotonesP(btnSeleccionado);
                                 
@@ -36,8 +37,8 @@ public class VentanaFichaPaciente extends JFrame{
         pack();
     }
 
-    public VentanaFichaPaciente(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean booleano, int btnSeleccionado, String antMed) {
-        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, tamannoJaula, nroJaula, booleano, btnSeleccionado, antMed);
+    public VentanaFichaPaciente(Paciente p, boolean booleano, int btnSeleccionado) {
+        iniciarComponentes(p, booleano, btnSeleccionado);
     }
    
     

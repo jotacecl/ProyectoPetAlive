@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import modelo.Paciente;
 
 /**
  *
@@ -56,7 +57,7 @@ public class PanelDatos extends JPanel{
     public static final String FORMATO = "%1$td-%1$tm-%1$tY";
     public SubPanelDatos subPanel;
     
-    private void iniciarComponentes(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean jaulaEnable){
+    private void iniciarComponentes(Paciente p, boolean jaulaEnable){
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
         
@@ -64,10 +65,24 @@ public class PanelDatos extends JPanel{
         
         subPanel = new SubPanelDatos();
         
-        calendario = new JDateChooser();               
+        calendario = new JDateChooser();   
+        
+        if(p!=null){
+            this.txtPaciente = new JTextField(p.getNombre(), 20);  
+            this.txtRaza = new JTextField(p.getRaza(),20);
+            this.txtColor = new JTextField(p.getColor(), 20);
+            this.txtFechaNacimiento = new JTextField(p.getfNacimiento(),20);
+            this.txtCliente = new JTextField(p.getRutCliente(),17);
+        }else{
+            this.txtPaciente = new JTextField("", 20);  
+            this.txtRaza = new JTextField("",20);
+            this.txtColor = new JTextField("", 20);
+            this.txtFechaNacimiento = new JTextField("",20);
+            this.txtCliente = new JTextField("",17);
+        }
         
         JPanel pnlPac = new JPanel(new FlowLayout());        
-        this.txtPaciente = new JTextField(nombrePaciente, 20);        
+            
         caja.add(this.subPanel.generarSubPanelTF(pnlPac, labPaciente, txtPaciente, "Nombre paciente ", 134,204,161));
         
         JPanel pnlEspe = new JPanel(new FlowLayout());        
@@ -77,18 +92,16 @@ public class PanelDatos extends JPanel{
         this.btnEditar = new JButton("edit");
         caja.add(this.subPanel.generarSubPanelCB(pnlEspe, labEspecie, cbTipo, "Especie                  ", 134,204,161, btnAgregar, btnEliminar, btnEditar));
         
-        JPanel pnlRaza = new JPanel(new FlowLayout());
-        this.txtRaza = new JTextField(raza,20);
+        JPanel pnlRaza = new JPanel(new FlowLayout());        
         caja.add(this.subPanel.generarSubPanelTF(pnlRaza, labRaza, txtRaza, "Raza                        ", 134,204,161));
         
-        JPanel pnlColor = new JPanel(new FlowLayout());
-        this.txtColor = new JTextField(color, 20);
+        JPanel pnlColor = new JPanel(new FlowLayout());        
         caja.add(this.subPanel.generarSubPanelTF(pnlColor, labColor, txtColor, "Color                       ", 134,204,161));
         
         JPanel pnlFecha = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labFechaNac = new JLabel("Fecha Nac.             ");
         pnlFecha.add(this.labFechaNac);
-        this.txtFechaNacimiento = new JTextField(fNac,20);
+        
         JPanel sPanel = new JPanel();
         sPanel.setPreferredSize(new Dimension(226,25));
         sPanel.setLayout(new GridLayout(1,1));
@@ -104,7 +117,7 @@ public class PanelDatos extends JPanel{
         JPanel pnlCliente = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.labCliente = new JLabel("RUT Cliente            ");
         pnlCliente.add(this.labCliente);
-        this.txtCliente = new JTextField(rut,17);
+        
         pnlCliente.add(this.txtCliente);
         this.txtCliente.setEditable(false);
         this.btnBusqueda = new BotonIcono("","data/icon/search.png","data/icon/search.png");
@@ -155,8 +168,8 @@ public class PanelDatos extends JPanel{
         this.add(caja);        
     }
 
-    public PanelDatos(String nombrePaciente, String raza, String color, String fNac, String rut, String tamannoJaula, String nroJaula, boolean jaulaEnable) {
-        iniciarComponentes(nombrePaciente, raza, color, fNac, rut, tamannoJaula, nroJaula , jaulaEnable);
+    public PanelDatos(Paciente p, boolean jaulaEnable) {
+        iniciarComponentes(p, jaulaEnable);
     }
     
 }
