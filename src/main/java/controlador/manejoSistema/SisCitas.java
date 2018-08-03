@@ -14,8 +14,18 @@ public class SisCitas {
     
     public VentanaCita vCitas;
     public final ArrayList<Cita> listaCitas = new ArrayList<>();
-    private String idPaciente, paciente, rutCliente, fechaIngreso, fechaCita, motivo;
+    private String idPaciente;
+    private String paciente;
+    private String rutCliente;
+    private String fechaIngreso;
+    private String fechaCita;
+    private String motivo;
     
+    /**
+     * Metodo para iniciar la ventana de Citas, se desplega con o sin info segun se requiera.
+     * @param btnSeleccionado
+     * @param p 
+     */
     public void iniciarCitas(int btnSeleccionado, PestagnasInicio p){
         int index = p.pCitas.pnlTabla.tabla.getSelectedRow();
         if(btnSeleccionado == 1){           
@@ -25,6 +35,10 @@ public class SisCitas {
         }
     }
     
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     * @param index 
+     */
     public void setDatosCitas(int index){
        this.idPaciente = this.listaCitas.get(index).getIdPaciente();
        this.paciente = this.listaCitas.get(index).getPaciente();
@@ -33,9 +47,19 @@ public class SisCitas {
        this.fechaCita = this.listaCitas.get(index).getFechaCita();
        this.motivo = this.listaCitas.get(index).getMotivoCita();
        
-       this.vCitas = new VentanaCita(2, idPaciente, paciente, rutCliente,fechaIngreso, fechaCita, motivo);
+       this.vCitas = new VentanaCita(2,
+               idPaciente,
+               paciente,
+               rutCliente,
+               fechaIngreso,
+               fechaCita,
+               motivo);
     }
     
+    /**
+     * Metodo para crear una Cita nueva.
+     * @param p 
+     */
     public void crearCita(PestagnasInicio p){
         this.getAllDataCita();
                 
@@ -47,17 +71,21 @@ public class SisCitas {
                             this.motivo);
         this.listaCitas.add(c);
         
-        Object[] fila = new Object[6];
-        fila[0] = c.getIdPaciente();
-        fila[1] = c.getPaciente();
-        fila[2] = c.getRutCliente();
-        fila[3] = c.getFechaIngreso();
-        fila[4] = c.getFechaCita();
-        fila[5] = c.getMotivoCita();        
+        Object[] fila = new Object[]{c.getIdPaciente(),
+            c.getPaciente(),
+            c.getRutCliente(),
+            c.getFechaIngreso(),
+            c.getFechaCita(),
+            c.getMotivoCita()};              
         p.pCitas.pnlTabla.modelo.addRow(fila);                           
         
     }
     
+    /**
+     * Metodo para editar una Cita ya exitente.
+     * @param index
+     * @param p 
+     */
     public void editarCita(int index, PestagnasInicio p){
         this.getAllDataCita();
         
@@ -70,7 +98,7 @@ public class SisCitas {
         this.listaCitas.get(index).setMotivoCita(this.motivo);
         
         Cita c = this.listaCitas.get(index);
-        
+                
         p.pCitas.pnlTabla.modelo.setValueAt(c.getIdPaciente(), index, 0);
         p.pCitas.pnlTabla.modelo.setValueAt(c.getPaciente(), index, 1);
         p.pCitas.pnlTabla.modelo.setValueAt(c.getRutCliente(), index, 2);
@@ -84,13 +112,17 @@ public class SisCitas {
         
     }
     
+    /**
+     * Metodo para obtener los datos ingresados por el usuario.
+     */
     public void getAllDataCita(){        
         this.idPaciente = this.vCitas.pnlDatos.txtID.getText();
         this.paciente = this.vCitas.pnlDatos.txtPaciente.getText();
         this.rutCliente = this.vCitas.pnlDatos.txtRUT.getText();
         this.fechaIngreso = this.vCitas.pnlDatos.txtFIngreso.getText();   
         
-        String fechaSeleccionada = String.format(this.vCitas.pnlDatos.FORMATO, this.vCitas.pnlDatos.calendario.getDate());
+        String fechaSeleccionada = String.format(this.vCitas.pnlDatos.FORMATO, 
+                this.vCitas.pnlDatos.calendario.getDate());
         this.fechaCita = fechaSeleccionada;
         
         this.motivo = this.vCitas.pnlDatos.txtMotivo.getText();

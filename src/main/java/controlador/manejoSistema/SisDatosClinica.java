@@ -13,20 +13,31 @@ public class SisDatosClinica {
     public VentanaDClinica vDClinica;
     private final ArrayList<String> datosClinica = new ArrayList<>(8);
     
+    /**
+     * Metodo para iniciar la ventana Datos de la Clinica.
+     */
      public void iniciarDClinica(){
                      
             if(datosClinica.size() == 8 ){
                 System.out.println("");
                 System.out.println("Imprime con datos");
-                this.vDClinica = new VentanaDClinica(datosClinica.get(0), datosClinica.get(1), datosClinica.get(2) , datosClinica.get(3), datosClinica.get(4), datosClinica.get(5), datosClinica.get(6), datosClinica.get(7));
+                this.vDClinica = new VentanaDClinica(datosClinica.get(0), 
+                        datosClinica.get(1), datosClinica.get(2) , 
+                        datosClinica.get(3), datosClinica.get(4), 
+                        datosClinica.get(5), datosClinica.get(6), 
+                        datosClinica.get(7));
                 
             }else{
                 System.out.println("");
                 System.out.println("Imprime vacio");
-                    this.vDClinica = new VentanaDClinica("", "", "", "", "", "", "", "");                                    
+                this.vDClinica = new VentanaDClinica("", "", "", "", "", "", "", "");                                    
             }   
     }
     
+     /**
+     * Metodo para ingresar los datos automaticamente en los JTextfields de la ventana.
+     * @param index 
+     */
     public void setDatosClinica(){
         if(this.datosClinica.size() == 0){
             for(int i = 0; i<8 ;i++){

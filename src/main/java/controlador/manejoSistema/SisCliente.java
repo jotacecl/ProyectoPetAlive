@@ -14,7 +14,20 @@ public class SisCliente {
        
     public VentanaCliente vCliente;
     public final ArrayList<Cliente> listaClientes = new ArrayList<>();
-    private String nombre,apellido, rut,rutPart1, rutPart2, rutPart3, rutPart4,direccion,ciudad,region,telefono,movil,email, deuda;
+    private String nombre;
+    private String apellido;
+    private String rut;
+    private String rutPart1;
+    private String rutPart2;
+    private String rutPart3;
+    private String rutPart4;
+    private String direccion;
+    private String ciudad;
+    private String region;
+    private String telefono;
+    private String movil;
+    private String email;
+    private String deuda;
     private GestorDatos gDatos;
     private ArrayList<String> partesRut = new ArrayList<>();
 
@@ -22,6 +35,13 @@ public class SisCliente {
         this.gDatos = new GestorDatos();
     }        
     
+    /**
+     * Metodo para inciar la ventana del Cliente, se desplega con o sin info segun se requiera.
+     * @param btnSeleccionado
+     * @param p
+     * @param listaCiudades
+     * @param listaRegiones 
+     */
     public void iniciarCliente(int btnSeleccionado, PestagnasInicio p, ArrayList listaCiudades, ArrayList listaRegiones){         
         int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();
         if(btnSeleccionado == 1){          
@@ -41,6 +61,12 @@ public class SisCliente {
         }  
     }
     
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     * @param index
+     * @param listaCiudades
+     * @param listaRegiones 
+     */
     public void setDatosCliente(int index, ArrayList listaCiudades, ArrayList listaRegiones){
         this.gDatos = new GestorDatos();
         this.nombre = this.listaClientes.get(index).getNombre();       
@@ -59,7 +85,18 @@ public class SisCliente {
         this.email = this.listaClientes.get(index).getEmail();
         this.deuda = Integer.toString(this.listaClientes.get(index).getDeuda());
             
-        this.vCliente = new VentanaCliente(1,nombre,apellido,rutPart1,rutPart2, rutPart3, rutPart4,direccion,telefono,movil,email,deuda);
+        this.vCliente = new VentanaCliente(1,
+                nombre,
+                apellido,
+                rutPart1,
+                rutPart2, 
+                rutPart3, 
+                rutPart4,
+                direccion,
+                telefono,
+                movil,
+                email,
+                deuda);
         this.vCliente.pnlDatos.cbCiudad.removeAllItems();
         for(Object l:listaCiudades){
         this.vCliente.pnlDatos.cbCiudad.addItem(l);
@@ -72,6 +109,10 @@ public class SisCliente {
         this.vCliente.pnlDatos.cbRegion.setSelectedItem(region);
     }
     
+    /**
+     * Metodo para crear un Cliente nuevo.
+     * @param p 
+     */
     public void crearCliente(PestagnasInicio p){       
         this.getAllDataCliente();
         
@@ -86,17 +127,21 @@ public class SisCliente {
                                 this.email);
         this.listaClientes.add(c);
         
-        Object[] fila = new Object[7];
-        fila[0] = c.getNombre();
-        fila[1] = c.getApellido();
-        fila[2] = c.getRut();
-        fila[3] = c.getCiudad();
-        fila[4] = c.getTelefono();
-        fila[5] = c.getMovil();
-        fila[6] = c.getEmail();
+        Object[] fila = new Object[]{c.getNombre(),
+                    c.getApellido(),
+                    c.getRut(),
+                    c.getCiudad(),
+                    c.getTelefono(),
+                    c.getMovil(),
+                    c.getEmail()};        
         p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);                
     }   
     
+    /**
+     * Metodo para editar un Cliente ya exitente.
+     * @param index
+     * @param p 
+     */
     public void editarCliente(int index, PestagnasInicio p){
         this.getAllDataCliente();
         
@@ -122,6 +167,9 @@ public class SisCliente {
         
     }
     
+    /**
+     * Metodo para obtener los datos ingresados por el usuario.
+     */
     public void getAllDataCliente(){
         this.nombre = this.vCliente.pnlDatos.txtNombre.getText();
         this.apellido = this.vCliente.pnlDatos.txtApellidos.getText();

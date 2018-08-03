@@ -3,26 +3,25 @@ package vista.vistaPersonal;
 
 import vista.componentes.PanelBotones;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import modelo.Personal;
 
 /**
  *
  * @author Juan Carlos
  */
-public class VentanaPersonal extends JFrame implements ActionListener{
+public class VentanaPersonal extends JFrame{
     
     public PanelDatos pnlDatos;
     public PanelBotones pnlBotones;    
     
-    public VentanaPersonal(int btnSeleccionado, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
-        this.iniciarComponentes(btnSeleccionado, nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
+    public VentanaPersonal(int btnSeleccionado, Personal personal, String rutPart1,String rutPart2,String rutPart3,String rutPart4){
+        this.iniciarComponentes(btnSeleccionado, personal, rutPart1, rutPart2, rutPart3, rutPart4);
     }
     
-    private void iniciarComponentes(int btnSeleccionado, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
+    private void iniciarComponentes(int btnSeleccionado, Personal personal, String rutPart1,String rutPart2,String rutPart3,String rutPart4){
         
-        this.pnlDatos = new PanelDatos(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
+        this.pnlDatos = new PanelDatos(personal, rutPart1, rutPart2, rutPart3, rutPart4);
         this.add(this.pnlDatos, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSeleccionado);
@@ -33,11 +32,6 @@ public class VentanaPersonal extends JFrame implements ActionListener{
         this.setLocation(50,50);
         this.setResizable(false);
         pack();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }   
     
 }

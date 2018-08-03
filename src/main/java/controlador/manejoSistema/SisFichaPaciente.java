@@ -15,9 +15,24 @@ public class SisFichaPaciente {
     public VentanaFichaPaciente vFPaciente;
     private final ArrayList<String> listaEspecies = new ArrayList<>();
     public final ArrayList<Paciente> listaPacientes = new ArrayList<>();
-    public String nombreP, especie, raza, color, fNac, tamannoJaula, internado, sexo, antMed, rut;
-    private int nroJaula, idPaciente;
+    public String nombreP;
+    public String especie;
+    public String raza;
+    public String color;
+    public String fNac;
+    public String tamannoJaula;
+    public String internado;
+    public String sexo;
+    public String antMed;
+    public String rut;
+    private int nroJaula;
+    private int idPaciente;
     
+    /**
+     * Metodo para iniciar la ventana de Ficha Paciente, se desplega con o sin info segun se requiera.
+     * @param btnSeleccionado
+     * @param p 
+     */
     public void iniciarFPaciente(int btnSeleccionado, PestagnasInicio p){
         int index = p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
         if(btnSeleccionado == 1){
@@ -31,6 +46,10 @@ public class SisFichaPaciente {
         }
     }
     
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     * @param index 
+     */
     public void setDatosFPaciente(int index){
         this.nombreP = this.listaPacientes.get(index).getNombre();
         this.especie = this.listaPacientes.get(index).getEspecie();
@@ -45,10 +64,28 @@ public class SisFichaPaciente {
         this.antMed = this.listaPacientes.get(index).getAntecedentes();
         
         if(this.internado.equals("si")){
-            this.vFPaciente = new VentanaFichaPaciente(nombreP, raza, color, fNac, rut, tamannoJaula, Integer.toString(nroJaula), true, 2, antMed);
+            this.vFPaciente = new VentanaFichaPaciente(nombreP, 
+                    raza, 
+                    color, 
+                    fNac, 
+                    rut, 
+                    tamannoJaula, 
+                    Integer.toString(nroJaula), 
+                    true, 
+                    2, 
+                    antMed);
             this.vFPaciente.pnlDatos.grupoRB2.setSelected(this.vFPaciente.pnlDatos.rbSi.getModel(), true);
         }else if(this.internado.equals("no")){
-            this.vFPaciente = new VentanaFichaPaciente(nombreP, raza, color, fNac, rut, tamannoJaula, Integer.toString(nroJaula), false, 2, antMed);
+            this.vFPaciente = new VentanaFichaPaciente(nombreP, 
+                    raza, 
+                    color, 
+                    fNac, 
+                    rut, 
+                    tamannoJaula, 
+                    Integer.toString(nroJaula), 
+                    false, 
+                    2, 
+                    antMed);
             this.vFPaciente.pnlDatos.grupoRB2.setSelected(this.vFPaciente.pnlDatos.rbNo.getModel(), true);
         }
         
@@ -77,6 +114,10 @@ public class SisFichaPaciente {
         
     }
     
+    /**
+     * Metodo para crear una ficha de paciente nueva.
+     * @param pi 
+     */
     public void crearFPaciente(PestagnasInicio pi){
         this.getAllDataPaciente();
         
@@ -96,22 +137,28 @@ public class SisFichaPaciente {
                                     this.antMed);
         this.listaPacientes.add(p);        
         
-        Object[] fila = new Object[9];
-        fila[0] = p.getId();
-        fila[1] = p.getNombre();
-        fila[2] = p.getEspecie();
-        fila[3] = p.getRaza();
-        fila[4] = p.getColor();
-        fila[5] = p.getfNacimiento();
-        fila[6] = p.getSexo();
-        fila[7] = p.getInternado();
-        fila[8] = p.getTamannoJaula()+" "+p.getNroJaula();
-        pi.pFicheros.pPacientes.pnlTabla.modelo.addRow(fila); 
+        Object[] fila = new Object[]{
+            p.getId(),
+            p.getNombre(),
+            p.getEspecie(),
+            p.getRaza(),
+            p.getColor(),
+            p.getfNacimiento(),
+            p.getSexo(),
+            p.getInternado(),
+            p.getTamannoJaula()+" "+p.getNroJaula()
+        };
         
+        pi.pFicheros.pPacientes.pnlTabla.modelo.addRow(fila);         
         }        
         
     }
     
+    /**
+     * Metodo para editar una ficha ya exitente.
+     * @param index
+     * @param pi 
+     */
     public void editarFPaciente(int index, PestagnasInicio pi){
         this.getAllDataPaciente();
         
@@ -140,6 +187,9 @@ public class SisFichaPaciente {
         
     }
     
+    /**
+     * Metodo para obtener los datos ingresados por el usuario.
+     */
     public void getAllDataPaciente(){
         this.idPaciente = this.listaPacientes.size();
         this.nombreP = this.vFPaciente.pnlDatos.txtPaciente.getText();
@@ -170,6 +220,10 @@ public class SisFichaPaciente {
         this.antMed = this.vFPaciente.pnlAMedicos.ingAntecedentesMedicos.getText();
     }
     
+    /**
+     * Metodo para agregar una especie nueva al JComboBox y la lista de especies.
+     * @param especie 
+     */
     public void setEspecie(String especie){
          if(especie != null){
             this.listaEspecies.add(especie);
@@ -184,6 +238,10 @@ public class SisFichaPaciente {
         } 
     }
     
+    /**
+     * Metodo para editar la especie seleccionada en el JComboBox.
+     * @param especieEditada 
+     */
     public void editarEspecia(String especieEditada){
         if(especieEditada != null){
             this.eliminarEspecie();
@@ -193,6 +251,9 @@ public class SisFichaPaciente {
         } 
     }
 
+    /**
+     * Metodo para eliminar la especie seleccionada en el JComboBox
+     */
     public void eliminarEspecie(){
         for(int i =0; i<listaEspecies.size(); i++){
             if((String)this.vFPaciente.pnlDatos.cbTipo.getSelectedItem()==this.listaEspecies.get(i)){
@@ -202,6 +263,10 @@ public class SisFichaPaciente {
         this.vFPaciente.pnlDatos.cbTipo.removeItemAt(this.vFPaciente.pnlDatos.cbTipo.getSelectedIndex());
     }
     
+    /**
+     * Metodo para rellenar la lista de jaulas en el JComboBox de Ficha Paciente.
+     * @param cantidadJaulas 
+     */
     public void setJaulas(int cantidadJaulas){
         if(cantidadJaulas != -1){                       
             this.vFPaciente.pnlDatos.cbNJaula.removeAllItems();            

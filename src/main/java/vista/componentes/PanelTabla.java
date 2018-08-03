@@ -17,6 +17,7 @@ public class PanelTabla extends JPanel{
     public JTable tabla;
     public DefaultTableModel modelo;
     private JScrollPane scroll;
+    int fila;
     
     public PanelTabla(String nameTable) {
         iniciarComponentes(nameTable);
@@ -28,10 +29,14 @@ public class PanelTabla extends JPanel{
         border.setTitleColor(new java.awt.Color(54,82,48));
         this.setBorder(border);
         
-        this.modelo = new DefaultTableModel();
-        this.tabla = new JTable();        
+        this.modelo = new DefaultTableModel(){
+            public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+        };
+        
+        this.tabla = new JTable();            
+        
         this.tabla.setGridColor(new java.awt.Color(227,225,143));
-        this.tabla.setModel(modelo);          
+        this.tabla.setModel(modelo);              
         this.scroll = new JScrollPane(tabla);
         Dimension dimVentana = new Dimension(1050,500);
         this.scroll.setPreferredSize(dimVentana);
@@ -44,6 +49,6 @@ public class PanelTabla extends JPanel{
         
         this.modelo.addColumn(nameColumn);
         
-    }
+    }    
     
 }

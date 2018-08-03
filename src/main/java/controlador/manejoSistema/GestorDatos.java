@@ -15,6 +15,13 @@ public class GestorDatos {
     private boolean existe;
     private ArrayList<String> lista;
     
+    /**
+     * Este metodo compara los RUT ingresados con los RUT registrados de los clientes.
+     * Si el RUT coincide se devuelve un boolean true, si no coincide con ningun RUT se retorna un false.
+     * @param dato1
+     * @param sCliente
+     * @return 
+     */
     public boolean compararRut(String dato1, SisCliente sCliente){
         for(int i=0; i<sCliente.listaClientes.size(); i++){
             if(dato1.equals(sCliente.listaClientes.get(i).getRut())){
@@ -29,6 +36,11 @@ public class GestorDatos {
         return existe;
     }        
     
+    /**
+     * Este metodo separa el RUT del cliente a formato xx.xxx.xxx-x.
+     * @param rut
+     * @return 
+     */
     public ArrayList separarRut(String rut){
         this.lista = new ArrayList<>();
         if(rut.length()==12){
@@ -45,6 +57,11 @@ public class GestorDatos {
         return this.lista;
     }
     
+    /**
+     * Este metodo limita el numero de caracteres ingresados en los JTextfields.
+     * @param l
+     * @param nmax 
+     */
     public void limitarCaracteres(JTextField l, int nmax){
       l.addKeyListener(new KeyAdapter(){
        @Override

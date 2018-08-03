@@ -13,14 +13,27 @@ public class SisConfigHorario {
     public VentanaHorario vCHorario;
     private final ArrayList<String> datosHorario = new ArrayList<>(8);
     
+    /**
+     * Metodo para iniciar la ventana Horario.
+     */
     public void iniciarCHorario(){
         if(datosHorario.size() == 8){
-            this.vCHorario = new VentanaHorario(datosHorario.get(0), datosHorario.get(1), datosHorario.get(2),datosHorario.get(3),datosHorario.get(4),datosHorario.get(5),datosHorario.get(6),datosHorario.get(7));
+            this.vCHorario = new VentanaHorario(datosHorario.get(0), 
+                    datosHorario.get(1), 
+                    datosHorario.get(2),
+                    datosHorario.get(3),
+                    datosHorario.get(4),
+                    datosHorario.get(5),
+                    datosHorario.get(6),
+                    datosHorario.get(7));
         }else{
             this.vCHorario = new VentanaHorario("","","","","","","","");
         }  
     }
     
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     */
     public void setDatosHorario(){
        if(this.datosHorario.isEmpty()){
             for(int i = 0; i<8 ;i++){

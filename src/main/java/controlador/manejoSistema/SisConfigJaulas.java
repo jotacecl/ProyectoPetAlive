@@ -14,14 +14,22 @@ public class SisConfigJaulas {
     public VentanaCJaulas vCJaulas;
     public final ArrayList<String> cantidadJaulas = new ArrayList<>(3);
     
+    /**
+     * Metodo para iniciar la ventana de Configuracion de Jaulas.
+     */
     public void iniciarCJaulas(){
         if(cantidadJaulas.size() == 3){
-            this.vCJaulas = new VentanaCJaulas(cantidadJaulas.get(0), cantidadJaulas.get(1), cantidadJaulas.get(2));
+            this.vCJaulas = new VentanaCJaulas(cantidadJaulas.get(0), 
+                    cantidadJaulas.get(1), 
+                    cantidadJaulas.get(2));
         }else{
             this.vCJaulas = new VentanaCJaulas("","","");
         }        
     }
     
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     */
     public void setDatosJaula(){
         if(this.cantidadJaulas.isEmpty()){
             for(int i = 0; i<3 ;i++){
@@ -33,6 +41,10 @@ public class SisConfigJaulas {
         this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText());
     }
     
+    /**
+     * Metodo para actualizar la pestaña de Jaulas.
+     * @param p 
+     */
     public void actualizarJaulas(PestagnasInicio p){        
         p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(vCJaulas.pnlCJaulas.txtCL.getText()));
         p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(vCJaulas.pnlCJaulas.txtCM.getText()));
@@ -43,6 +55,13 @@ public class SisConfigJaulas {
         p.pJaulas.pJaulas.iniciarComponentes();
     }  
     
+    /**
+     * Metodo para cambiar el icono de la Jaula en la pestaña Jaulas.
+     * @param ocupada
+     * @param tamannoJaula
+     * @param nroJaula
+     * @param p 
+     */
     public void setJaulaOcupada(boolean ocupada, String tamannoJaula,int nroJaula, PestagnasInicio p){        
          if(tamannoJaula.equals("L")){
              p.pJaulas.pJaulas.jaulasL.get(nroJaula-1).setOcupada(ocupada);
