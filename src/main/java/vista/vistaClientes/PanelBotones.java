@@ -12,7 +12,9 @@ import javax.swing.JTextField;
  * @author HernySenpai
  */
 public class PanelBotones extends JPanel {
-    public JButton btnGuardar, btnCancelar, btnAceptar;
+    public JButton btnCancelar;
+    public JButton btnAceptar;
+    public JButton btnGuardar;
     public JTextField txtDeuda;
     private JLabel labDeuda;
     

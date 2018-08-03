@@ -14,7 +14,8 @@ import javax.swing.JPanel;
  */
 public class PanelBotonesP extends JPanel{
     
-    public JButton btnTratamiento, btnDocumentos;  
+    public JButton btnDocumentos;
+    public JButton btnTratamiento;
     public PanelBotones pnlBotones;
     public SubPanelDatos subPanel;
 

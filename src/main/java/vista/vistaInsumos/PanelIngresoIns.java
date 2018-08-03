@@ -15,9 +15,12 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelIngresoIns extends JPanel {
     
-    private JLabel labInsumo, labCantidad, labCosto;       
-    public JTextField txtInsumo, txtCantidad, txtCosto;    
-    
+    private JLabel labCosto;
+    private JLabel labInsumo;
+    private JLabel labCantidad;
+    public JTextField txtCosto;
+    public JTextField txtInsumo;
+    public JTextField txtCantidad;
     public SubPanelDatos subPanel;   
 
     public PanelIngresoIns() {

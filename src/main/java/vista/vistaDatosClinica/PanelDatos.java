@@ -15,8 +15,23 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelDatos extends JPanel{
     
-    private JLabel labNombreS, labNombreF, labDireccion, labCiudad,labRegion, labTelefono, labEmail, labWeb;
-    public JTextField txtNombreS, txtNombreF, txtDireccion, txtCiudad, txtRegion, txtTelefono, txtEmail, txtWeb;
+    private JLabel labNombreS; 
+    private JLabel labWeb;
+    private JLabel labEmail;
+    private JLabel labCiudad;
+    private JLabel labTelefono;
+    private JLabel labRegion;
+    private JLabel labNombreF;
+    private JLabel labDireccion;
+    public JTextField txtNombreS;
+    public JTextField txtNombreF;
+    public JTextField txtDireccion;
+    public JTextField txtCiudad;
+    public JTextField txtRegion;
+    public JTextField txtTelefono;
+    public JTextField txtEmail;
+    public JTextField txtWeb;
+            
     public SubPanelDatos subPanel;
     
     public PanelDatos(String nombreS, String nombreF, String direccion, String ciudad, String region, String telefono, String email, String web){

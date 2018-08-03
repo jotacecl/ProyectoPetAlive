@@ -21,8 +21,19 @@ import modelo.Cita;
  */
 public class PanelDatos extends JPanel{
     
-    private JLabel labID, labPaciente, labRUT, labFIngreso, labFCita, labMotivo;
-    public JTextField txtID, txtPaciente, txtRUT, txtMotivo, txtFIngreso, txtFCita;
+    private JLabel labID;
+    private JLabel labPaciente;
+    private JLabel labRUT;
+    private JLabel labFIngreso;
+    private JLabel labFCita;
+    private JLabel labMotivo;
+    
+    public JTextField txtID;  
+    public JTextField txtPaciente;
+    public JTextField txtRUT;
+    public JTextField txtFCita;
+    public JTextField txtFIngreso;
+    public JTextField txtMotivo;
     public JDateChooser calendario;
     public static final String FORMATO = "%1$td-%1$tm-%1$tY";
     private Date fecha;

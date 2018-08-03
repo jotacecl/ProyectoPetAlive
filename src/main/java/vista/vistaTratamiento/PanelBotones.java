@@ -11,7 +11,9 @@ import javax.swing.JPanel;
  */
 public class PanelBotones extends JPanel{
     
-    public JButton btnGuardar, btnInsumos, btnAceptar;    
+    public JButton btnGuardar;    
+    public JButton btnInsumos;
+    public JButton btnAceptar;
     
     public PanelBotones(int btnSeleccionado){
         this.iniciarComponentes(btnSeleccionado);

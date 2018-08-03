@@ -12,8 +12,11 @@ import javax.swing.JPanel;
  */
 public class PanelOpciones extends JPanel{
     
-    public BotonIcono bDatosClinica, bDirectorio, bHorario, bJaulas, bAcerca;        
-    
+    public BotonIcono bDatosClinica;         
+    public BotonIcono bDirectorio;
+    public BotonIcono bHorario;
+    public BotonIcono bJaulas;
+    public BotonIcono bAcerca;
     public PanelOpciones(){        
         this.iniciarComponentes();        
     }

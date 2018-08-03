@@ -16,10 +16,21 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelDatosP extends JPanel{
     
-    private JLabel labID, labNombre, labTipo, labDescripcion, labStock, labPrecio;
-    public JTextField txtID, txtNombre, txtDescripcion, txtStock, txtPrecio;
+    private JLabel labID;
+    private JLabel labTipo;
+    private JLabel labDescripcion;
+    private JLabel labStock;
+    private JLabel labPrecio;
+    private JLabel labNombre;
+    public JTextField txtID;
+    public JTextField txtNombre;
+    public JTextField txtDescripcion;
+    public JTextField txtStock;
+    public JTextField txtPrecio;
     public JComboBox cbTipo;
-    public JButton btnAgregar, btnEliminar, btnEditar;
+    public JButton btnAgregar; 
+    public JButton btnEliminar;
+    public JButton btnEditar;
     public SubPanelDatos subPanel;
     
     public PanelDatosP(String idProducto, String nombre, String descripcion, String stock, String precio){

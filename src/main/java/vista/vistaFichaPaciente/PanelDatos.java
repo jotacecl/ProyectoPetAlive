@@ -23,15 +23,36 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelDatos extends JPanel{
     
-    private JLabel labPaciente, labRaza,labColor, labEspecie, labFechaNac, labSexo, labInternado, labJaula, labCliente;    
-    public JTextField txtPaciente,txtColor, txtRaza, txtFechaNacimiento, txtCliente;
-    public JComboBox cbTipo, cbTJaula, cbNJaula;    
-    public JRadioButton rbMacho, rbHembra;    
-    public JRadioButton rbSi, rbNo; 
-    public ButtonGroup grupoRB,grupoRB2;
+    private JLabel labCliente;
+    private JLabel labInternado;
+    private JLabel labPaciente;
+    private JLabel labJaula;
+    
+    private JLabel labRaza;
+    private JLabel labColor;
+    private JLabel labEspecie;
+    private JLabel labSexo;
+    private JLabel labFechaNac;
+    public JTextField txtFechaNacimiento;
+    public JTextField txtPaciente;
+    public JTextField txtRaza;
+    public JTextField txtColor;
+    public JTextField txtCliente;
+    
+    public JComboBox cbNJaula;    
+    public JComboBox cbTipo;
+    public JComboBox cbTJaula;
+    public JRadioButton rbHembra;    
+    public JRadioButton rbMacho;
+    public JRadioButton rbNo;
+    public JRadioButton rbSi;
+    public ButtonGroup grupoRB2;
+    public ButtonGroup grupoRB;
     public JDateChooser calendario;
     public BotonIcono btnBusqueda;
-    public JButton btnAgregar, btnEditar, btnEliminar;
+    public JButton btnAgregar;
+    public JButton btnEliminar;
+    public JButton btnEditar;
     public static final String FORMATO = "%1$td-%1$tm-%1$tY";
     public SubPanelDatos subPanel;
     

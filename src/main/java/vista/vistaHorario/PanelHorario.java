@@ -13,8 +13,16 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelHorario extends JPanel{
     
-    private JLabel labLV, labSD;
-    public JTextField txtLV1, txtLV2, txtLV3, txtLV4, txtSD1, txtSD2, txtSD3, txtSD4;    
+    private JLabel labSD;
+    private JLabel labLV;
+    public JTextField txtLV1;
+    public JTextField txtLV2;
+    public JTextField txtLV3;
+    public JTextField txtLV4;
+    public JTextField txtSD1;
+    public JTextField txtSD2;
+    public JTextField txtSD3;
+    public JTextField txtSD4;
     
     public PanelHorario(String hLV1, String mLV1, String hLV2,String mLV2, String hSD1, String mSD1, String hSD2,String mSD2){
         this.iniciarComponentes(hLV1,mLV1,hLV2,mLV2, hSD1,mSD1,hSD2,mSD2);

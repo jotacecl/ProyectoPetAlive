@@ -13,7 +13,10 @@ import javax.swing.JPanel;
  * @author Juan Carlos
  */
 public class PanelLogo extends JPanel{
-    public JLabel logoApp, nombreApp, versionApp, infoExtra;
+    public JLabel logoApp;
+    public JLabel nombreApp;
+    public JLabel versionApp;
+    public JLabel infoExtra;
     
     public PanelLogo(){
         this.iniciarComponentes();

@@ -8,9 +8,11 @@ package modelo;
  */
 public class Insumo {
     
-    private String nombre, cantidad;
-    private int costo, idPaciente;   
-
+    private String nombre;
+    private String cantidad;
+    private int costo;   
+    private int idPaciente;
+    
     public Insumo() {
     }  
 

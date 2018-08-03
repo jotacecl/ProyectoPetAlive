@@ -19,13 +19,41 @@ import modelo.Personal;
  */
 public class PanelDatos extends JPanel{
     
-    private JLabel labRut, labNombres, labApellidos, labDireccion, labCiudad , labRegion, labTelefono, labMovil, labEmail, labCargo;
+    private JLabel labRut;
+    private JLabel labNombres;
+    private JLabel labApellidos;
     private JLabel signos;
-    public JTextField  txtNombres, txtApellidos, txtTelefono, txtMovil, txtEmail, txtDireccion;
-    public JTextField rutParte1, rutParte2, rutParte3, rutParte4;
-    public JComboBox cbCiudad, cbRegion, cbCargo;
+    private JLabel labDireccion;
+    private JLabel labCiudad;
+    private JLabel labRegion;
+    private JLabel labTelefono;
+    private JLabel labMovil;
+    private JLabel labEmail;
+    private JLabel labCargo;
+    
+    public JTextField  txtNombres;
+    public JTextField txtApellidos;
+    public JTextField txtTelefono;
+    public JTextField txtMovil;
+    public JTextField txtEmail;
+    public JTextField txtDireccion;
+    public JTextField rutParte1;
+    public JTextField rutParte2;
+    public JTextField rutParte3;
+    public JTextField rutParte4;
+    public JComboBox cbCiudad;
+    public JComboBox cbRegion;
+    public JComboBox cbCargo;
     public SubPanelDatos subPanel;
-    public JButton btnAgregarC, btnAgregarR, btnEliminarC, btnEliminarR, btnEditarC, btnEditarR, btnAgregarCG, btnEliminarCG, btnEditarCG;
+    public JButton btnAgregarC;
+    public JButton btnAgregarR;
+    public JButton btnEliminarC;
+    public JButton btnEliminarR;
+    public JButton btnEditarC;
+    public JButton btnEditarR;
+    public JButton btnAgregarCG;
+    public JButton btnEliminarCG;
+    public JButton btnEditarCG;
     
     public PanelDatos(Personal personal, String rutPart1,String rutPart2,String rutPart3,String rutPart4){
         this.iniciarComponentes(personal, rutPart1, rutPart2, rutPart3, rutPart4);

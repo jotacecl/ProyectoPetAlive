@@ -11,7 +11,9 @@ import javax.swing.JButton;
  */
 public class BotonIcono extends JButton{
     
-    private final String dir1, dir2, name;
+    private final String dir1; 
+    private final String name;
+    private final String dir2;
     
     public BotonIcono(String name, String dir1, String dir2){
         this.name = name;

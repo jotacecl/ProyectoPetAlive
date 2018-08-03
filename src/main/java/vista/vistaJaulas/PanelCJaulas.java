@@ -14,8 +14,12 @@ import javax.swing.border.TitledBorder;
  */
 public class PanelCJaulas extends JPanel{
     
-    private JLabel labCL, labCM, labCS;
-    public JTextField txtCL, txtCM, txtCS;
+    private JLabel labCL; 
+    private JLabel labCM;
+    private JLabel labCS;
+    public JTextField txtCM;
+    public JTextField txtCL;
+    public JTextField txtCS;
     public SubPanelDatos subPanel;
     
     public PanelCJaulas(String L, String M, String S){

@@ -19,8 +19,9 @@ public class PanelBotones extends JPanel{
     public JTextField txtBuscar;
     public BotonIcono btnBuscar;
     public JButton btnEliminar, btnAbrir, btnAnnadir;
-    public JButton btnGuardar, btnCancelar, btnAceptar;
-    
+    public JButton btnGuardar;
+    public JButton btnCancelar;
+    public JButton btnAceptar;
     
     public PanelBotones(int op){
         this.iniciarComponentes();
