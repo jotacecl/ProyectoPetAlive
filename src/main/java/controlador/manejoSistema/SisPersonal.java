@@ -3,7 +3,6 @@ package controlador.manejoSistema;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import modelo.Persona;
 import modelo.Personal;
 import vista.vistaPersonal.VentanaPersonal;
 import vista.vistaInicio.PestagnasInicio;
@@ -33,7 +32,7 @@ public class SisPersonal {
     private String cargo;
     
     /**
-     * 
+     * Metodo para iniciar la ventana Personal.
      * @param btnSeleccionado
      * @param p
      * @param listaCiudades
@@ -65,7 +64,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para rellenar automaticamente la ventana con la info.
      * @param index
      * @param listaCiudades
      * @param listaRegiones 
@@ -99,7 +98,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para crear un ficha nueva de Personal.
      * @param pi 
      */
     public void crearPersonal(PestagnasInicio pi){
@@ -131,7 +130,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para editar una ficha de Personal.
      * @param index
      * @param pi 
      */
@@ -160,7 +159,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para obtener los datos ingresados por el usuario.
      */
     public void getAllDataPersonal(){
         this.nombre = this.vPersonal.pnlDatos.txtNombres.getText();
@@ -180,7 +179,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para agregar un Cargo nuevo a la lista.
      * @param cargo 
      */
     public void setCargo(String cargo){
@@ -198,7 +197,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para editar un Cargo seleccionado.
      * @param cargoEditado 
      */
     public void editarCargo(String cargoEditado){
@@ -211,7 +210,7 @@ public class SisPersonal {
     }
     
     /**
-     * 
+     * Metodo para eliminar un Cargo seleccionado.
      */
     public void eliminarCargo(){
         for(int i=0; i<listaCargos.size(); i++){

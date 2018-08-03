@@ -16,8 +16,12 @@ public class SisProducto {
     public VentanaProducto vProducto;
     private final ArrayList<Producto> listaProductos = new ArrayList<>();
     public final ArrayList<String> listaTipoProductos = new ArrayList<>();
-    private String idProducto, nombre, tipo, descripcion;
-    private int stock, precio;
+    private String idProducto;
+    private String nombre;
+    private String tipo;
+    private String descripcion;
+    private int stock;
+    private int precio;
     
     public void iniciarProductos(int btnSeleccionado, PestagnasInicio p){
         int index = p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow();        

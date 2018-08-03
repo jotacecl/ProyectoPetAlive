@@ -14,7 +14,8 @@ public class SisServicio {
     
     public VentanaServicio vServicio;
     private final ArrayList<Servicios> listaServicios = new ArrayList<>();
-    private String nombre, descripcion;
+    private String nombre;
+    private String descripcion;
     private int precio;
     
     public void iniciarServicios(int btnSeleccionado, PestagnasInicio p){
