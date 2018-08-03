@@ -83,7 +83,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.setTitle("Veterinaria");
         this.setLocation(50,50);
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setSize(1100, 720);
         
     }

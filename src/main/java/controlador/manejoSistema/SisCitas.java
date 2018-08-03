@@ -31,7 +31,7 @@ public class SisCitas {
         if(btnSeleccionado == 1){           
             this.setDatosCitas(index);
         }else if(btnSeleccionado == 2){
-            this.vCitas = new VentanaCita(3, "", "", "", " ", "", "");
+            this.vCitas = new VentanaCita(3, null);
         }
     }
     
@@ -40,20 +40,9 @@ public class SisCitas {
      * @param index 
      */
     public void setDatosCitas(int index){
-       this.idPaciente = this.listaCitas.get(index).getIdPaciente();
-       this.paciente = this.listaCitas.get(index).getPaciente();
-       this.rutCliente = this.listaCitas.get(index).getRutCliente();
-       this.fechaIngreso = this.listaCitas.get(index).getFechaIngreso();
-       this.fechaCita = this.listaCitas.get(index).getFechaCita();
-       this.motivo = this.listaCitas.get(index).getMotivoCita();
+       Cita c = this.listaCitas.get(index);               
        
-       this.vCitas = new VentanaCita(2,
-               idPaciente,
-               paciente,
-               rutCliente,
-               fechaIngreso,
-               fechaCita,
-               motivo);
+       this.vCitas = new VentanaCita(2,c);
     }
     
     /**
@@ -106,11 +95,7 @@ public class SisCitas {
         p.pCitas.pnlTabla.modelo.setValueAt(c.getFechaCita(), index, 4);
         p.pCitas.pnlTabla.modelo.setValueAt(c.getMotivoCita(), index, 5);
                 
-    }
-    
-    public void buscarCita(String rut){
-        
-    }
+    }        
     
     /**
      * Metodo para obtener los datos ingresados por el usuario.

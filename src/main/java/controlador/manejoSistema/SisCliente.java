@@ -47,7 +47,7 @@ public class SisCliente {
         if(btnSeleccionado == 1){          
             this.setDatosCliente(index, listaCiudades, listaRegiones);
         }else if(btnSeleccionado == 2){
-            this.vCliente = new VentanaCliente(2,"","","","","","","","","","","");
+            this.vCliente = new VentanaCliente(2,null,"","","","","");
             if(this.vCliente.pnlDatos.cbCiudad.getItemAt(1) != ("    ")){
                 this.vCliente.pnlDatos.cbCiudad.removeAllItems();
                 for(Object l:listaCiudades){
@@ -69,33 +69,23 @@ public class SisCliente {
      */
     public void setDatosCliente(int index, ArrayList listaCiudades, ArrayList listaRegiones){
         this.gDatos = new GestorDatos();
-        this.nombre = this.listaClientes.get(index).getNombre();       
-        this.apellido = this.listaClientes.get(index).getApellido();
-        this.rut = this.listaClientes.get(index).getRut();        
+        
+        Cliente c = this.listaClientes.get(index);
+                
+        this.rut = c.getRut();        
         this.partesRut = this.gDatos.separarRut(this.rut);
         this.rutPart1 = (String) this.partesRut.get(0);       
         this.rutPart2 = (String) this.partesRut.get(1);     
         this.rutPart3 = (String) this.partesRut.get(2);        
-        this.rutPart4 = (String) this.partesRut.get(3); 
-        this.direccion = this.listaClientes.get(index).getDireccion();
-        this.ciudad = this.listaClientes.get(index).getCiudad();        
-        this.region = this.listaClientes.get(index).getRegion();
-        this.telefono = Integer.toString(this.listaClientes.get(index).getTelefono());
-        this.movil = Integer.toString(this.listaClientes.get(index).getMovil());
-        this.email = this.listaClientes.get(index).getEmail();
-        this.deuda = Integer.toString(this.listaClientes.get(index).getDeuda());
+        this.rutPart4 = (String) this.partesRut.get(3);         
+        this.deuda = Integer.toString(c.getDeuda());
             
         this.vCliente = new VentanaCliente(1,
-                nombre,
-                apellido,
+                c,                
                 rutPart1,
                 rutPart2, 
                 rutPart3, 
-                rutPart4,
-                direccion,
-                telefono,
-                movil,
-                email,
+                rutPart4,                
                 deuda);
         this.vCliente.pnlDatos.cbCiudad.removeAllItems();
         for(Object l:listaCiudades){

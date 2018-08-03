@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import modelo.Cita;
 
 /**
  *
@@ -30,11 +31,11 @@ public class PanelDatos extends JPanel{
     public SubPanelDatos subPanel;
     public BotonIcono btnBusqueda;
     
-    public PanelDatos(String idPaciente, String paciente, String rut, String fIngreso, String fCita, String motivo){
-        this.iniciarComponentes(idPaciente,paciente,rut,fIngreso,fCita,motivo);
+    public PanelDatos(Cita cita){
+        this.iniciarComponentes(cita);
     }
     
-    private void iniciarComponentes(String idPaciente, String paciente, String rut, String fIngreso, String fCita, String motivo){
+    private void iniciarComponentes(Cita cita){
         
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
@@ -48,18 +49,30 @@ public class PanelDatos extends JPanel{
         fecha1 = fecha.getTime();
         fechaActual = new java.sql.Date(fecha1);
         
-        JPanel pnlID = new JPanel();        
-        this.txtID = new JTextField(idPaciente, 20);        
+        if(cita != null){
+          this.txtID = new JTextField(cita.getIdPaciente(), 20);
+          this.txtPaciente = new JTextField(cita.getPaciente(), 20);
+          this.txtRUT = new JTextField(cita.getRutCliente(),17);
+          this.txtFCita = new JTextField(cita.getFechaCita(), 20);
+          this.txtMotivo = new JTextField(cita.getMotivoCita(),20);
+        }else{
+          this.txtID = new JTextField("", 20);
+          this.txtPaciente = new JTextField("", 20);
+          this.txtRUT = new JTextField("",17);
+          this.txtFCita = new JTextField("", 20);
+          this.txtMotivo = new JTextField("",20);
+        }
+        
+        JPanel pnlID = new JPanel();                   
         caja.add(this.subPanel.generarSubPanelTF(pnlID, labID, txtID, "ID Paciente     ", 134,204,161));        
         
         JPanel pnlPaciente = new JPanel();
-        this.txtPaciente = new JTextField(paciente, 20);
+        
         caja.add(this.subPanel.generarSubPanelTF(pnlPaciente, labPaciente, txtPaciente, "Paciente          ", 134,204,161));                        
         
         JPanel pnlRUT = new JPanel(new FlowLayout());
         this.labRUT = new JLabel("RUT Cliente    ");
-        pnlRUT.add(this.labRUT);
-        this.txtRUT = new JTextField(rut,17);
+        pnlRUT.add(this.labRUT);        
         pnlRUT.add(this.txtRUT);
         this.txtRUT.setEditable(false);
         this.btnBusqueda = new BotonIcono("","data/icon/search.png","data/icon/search.png");
@@ -69,17 +82,20 @@ public class PanelDatos extends JPanel{
         
         JPanel pnlFIngreso = new JPanel();
         String fechaAct = String.format(FORMATO, fechaActual);
-        if(" ".equals(fIngreso)){
-            this.txtFIngreso = new JTextField(fechaAct, 20);
-        }else{
-            this.txtFIngreso = new JTextField(fIngreso, 20);
-        }        
+        if(cita != null){
+            if(" ".equals(cita.getFechaIngreso())){
+                this.txtFIngreso = new JTextField(fechaAct, 20);
+            }else{            
+                this.txtFIngreso = new JTextField(cita.getFechaIngreso(), 20);                       
+            } 
+        }else{            
+            this.txtFIngreso = new JTextField(fechaAct, 20);            
+        } 
         this.txtFIngreso.setEditable(false);
         caja.add(this.subPanel.generarSubPanelTF(pnlFIngreso, labFIngreso, txtFIngreso, "Fecha Ingreso ", 134,204,161));          
         
         JPanel pnlFCita = new JPanel();
-        this.labFCita = new JLabel("Fecha Cita        ");
-        this.txtFCita = new JTextField(fCita, 20);
+        this.labFCita = new JLabel("Fecha Cita        ");        
         pnlFCita.add(this.labFCita);
         JPanel subPanel = new JPanel();
         subPanel.setPreferredSize(new Dimension(226,25));
@@ -89,8 +105,7 @@ public class PanelDatos extends JPanel{
         pnlFCita.setBackground(new java.awt.Color(134, 204, 161));
         caja.add(pnlFCita);
         
-        JPanel pnlMotivo = new JPanel();
-        this.txtMotivo = new JTextField(motivo,20);
+        JPanel pnlMotivo = new JPanel();        
         caja.add(this.subPanel.generarSubPanelTF(pnlMotivo, labMotivo, txtMotivo, "Motivo Cita        ", 134,204,161));     
         
         this.setBackground(new java.awt.Color(134, 204, 161));

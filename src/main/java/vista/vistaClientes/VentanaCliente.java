@@ -3,6 +3,7 @@ package vista.vistaClientes;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import modelo.Cliente;
 
 /**
  *
@@ -13,13 +14,13 @@ public class VentanaCliente extends JFrame{
     public PanelBotones pnlBotones;
     public PanelDatos pnlDatos;
     
-    public VentanaCliente(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email, String deuda){
-        this.iniciarComponentes(btnSelect, nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email, deuda);
+    public VentanaCliente(int btnSelect, Cliente c, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String deuda){
+        this.iniciarComponentes(btnSelect, c, rutPart1, rutPart2, rutPart3, rutPart4, deuda);
     }
     
-    private void iniciarComponentes(int btnSelect, String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email, String deuda){
+    private void iniciarComponentes(int btnSelect, Cliente c, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String deuda){
                      
-        this.pnlDatos = new PanelDatos(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
+        this.pnlDatos = new PanelDatos(c, rutPart1, rutPart2, rutPart3, rutPart4);
         this.add(this.pnlDatos, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSelect, deuda);

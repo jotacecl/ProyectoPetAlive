@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import modelo.Cliente;
 
 /**
  *
@@ -26,11 +27,11 @@ public class PanelDatos extends JPanel {
     public JButton btnAgregarC, btnAgregarR, btnEliminarC, btnEliminarR, btnEditarC, btnEditarR;
     public SubPanelDatos subPanel;    
 
-    public PanelDatos(String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email) {
-        iniciarComponentes(nombre, apellidos, rutPart1, rutPart2, rutPart3, rutPart4, direccion, telefono, movil, email);
+    public PanelDatos(Cliente c, String rutPart1,String rutPart2,String rutPart3,String rutPart4) {
+        iniciarComponentes(c, rutPart1, rutPart2, rutPart3, rutPart4);
     }
                 
-    private void iniciarComponentes(String nombre, String apellidos, String rutPart1,String rutPart2,String rutPart3,String rutPart4, String direccion, String telefono, String movil,  String email){
+    private void iniciarComponentes(Cliente c, String rutPart1,String rutPart2,String rutPart3,String rutPart4){
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
         
@@ -38,12 +39,26 @@ public class PanelDatos extends JPanel {
         
         subPanel = new SubPanelDatos();
         
-        JPanel pnlNombres = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        txtNombre = new JTextField(nombre,20);
+        if(c != null){
+            this.txtNombre = new JTextField(c.getNombre(),20);
+            this.txtApellidos = new JTextField(c.getApellido(),20);
+            this.txtDireccion = new JTextField(c.getDireccion(),20);
+            this.txtTelefono = new JTextField(Integer.toString(c.getTelefono()), 20);
+            this.txtMovil = new JTextField(Integer.toString(c.getMovil()),20);
+            this.txtEmail = new JTextField(c.getEmail(),20);
+        }else{
+            this.txtNombre = new JTextField("",20);
+            this.txtApellidos = new JTextField("",20);
+            this.txtDireccion = new JTextField("",20);
+            this.txtTelefono = new JTextField("", 20);
+            this.txtMovil = new JTextField("",20);
+            this.txtEmail = new JTextField("",20);
+        }
+        
+        JPanel pnlNombres = new JPanel(new FlowLayout(FlowLayout.LEFT));        
         caja.add(this.subPanel.generarSubPanelTF(pnlNombres, labNombres, txtNombre, "Nombres   ", 134,204,161));
         
-        JPanel pnlApellidos = new JPanel(new FlowLayout(FlowLayout.LEFT));       
-        this.txtApellidos = new JTextField(apellidos,20);
+        JPanel pnlApellidos = new JPanel(new FlowLayout(FlowLayout.LEFT));               
         caja.add(this.subPanel.generarSubPanelTF(pnlApellidos, labApellidos, txtApellidos, "Apellidos   ", 134,204,161));
         
         JPanel pnlRut = new JPanel(new FlowLayout(FlowLayout.LEFT));   
@@ -80,20 +95,16 @@ public class PanelDatos extends JPanel {
         this.btnEditarR = new JButton("edit");
         caja.add(this.subPanel.generarSubPanelCB(pnlRegion, labRegion, cbRegion, "Región       ", 134,204,161, btnAgregarR, btnEliminarR, btnEditarR));
         
-        JPanel pnlDir = new JPanel(new FlowLayout(FlowLayout.LEFT));      
-        this.txtDireccion = new JTextField(direccion,20);
+        JPanel pnlDir = new JPanel(new FlowLayout(FlowLayout.LEFT));              
         caja.add(this.subPanel.generarSubPanelTF(pnlDir, labDireccion, txtDireccion, "Dirección   ", 134,204,161));
         
-        JPanel pnlTelefono = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.txtTelefono = new JTextField(telefono, 20);
+        JPanel pnlTelefono = new JPanel(new FlowLayout(FlowLayout.LEFT));        
         caja.add(this.subPanel.generarSubPanelTF(pnlTelefono, labTelefono, txtTelefono, "Teléfono    ", 134,204,161));
         
-        JPanel pnlMovil = new JPanel(new FlowLayout(FlowLayout.LEFT));                
-        this.txtMovil = new JTextField(movil,20);
+        JPanel pnlMovil = new JPanel(new FlowLayout(FlowLayout.LEFT));                        
         caja.add(this.subPanel.generarSubPanelTF(pnlMovil, labMovil, txtMovil, "Móvil           ", 134,204,161));
         
-        JPanel pnlEmail = new JPanel(new FlowLayout(FlowLayout.LEFT));              
-        this.txtEmail = new JTextField(email,20);
+        JPanel pnlEmail = new JPanel(new FlowLayout(FlowLayout.LEFT));                      
         caja.add(this.subPanel.generarSubPanelTF(pnlEmail, labEmail, txtEmail, "Email         ", 134,204,161));                                
         
         this.setBackground(new java.awt.Color(134, 204, 161));
