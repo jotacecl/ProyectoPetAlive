@@ -35,19 +35,25 @@ public class SisInsumos {
      * @param index 
      */
     public void setDatosInsumos(SisFichaPaciente sFP, int index){
+        
         this.vInsumos = new VentanaInsumos();
         for(int i=0; i<sFP.listaPacientes.get(index).getListaInsumos().size(); i++){
+            
             Object[] fila = new Object[3];
             fila[0] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getNombre();
+            
             if(sFP.listaPacientes.get(index).getListaInsumos().get(i).getCantidad() == "0"){
               fila[1] = " ";  
             }else{
               fila[1] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getCantidad(); 
-            }                           
+            } 
+            
             fila[2] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getCosto();
             this.vInsumos.pnlTabla.modelo.addRow(fila);
+            
         }
-        this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(sFP.listaPacientes.get(index).getCostoInsumos()));        
+        this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(sFP.listaPacientes.get(index).getCostoInsumos())); 
+        
     }
     
     /**

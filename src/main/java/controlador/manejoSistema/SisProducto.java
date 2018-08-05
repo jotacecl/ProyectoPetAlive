@@ -4,7 +4,7 @@ package controlador.manejoSistema;
 import java.util.ArrayList;
 import java.util.Collections;
 import modelo.Producto;
-import vista.vistaPdtosYServicios.VentanaProducto;
+import vista.vistaProductos.VentanaProducto;
 import vista.vistaInicio.PestagnasInicio;
 
 /**
@@ -15,8 +15,7 @@ public class SisProducto {
     
     public VentanaProducto vProducto;
     private final ArrayList<Producto> listaProductos = new ArrayList<>();
-    public final ArrayList<String> listaTipoProductos = new ArrayList<>();
-    private String idProducto;
+    public final ArrayList<String> listaTipoProductos = new ArrayList<>();   
     private String nombre;
     private String tipo;
     private String descripcion;
@@ -28,7 +27,7 @@ public class SisProducto {
         if(btnSeleccionado == 1){            
             this.setDatosProducto(index);
         }else if(btnSeleccionado == 2){
-            this.vProducto = new VentanaProducto(3, "", "", "", "", "");
+            this.vProducto = new VentanaProducto(3, null);
             if(this.vProducto.pnlDatos.cbTipo.getItemAt(1) != ("    ")){
                 this.vProducto.pnlDatos.cbTipo.removeAllItems();
                 for(Object l:listaTipoProductos){
@@ -38,15 +37,10 @@ public class SisProducto {
         }
     }
     
-    public void setDatosProducto(int index){        
-        this.idProducto = this.listaProductos.get(index).getId();        
-        this.nombre = this.listaProductos.get(index).getNombre();        
-        this.tipo = this.listaProductos.get(index).getTipo();        
-        this.descripcion = this.listaProductos.get(index).getDescripcion();        
-        this.stock = this.listaProductos.get(index).getStock();
-        this.precio = this.listaProductos.get(index).getPrecio();
+    public void setDatosProducto(int index){ 
+        Producto p = this.listaProductos.get(index);               
         
-        this.vProducto = new VentanaProducto(2, idProducto, nombre, descripcion, Integer.toString(stock), Integer.toString(precio));
+        this.vProducto = new VentanaProducto(2, p);
         this.vProducto.pnlDatos.cbTipo.removeAllItems();
         for(Object l:listaTipoProductos){
                     this.vProducto.pnlDatos.cbTipo.addItem(l);
@@ -58,8 +52,7 @@ public class SisProducto {
     public void crearProducto(PestagnasInicio p){
         this.getAllDataProducto();
         
-        Producto pr = new Producto(
-                this.idProducto,
+        Producto pr = new Producto(                
                 this.nombre,
                 this.tipo,
                 this.descripcion,
@@ -69,39 +62,36 @@ public class SisProducto {
         
         this.listaProductos.add(pr);
         
-        Object[] fila = new Object[6];
-        fila[0] = pr.getId();
-        fila[1] = pr.getNombre();
-        fila[2] = pr.getTipo();
-        fila[3] = pr.getDescripcion();
-        fila[4] = pr.getStock();
-        fila[5] = pr.getPrecio();        
+        Object[] fila = new Object[]{
+            pr.getNombre(),
+            pr.getTipo(),
+            pr.getDescripcion(),
+            pr.getStock(),
+            pr.getPrecio()
+        };                       
         p.pFicheros.pProductos.pnlTabla.modelo.addRow(fila);
     }
     
     public void editarProducto(int index, PestagnasInicio p){
         this.getAllDataProducto();
-        
-        this.listaProductos.get(index).setId(this.idProducto);
+                
         this.listaProductos.get(index).setNombre(this.nombre);
         this.listaProductos.get(index).setTipo(this.tipo);
         this.listaProductos.get(index).setDescripcion(this.descripcion);
         this.listaProductos.get(index).setStock(this.stock);
         this.listaProductos.get(index).setPrecio(this.precio);
         
-        Producto pr = this.listaProductos.get(index);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getId(), index, 0);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getNombre(), index, 1);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getTipo(), index, 2);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getDescripcion(), index, 3);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getStock(), index, 4);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getPrecio(), index, 5);
+        Producto pr = this.listaProductos.get(index);        
+        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getNombre(), index, 0);
+        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getTipo(), index, 1);
+        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getDescripcion(), index, 2);
+        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getStock(), index, 3);
+        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getPrecio(), index, 4);
         
     }
     
     public void getAllDataProducto(){
-        
-        this.idProducto = this.vProducto.pnlDatos.txtID.getText();
+                
         this.nombre = this.vProducto.pnlDatos.txtNombre.getText();
         this.tipo = (String)this.vProducto.pnlDatos.cbTipo.getSelectedItem();
         this.descripcion = this.vProducto.pnlDatos.txtDescripcion.getText();

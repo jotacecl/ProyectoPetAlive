@@ -5,8 +5,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import vista.vistaClientes.PestagnaClientes;
 import vista.vistaFichaPaciente.PestagnaPacientes;
-import vista.vistaPdtosYServicios.PestagnaProductos;
-import vista.vistaPdtosYServicios.PestagnaServicios;
+import vista.vistaProductos.PestagnaProductos;
+import vista.vistaServicios.PestagnaServicios;
 import vista.vistaPersonal.PestagnaPersonal;
 
 /**

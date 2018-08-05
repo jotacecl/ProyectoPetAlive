@@ -1,5 +1,5 @@
 
-package vista.vistaPdtosYServicios;
+package vista.vistaServicios;
 
 import vista.componentes.SubPanelDatos;
 import javax.swing.Box;
@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import modelo.Servicio;
 
 /**
  *
@@ -18,11 +19,11 @@ public class PanelDatosS extends JPanel{
     public JTextField txtNombre, txtDescripcion, txtPrecio;
     public SubPanelDatos subPanel;
     
-    public PanelDatosS(String nombre, String descripcion, String precio){
-        this.iniciarComponentes(nombre,descripcion,precio);
+    public PanelDatosS(Servicio s){
+        this.iniciarComponentes(s);
     }
     
-    private void iniciarComponentes(String nombre, String descripcion, String precio){
+    private void iniciarComponentes(Servicio s){
         
         TitledBorder border = new TitledBorder("");       
         this.setBorder(border);
@@ -31,16 +32,23 @@ public class PanelDatosS extends JPanel{
         
         subPanel = new SubPanelDatos();
         
-        JPanel pnlNombre = new JPanel();
-        this.txtNombre = new JTextField(nombre,20);
+        if(s!=null){
+            this.txtNombre = new JTextField(s.getNombre(),20);
+            this.txtDescripcion = new JTextField(s.getDescripcion(),20);
+            this.txtPrecio = new JTextField(Integer.toString(s.getPrecio()),20);
+        }else{
+            this.txtNombre = new JTextField("",20);
+            this.txtDescripcion = new JTextField("",20);
+            this.txtPrecio = new JTextField("",20);
+        }
+        
+        JPanel pnlNombre = new JPanel();        
         caja.add(this.subPanel.generarSubPanelTF(pnlNombre, labNombre, txtNombre, "Servicio         ", 134, 204, 161));
         
-        JPanel pnlDescripcion = new JPanel();
-        this.txtDescripcion = new JTextField(descripcion,20);
+        JPanel pnlDescripcion = new JPanel();        
         caja.add(this.subPanel.generarSubPanelTF(pnlDescripcion, labDescripcion, txtDescripcion, "Descripción ", 134, 204, 161));
         
-        JPanel pnlPrecio = new JPanel();
-        this.txtPrecio = new JTextField(precio,20);;
+        JPanel pnlPrecio = new JPanel();        
         caja.add(this.subPanel.generarSubPanelTF(pnlPrecio, labPrecio, txtPrecio, "Precio           ", 134, 204, 161));
         
         this.setBackground(new java.awt.Color(134,204,161));

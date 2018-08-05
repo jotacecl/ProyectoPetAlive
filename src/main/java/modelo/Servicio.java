@@ -5,15 +5,15 @@ package modelo;
  *
  * @author HernySenpai
  */
-public class Servicios {
+public class Servicio {
     private String nombre;
     private String descripcion;
     private int precio;
 
-    public Servicios() {
+    public Servicio() {
     }
 
-    public Servicios(String nombre, String descripcion, int precio) {
+    public Servicio(String nombre, String descripcion, int precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;

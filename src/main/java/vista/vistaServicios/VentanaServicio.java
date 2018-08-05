@@ -1,9 +1,10 @@
 
-package vista.vistaPdtosYServicios;
+package vista.vistaServicios;
 
 import vista.componentes.PanelBotones;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import modelo.Servicio;
 
 /**
  *
@@ -14,13 +15,13 @@ public class VentanaServicio extends JFrame{
     public PanelDatosS pnlDatosS;
     public PanelBotones pnlBotones;
     
-    public VentanaServicio(int btnSeleccionado, String nombre, String descripcion, String precio){
-        this.iniciarComponentes(btnSeleccionado,nombre,descripcion,precio);
+    public VentanaServicio(Servicio s, int btnSeleccionado){
+        this.iniciarComponentes(s, btnSeleccionado);
     }
     
-    private void iniciarComponentes(int btnSeleccionado, String nombre, String descripcion, String precio){
+    private void iniciarComponentes(Servicio s, int btnSeleccionado){
         
-        this.pnlDatosS = new PanelDatosS(nombre,descripcion,precio);
+        this.pnlDatosS = new PanelDatosS(s);
         this.add(this.pnlDatosS, BorderLayout.CENTER);
         
         this.pnlBotones = new PanelBotones(btnSeleccionado);

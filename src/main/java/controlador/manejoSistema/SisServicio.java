@@ -2,8 +2,8 @@
 package controlador.manejoSistema;
 
 import java.util.ArrayList;
-import modelo.Servicios;
-import vista.vistaPdtosYServicios.VentanaServicio;
+import modelo.Servicio;
+import vista.vistaServicios.VentanaServicio;
 import vista.vistaInicio.PestagnasInicio;
 
 /**
@@ -13,7 +13,7 @@ import vista.vistaInicio.PestagnasInicio;
 public class SisServicio {
     
     public VentanaServicio vServicio;
-    private final ArrayList<Servicios> listaServicios = new ArrayList<>();
+    private final ArrayList<Servicio> listaServicios = new ArrayList<>();
     private String nombre;
     private String descripcion;
     private int precio;
@@ -24,26 +24,22 @@ public class SisServicio {
         if(btnSeleccionado == 1){
             this.setDatosServicio(index);
         }else if(btnSeleccionado == 2){
-            this.vServicio = new VentanaServicio(3, "", "", "");
+            this.vServicio = new VentanaServicio(null, 3);
         }
                 
     }
     
     public void setDatosServicio(int index){
-        
-        this.nombre = this.listaServicios.get(index).getNombre();
-        this.descripcion = this.listaServicios.get(index).getDescripcion();
-        this.precio = this.listaServicios.get(index).getPrecio();
-        
-        this.vServicio = new VentanaServicio(2, nombre, descripcion, Integer.toString(precio));                
-        
+        Servicio s = this.listaServicios.get(index);
+                        
+        this.vServicio = new VentanaServicio(s, 2);                        
     }
     
     public void crearServicio(PestagnasInicio p){
         
         this.getAllDataServicio();
         
-        Servicios s = new Servicios(
+        Servicio s = new Servicio(
                 this.nombre,
                 this.descripcion,
                 this.precio
@@ -67,7 +63,7 @@ public class SisServicio {
         this.listaServicios.get(index).setDescripcion(this.descripcion);
         this.listaServicios.get(index).setPrecio(this.precio);
         
-        Servicios s = this.listaServicios.get(index);
+        Servicio s = this.listaServicios.get(index);
         p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getNombre(), index, 0);
         p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getDescripcion(), index, 1);
         p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getPrecio(), index, 2);
