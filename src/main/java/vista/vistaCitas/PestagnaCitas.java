@@ -23,8 +23,7 @@ public class PestagnaCitas extends JPanel{
         this.setLayout(new BorderLayout());
         this.setName("Citas");
         
-        this.pnlTabla = new PanelTabla("Pacientes");
-        this.pnlTabla.addColumn("ID Paciente");
+        this.pnlTabla = new PanelTabla("Citas programadas");       
         this.pnlTabla.addColumn("Paciente");
         this.pnlTabla.addColumn("RUT Cliente");
         this.pnlTabla.addColumn("Fecha ingreso");           

@@ -20,15 +20,13 @@ import modelo.Cita;
  * @author Juan Carlos
  */
 public class PanelDatos extends JPanel{
-    
-    private JLabel labID;
+        
     private JLabel labPaciente;
     private JLabel labRUT;
     private JLabel labFIngreso;
     private JLabel labFCita;
     private JLabel labMotivo;
-    
-    public JTextField txtID;  
+        
     public JTextField txtPaciente;
     public JTextField txtRUT;
     public JTextField txtFCita;
@@ -60,25 +58,19 @@ public class PanelDatos extends JPanel{
         fecha1 = fecha.getTime();
         fechaActual = new java.sql.Date(fecha1);
         
-        if(cita != null){
-          this.txtID = new JTextField(cita.getIdPaciente(), 20);
+        if(cita != null){          
           this.txtPaciente = new JTextField(cita.getPaciente(), 20);
           this.txtRUT = new JTextField(cita.getRutCliente(),17);
           this.txtFCita = new JTextField(cita.getFechaCita(), 20);
           this.txtMotivo = new JTextField(cita.getMotivoCita(),20);
-        }else{
-          this.txtID = new JTextField("", 20);
+        }else{          
           this.txtPaciente = new JTextField("", 20);
           this.txtRUT = new JTextField("",17);
           this.txtFCita = new JTextField("", 20);
           this.txtMotivo = new JTextField("",20);
-        }
+        }                  
         
-        JPanel pnlID = new JPanel();                   
-        caja.add(this.subPanel.generarSubPanelTF(pnlID, labID, txtID, "ID Paciente     ", 134,204,161));        
-        
-        JPanel pnlPaciente = new JPanel();
-        
+        JPanel pnlPaciente = new JPanel();       
         caja.add(this.subPanel.generarSubPanelTF(pnlPaciente, labPaciente, txtPaciente, "Paciente          ", 134,204,161));                        
         
         JPanel pnlRUT = new JPanel(new FlowLayout());

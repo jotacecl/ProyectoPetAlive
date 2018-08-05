@@ -66,7 +66,8 @@ public class GestorDatos {
       l.addKeyListener(new KeyAdapter(){
        @Override
        public void keyTyped(KeyEvent  e){
-          if (l.getText().length()==nmax){e.consume();}
+          if (l.getText().length()==nmax){
+              e.consume();}
           }             
        });
     }

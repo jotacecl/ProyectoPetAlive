@@ -172,6 +172,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnEliminar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAnnadir.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnEliminar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnCancelar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAnnadir.addActionListener(this);
@@ -287,7 +288,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {//Iniciar ventana 
-        if(this.system.pPestagnas.pConfig.pOpciones.bJaulas == e.getSource()){                      //>>>>>CONFIGURACION JAULA<<<<<
+        if(this.system.pPestagnas.pConfig.pOpciones.bJaulas == e.getSource()){  //CONFIGURACION JAULA
             this.system.sConfigJaulas.iniciarCJaulas();
             this.addActionListenerCantidadJaulas();
             this.system.sConfigJaulas.vCJaulas.setVisible(true);            
@@ -302,7 +303,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             }
         }else if(this.system.sConfigJaulas.vCJaulas.pnlBotones.btnCancelar == e.getSource()){                         //boton CANCELAR
             this.system.sConfigJaulas.vCJaulas.hide();
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bDatosClinica == e.getSource()){          //>>>>>DATOS CLINICA<<<<<
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bDatosClinica == e.getSource()){ //DATOS CLINICA
             this.system.sDatosClinica.iniciarDClinica();
             this.addActionListenerDatosClinica();
             this.system.sDatosClinica.vDClinica.setVisible(true);                                
@@ -316,7 +317,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             }
         }else if(this.system.sDatosClinica.vDClinica.pnlBotones.btnCancelar == e.getSource()){                        //boton CANCELAR
             this.system.sDatosClinica.vDClinica.hide();
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bHorario == e.getSource()){               //>>>>>CONFIGURACION HORARIO<<<<<
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bHorario == e.getSource()){  //CONFIGURACION HORARIO
             this.system.sConfigHorario.iniciarCHorario();
             this.addActionListenerHorario();
             this.system.gDatos.limitarCaracteres(this.system.sConfigHorario.vCHorario.pnlHorario.txtLV1, 2);
@@ -338,9 +339,9 @@ public class VentanaInicio extends JFrame implements ActionListener{
             }
         }else if(this.system.sConfigHorario.vCHorario.pnlBotones.btnCancelar == e.getSource()){                        //boton CANCELAR
             this.system.sConfigHorario.vCHorario.hide();
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bAcerca == e.getSource()){                //>>>>>CONFIGURACION ACERCA<<<<<
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bAcerca == e.getSource()){//CONFIGURACION ACERCA
             this.vAcerca = new VentanaAcerca();            
-        }else if(this.system.pPestagnas.pConfig.pOpciones.bDirectorio == e.getSource()){            //>>>>>CONFIGURACION DIRECTORIO<<<<<            
+        }else if(this.system.pPestagnas.pConfig.pOpciones.bDirectorio == e.getSource()){//CONFIGURACION DIRECTORIO           
             this.system.sDirectorio.iniciarDirectorio();
             this.system.sDirectorio.vDirectorio.setVisible(true);
             this.addActionListenerDirectorio();
@@ -359,7 +360,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sDirectorio.vDirectorio.hide();
         }else if(this.system.sDirectorio.vDirectorio.pnlBotones.btnCancelar == e.getSource()){
             this.system.sDirectorio.vDirectorio.hide();
-        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAbrir == e.getSource()){    //>>>>>CLIENTES<<<<<
+        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAbrir == e.getSource()){ //CLIENTES
             try{                             
             this.system.sCliente.iniciarCliente(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);
             this.addActionListenerCliente();    
@@ -418,8 +419,15 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sCliente.vCliente.setVisible(true);
         }else if(this.system.sCliente.vCliente.pnlBotones.btnGuardar == e.getSource()){                          //boton GUARDAR
             try{
-            this.system.sCliente.crearCliente(this.system.pPestagnas);
-            this.system.sCliente.vCliente.hide();       
+                if(this.system.sCliente.vCliente.pnlDatos.rutParte1.getText().length() > 0 &&
+                        this.system.sCliente.vCliente.pnlDatos.rutParte2.getText().length()== 3 && 
+                        this.system.sCliente.vCliente.pnlDatos.rutParte3.getText().length()== 3 &&
+                        this.system.sCliente.vCliente.pnlDatos.rutParte4.getText().length()== 1){
+                    this.system.sCliente.crearCliente(this.system.pPestagnas);
+                    this.system.sCliente.vCliente.hide(); 
+                }else{
+                    throw new Exception();
+                }              
             }catch(Exception m){
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
@@ -435,7 +443,9 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAbrir == e.getSource()){   //>>>>>PACIENTES<<<<<   
+        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnEliminar == e.getSource()){               //boton Eliminar
+            this.system.sCliente.eliminarCliente(this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAbrir == e.getSource()){  //PACIENTES  
             try{
                 this.system.sFichaPaciente.iniciarFPaciente(1, this.system.pPestagnas);
                 this.addActionListenerFichaPaciente();
@@ -465,19 +475,18 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sFichaPaciente.vFPaciente.setVisible(true);
         }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnGuardar == e.getSource()){             //boton GUARDAR             
            try{
-            this.system.sFichaPaciente.crearFPaciente(this.system.pPestagnas);
-            if(!this.system.sFichaPaciente.nombreP.equals("")&&!this.system.sFichaPaciente.especie.equals("")&&!this.system.sFichaPaciente.raza.equals("")&&!this.system.sFichaPaciente.rut.equals("")){
-                if(this.system.booleano == true){
-                this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
-                    (String)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem(), 
-                    (int)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.getSelectedItem(), 
-                    this.system.pPestagnas);
-            }            
-            this.system.sFichaPaciente.vFPaciente.hide();   
-            }else{
-                String out = "Datos faltantes o incorrectos\n";
-                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
-            }  
+                this.system.sFichaPaciente.crearFPaciente(this.system.pPestagnas);
+                if(!this.system.sFichaPaciente.nombreP.equals("")&&!this.system.sFichaPaciente.especie.equals("")&&!this.system.sFichaPaciente.raza.equals("")&&!this.system.sFichaPaciente.rut.equals("")){
+                    if(this.system.booleano == true){
+                        this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
+                            (String)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem(), 
+                            (int)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.getSelectedItem(), 
+                            this.system.pPestagnas);
+                    }            
+                    this.system.sFichaPaciente.vFPaciente.hide();   
+                }else{
+                    throw new Exception();
+                }  
             }catch(Exception m){
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
@@ -516,7 +525,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem().equals("S")){
                 this.system.sFichaPaciente.setJaulas(Integer.parseInt(this.system.sConfigJaulas.cantidadJaulas.get(2)));
             }
-        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento == e.getSource()){                     //>>>>>TRATAMIENTO<<<<<<
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.btnTratamiento == e.getSource()){ //TRATAMIENTO
             int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();                       
             this.system.sTratamiento.iniciarTratamiento(this.system.sFichaPaciente, index);
             this.addActionListenerTratamiento();
@@ -542,7 +551,16 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.sInsumos.vInsumos.pnlBotones.btnEliminar == e.getSource()){
             int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
             this.system.sInsumos.eliminarInsumo(this.system.sFichaPaciente, index, this.system.sCliente);
-        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){                      //>>>>>PERSONAL<<<<<<
+        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnEliminar == e.getSource()){
+            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();            
+            this.system.sConfigJaulas.setJaulaOcupada(
+                    false, 
+                    this.system.sFichaPaciente.listaPacientes.get(index).getTamannoJaula(), 
+                    this.system.sFichaPaciente.listaPacientes.get(index).getNroJaula(), 
+                    this.system.pPestagnas);
+            this.system.sFichaPaciente.eliminarPaciente(this.system.pPestagnas);
+            
+        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){  //PERSONAL
             try{
             this.system.sPersonal.iniciarPersonal(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);            
             this.addActionListenerPersonal();
@@ -556,8 +574,13 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.addActionListenerPersonal();
             this.system.sPersonal.vPersonal.setVisible(true);
         }else if(this.system.sPersonal.vPersonal.pnlBotones.btnGuardar == e.getSource()){
+            try{
             this.system.sPersonal.crearPersonal(this.system.pPestagnas);
             this.system.sPersonal.vPersonal.hide();
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.sPersonal.vPersonal.pnlBotones.btnAceptar == e.getSource()){
             int index = this.system.pPestagnas.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow();
             this.system.sPersonal.editarPersonal(index, this.system.pPestagnas);
@@ -603,7 +626,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "No hay una opción seleccionada";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.pPestagnas.pCitas.pnlBotones.btnAbrir == e.getSource()){       //Iniciar ventana CITAS
+        }else if(this.system.pPestagnas.pCitas.pnlBotones.btnAbrir == e.getSource()){   //CITAS
             try{            
             this.system.sCitas.iniciarCitas(1, this.system.pPestagnas);
             this.addActionListenerCita();
@@ -617,22 +640,27 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.addActionListenerCita();
             this.system.sCitas.vCitas.setVisible(true);
         }else if(this.system.pPestagnas.pCitas.pnlBotones.btnEliminar == e.getSource()){
-            
+            this.system.sCitas.eliminarCita(this.system.pPestagnas);
         }else if(this.system.sCitas.vCitas.pnlDatos.btnBusqueda == e.getSource()){
             String rut = JOptionPane.showInputDialog(null, "Introduce el rut con puntos y guion \n"+"Ej: 19.512.341-4");   
             if(this.system.gDatos.compararRut(rut,this.system.sCliente)==true){
                 this.system.sCitas.vCitas.pnlDatos.txtRUT.setText(rut);
             }
         }else if(this.system.sCitas.vCitas.pnlBotones.btnGuardar == e.getSource()){
+            try{                
             this.system.sCitas.crearCita(this.system.pPestagnas);
             this.system.sCitas.vCitas.hide();
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.sCitas.vCitas.pnlBotones.btnAceptar == e.getSource()){
             int index = this.system.pPestagnas.pCitas.pnlTabla.tabla.getSelectedRow();            
             this.system.sCitas.editarCita(index, this.system.pPestagnas);
             this.system.sCitas.vCitas.hide();
         }else if(this.system.sCitas.vCitas.pnlBotones.btnCancelar == e.getSource()){
             this.system.sCitas.vCitas.hide();
-        }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAbrir == e.getSource()){ //Iniciar ventana PRODUCTOS
+        }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAbrir == e.getSource()){ //PRODUCTOS
             try{
             this.system.sProductos.iniciarProductos(1, this.system.pPestagnas);
             this.addActionListenerProductos();
@@ -648,8 +676,13 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnEliminar == e.getSource()){
             
         }else if(this.system.sProductos.vProducto.pnlBotones.btnGuardar == e.getSource()){
-            this.system.sProductos.crearProducto(this.system.pPestagnas);
-            this.system.sProductos.vProducto.hide();
+            try{
+                this.system.sProductos.crearProducto(this.system.pPestagnas);
+                this.system.sProductos.vProducto.hide();
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.sProductos.vProducto.pnlBotones.btnAceptar == e.getSource()){
             int index = this.system.pPestagnas.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow(); 
             this.system.sProductos.editarProducto(index, this.system.pPestagnas);
@@ -694,8 +727,13 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sServicio.editarServicio(index, this.system.pPestagnas);
             this.system.sServicio.vServicio.hide();
         }else if(this.system.sServicio.vServicio.pnlBotones.btnGuardar == e.getSource()){
-            this.system.sServicio.crearServicio(this.system.pPestagnas);
-            this.system.sServicio.vServicio.hide();
+            try{
+                this.system.sServicio.crearServicio(this.system.pPestagnas);
+                this.system.sServicio.vServicio.hide();
+            }catch(Exception m){
+                String out = "Datos faltantes o incorrectos.\n";
+                JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
+            }
         }else if(this.system.sServicio.vServicio.pnlBotones.btnCancelar == e.getSource()){
             this.system.sServicio.vServicio.hide();
         }

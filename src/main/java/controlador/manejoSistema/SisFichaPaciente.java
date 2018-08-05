@@ -104,7 +104,7 @@ public class SisFichaPaciente {
         
         if(!this.nombreP.equals("")&&!this.especie.equals("")&&!this.raza.equals("")&&!this.rut.equals("")){
                             
-        Paciente p = new Paciente(Integer.toString(this.idPaciente),
+        Paciente p = new Paciente(
                                     this.nombreP,
                                     this.especie,
                                     this.raza,
@@ -118,8 +118,7 @@ public class SisFichaPaciente {
                                     this.antMed);
         this.listaPacientes.add(p);        
         
-        Object[] fila = new Object[]{
-            p.getId(),
+        Object[] fila = new Object[]{            
             p.getNombre(),
             p.getEspecie(),
             p.getRaza(),
@@ -166,6 +165,15 @@ public class SisFichaPaciente {
         pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getInternado(), index, 7);
         pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula()+" "+p.getNroJaula(), index, 8);
         
+    }
+    
+    /**
+     * Metodo para eliminar el paciente seleccionado.
+     * @param p 
+     */
+    public void eliminarPaciente(PestagnasInicio p){
+        this.listaPacientes.remove(p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
+        p.pFicheros.pPacientes.pnlTabla.modelo.removeRow(p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
     }
     
     /**

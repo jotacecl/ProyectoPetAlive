@@ -158,6 +158,15 @@ public class SisCliente {
     }
     
     /**
+     * Metodo para eliminar el cliente seleccionado.
+     * @param p 
+     */
+    public void eliminarCliente(PestagnasInicio p){
+       this.listaClientes.remove(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
+       p.pFicheros.pClientes.pnlTabla.modelo.removeRow(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
+    }
+    
+    /**
      * Metodo para obtener los datos ingresados por el usuario.
      */
     public void getAllDataCliente(){

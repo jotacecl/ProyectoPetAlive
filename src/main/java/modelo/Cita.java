@@ -6,8 +6,7 @@ package modelo;
  * @author Juan Carlos
  */
 public class Cita {
-    
-    private String idPaciente;
+        
     private String paciente;
     private String rutCliente;
     private String fechaIngreso;
@@ -18,24 +17,13 @@ public class Cita {
         
     }
 
-    public Cita(String idPaciente, String paciente, String rutCliente, String fechaIngreso, String fechaCita, String motivoCita) {
-        if(!idPaciente.isEmpty()){
-            this.idPaciente = idPaciente;
-        }        
+    public Cita( String paciente, String rutCliente, String fechaIngreso, String fechaCita, String motivoCita) {               
         this.paciente = paciente;
         this.rutCliente = rutCliente;
         this.fechaIngreso = fechaIngreso;
         this.fechaCita = fechaCita;
         this.motivoCita = motivoCita;
-    }
-
-    public String getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(String idPaciente) {
-        this.idPaciente = idPaciente;
-    }
+    }   
 
     public String getPaciente() {
         return paciente;

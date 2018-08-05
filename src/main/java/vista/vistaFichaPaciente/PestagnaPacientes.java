@@ -24,8 +24,7 @@ public class PestagnaPacientes extends JPanel {
         this.setLayout(new BorderLayout());
         this.setName("Pacientes");
         
-        this.pnlTabla = new PanelTabla("Pacientes");
-        this.pnlTabla.addColumn("ID");
+        this.pnlTabla = new PanelTabla("Pacientes");        
         this.pnlTabla.addColumn("Nombre");
         this.pnlTabla.addColumn("Especie");
         this.pnlTabla.addColumn("Raza");           

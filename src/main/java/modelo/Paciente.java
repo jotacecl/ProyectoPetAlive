@@ -7,8 +7,7 @@ import java.util.ArrayList;
  *
  * @author HernySenpai
  */
-public class Paciente {
-    private String id;
+public class Paciente {   
     private String nombre;
     private String especie;
     private String raza;
@@ -22,15 +21,7 @@ public class Paciente {
     private String antecedentes;
     private String tratamiento;
     private ArrayList<Insumo> listaInsumos = new ArrayList<>();
-    private int costoInsumos;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private int costoInsumos;  
 
     public String getNombre() {
         return nombre;
@@ -143,8 +134,7 @@ public class Paciente {
     public Paciente() {
     }   
 
-    public Paciente(String id, String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String rutCliente, String tamannoJaula, int nroJaula, String antecedentes) {
-        this.id = id;
+    public Paciente( String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String rutCliente, String tamannoJaula, int nroJaula, String antecedentes) {       
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;

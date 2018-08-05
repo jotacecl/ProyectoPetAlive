@@ -24,8 +24,7 @@ public class PestagnaProductos extends JPanel{
         this.setLayout(new BorderLayout());
         this.setName("Productos");
         
-        this.pnlTabla = new PanelTabla("Productos disponibles al publico");
-        this.pnlTabla.addColumn("ID");
+        this.pnlTabla = new PanelTabla("Productos disponibles al publico");        
         this.pnlTabla.addColumn("Nombre");
         this.pnlTabla.addColumn("Tipo");
         this.pnlTabla.addColumn("Descripción");
