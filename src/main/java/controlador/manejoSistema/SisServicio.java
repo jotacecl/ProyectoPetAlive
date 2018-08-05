@@ -69,6 +69,15 @@ public class SisServicio {
         p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getPrecio(), index, 2);
     }
     
+    /**
+     * Metodo para eliminar el servicio seleccionado.
+     * @param p 
+     */
+    public void eliminarServicio(PestagnasInicio p){
+        this.listaServicios.remove(p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow());
+        p.pFicheros.pServicios.pnlTabla.modelo.removeRow(p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow());
+    }
+    
     public void getAllDataServicio(){
         
         this.nombre = this.vServicio.pnlDatosS.txtNombre.getText();

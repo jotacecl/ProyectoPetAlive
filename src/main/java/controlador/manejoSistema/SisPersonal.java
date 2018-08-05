@@ -159,6 +159,15 @@ public class SisPersonal {
     }
     
     /**
+     * Metodo para eliminar el personal seleccionado.
+     * @param p 
+     */
+    public void eliminarPersonal(PestagnasInicio p){
+        this.listaPersonal.remove(p.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow());
+        p.pFicheros.pPersonal.pnlTabla.modelo.removeRow(p.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow());
+    }
+    
+    /**
      * Metodo para obtener los datos ingresados por el usuario.
      */
     public void getAllDataPersonal(){

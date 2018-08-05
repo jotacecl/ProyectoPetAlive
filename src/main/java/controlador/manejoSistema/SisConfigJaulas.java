@@ -86,4 +86,9 @@ public class SisConfigJaulas {
          }         
      }
     
+    
+    public void repintar(){
+        
+    }
+    
 }

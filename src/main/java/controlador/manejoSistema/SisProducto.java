@@ -90,6 +90,15 @@ public class SisProducto {
         
     }
     
+    /**
+     * Metodo para eliminar el producto seleccionado.
+     * @param p 
+     */
+    public void eliminarProducto(PestagnasInicio p){
+        this.listaProductos.remove(p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow());
+        p.pFicheros.pProductos.pnlTabla.modelo.removeRow(p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow());
+    }
+    
     public void getAllDataProducto(){
                 
         this.nombre = this.vProducto.pnlDatos.txtNombre.getText();

@@ -25,8 +25,7 @@ public class SisFichaPaciente {
     public String sexo;
     public String antMed;
     public String rut;
-    private int nroJaula;
-    private int idPaciente;
+    private int nroJaula;    
     
     /**
      * Metodo para iniciar la ventana de Ficha Paciente, se desplega con o sin info segun se requiera.
@@ -156,14 +155,14 @@ public class SisFichaPaciente {
         this.listaPacientes.get(index).setRutCliente(this.rut);
         
         Paciente p = this.listaPacientes.get(index);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getNombre(), index, 1);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getEspecie(), index, 2);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getRaza(), index, 3);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getColor(), index, 4);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getfNacimiento(), index, 5);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getSexo(), index, 6);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getInternado(), index, 7);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula()+" "+p.getNroJaula(), index, 8);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getNombre(), index, 0);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getEspecie(), index, 1);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getRaza(), index, 2);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getColor(), index, 3);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getfNacimiento(), index, 4);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getSexo(), index, 5);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getInternado(), index, 6);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula()+" "+p.getNroJaula(), index, 7);
         
     }
     
@@ -179,8 +178,7 @@ public class SisFichaPaciente {
     /**
      * Metodo para obtener los datos ingresados por el usuario.
      */
-    public void getAllDataPaciente(){
-        this.idPaciente = this.listaPacientes.size();
+    public void getAllDataPaciente(){        
         this.nombreP = this.vFPaciente.pnlDatos.txtPaciente.getText();
         this.especie = (String)this.vFPaciente.pnlDatos.cbTipo.getSelectedItem();
         this.raza = this.vFPaciente.pnlDatos.txtRaza.getText();
@@ -231,7 +229,7 @@ public class SisFichaPaciente {
      * Metodo para editar la especie seleccionada en el JComboBox.
      * @param especieEditada 
      */
-    public void editarEspecia(String especieEditada){
+    public void editarEspecie(String especieEditada){
         if(especieEditada != null){
             this.eliminarEspecie();
             this.setEspecie(especieEditada);

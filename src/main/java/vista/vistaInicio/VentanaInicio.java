@@ -145,6 +145,10 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 if(e.getClickCount()==2){
                     system.sPersonal.iniciarPersonal(1, system.pPestagnas, system.listaCiudades, system.listaRegiones);            
                     addActionListenerPersonal();
+                    system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte1, 2);
+                    system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte2, 3);
+                    system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte3, 3);
+                    system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte4, 1);
                     system.sPersonal.vPersonal.setVisible(true);
                 }
             }
@@ -462,7 +466,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnEditar == e.getSource()){
             try{
                 String especieEditada = JOptionPane.showInputDialog(null, "Introduce la especie");
-                this.system.sFichaPaciente.editarEspecia(especieEditada);
+                this.system.sFichaPaciente.editarEspecie(especieEditada);
             }catch(Exception m){
                 String out = "No hay una opción seleccionada";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
@@ -496,6 +500,10 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sFichaPaciente.setEspecie(especie);
         }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar == e.getSource()){                  //boton ACEPTAR
             int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            this.system.sConfigJaulas.setJaulaOcupada(false,
+                    this.system.sFichaPaciente.listaPacientes.get(index).getTamannoJaula(), 
+                    this.system.sFichaPaciente.listaPacientes.get(index).getNroJaula(), 
+                    this.system.pPestagnas);
             this.system.sFichaPaciente.editarFPaciente(index, this.system.pPestagnas);                       
             this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
                     (String)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem(), 
@@ -564,6 +572,10 @@ public class VentanaInicio extends JFrame implements ActionListener{
             try{
             this.system.sPersonal.iniciarPersonal(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);            
             this.addActionListenerPersonal();
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte1, 2);
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte2, 3);
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte3, 3);
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte4, 1);
             this.system.sPersonal.vPersonal.setVisible(true);
             }catch(Exception m){
                 String out = "No hay una ficha seleccionada\n";              
@@ -572,11 +584,25 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAnnadir == e.getSource()){
             this.system.sPersonal.iniciarPersonal(2, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);
             this.addActionListenerPersonal();
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte1, 2);
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte2, 3);
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte3, 3);
+            system.gDatos.limitarCaracteres(system.sPersonal.vPersonal.pnlDatos.rutParte4, 1);
             this.system.sPersonal.vPersonal.setVisible(true);
+        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnEliminar == e.getSource()){
+            this.system.sPersonal.eliminarPersonal(this.system.pPestagnas);
         }else if(this.system.sPersonal.vPersonal.pnlBotones.btnGuardar == e.getSource()){
             try{
-            this.system.sPersonal.crearPersonal(this.system.pPestagnas);
-            this.system.sPersonal.vPersonal.hide();
+                if(this.system.sPersonal.vPersonal.pnlDatos.rutParte1.getText().length()>0 &&
+                        this.system.sPersonal.vPersonal.pnlDatos.rutParte2.getText().length()==3 &&
+                        this.system.sPersonal.vPersonal.pnlDatos.rutParte3.getText().length()==3 &&
+                        this.system.sPersonal.vPersonal.pnlDatos.rutParte4.getText().length()==1){
+                    this.system.sPersonal.crearPersonal(this.system.pPestagnas);
+                    this.system.sPersonal.vPersonal.hide();
+                }else{
+                    throw new Exception();
+                }
+            
             }catch(Exception m){
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
@@ -674,7 +700,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.addActionListenerProductos();
             this.system.sProductos.vProducto.setVisible(true);
         }else if(this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnEliminar == e.getSource()){
-            
+            this.system.sProductos.eliminarProducto(this.system.pPestagnas);
         }else if(this.system.sProductos.vProducto.pnlBotones.btnGuardar == e.getSource()){
             try{
                 this.system.sProductos.crearProducto(this.system.pPestagnas);
@@ -721,7 +747,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.addActionListenerServicio();
             this.system.sServicio.vServicio.setVisible(true);
         }else if(this.system.pPestagnas.pFicheros.pServicios.pnlBotones.btnEliminar == e.getSource()){
-            
+            this.system.sServicio.eliminarServicio(this.system.pPestagnas);
         }else if(this.system.sServicio.vServicio.pnlBotones.btnAceptar == e.getSource()){
             int index = this.system.pPestagnas.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow();
             this.system.sServicio.editarServicio(index, this.system.pPestagnas);
