@@ -22,7 +22,7 @@ import vista.vistaConfiguracion.VentanaAcerca;
 public class VentanaInicio extends JFrame implements ActionListener{    
        
     public VentanaAcerca vAcerca;
-    private Sistema system;
+    public Sistema system;
     
     
     public VentanaInicio(){
