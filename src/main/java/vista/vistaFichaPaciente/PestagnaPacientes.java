@@ -5,16 +5,17 @@ import vista.componentes.PanelBotones;
 import vista.componentes.PanelTabla;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import vista.componentes.PanelBuscador;
 
 /**
  *
  * @author Juan Carlos
  */
 public class PestagnaPacientes extends JPanel {
-    
-    private VentanaFichaPaciente vFicha;
+       
     public PanelTabla pnlTabla;
     public PanelBotones pnlBotones;
+    public PanelBuscador pnlBuscar;
     
     public PestagnaPacientes(){
         this.iniciarComponentes();
@@ -23,6 +24,9 @@ public class PestagnaPacientes extends JPanel {
     private void iniciarComponentes(){
         this.setLayout(new BorderLayout());
         this.setName("Pacientes");
+        
+        this.pnlBuscar = new PanelBuscador();
+        this.add(this.pnlBuscar, BorderLayout.NORTH);
         
         this.pnlTabla = new PanelTabla("Pacientes");        
         this.pnlTabla.addColumn("Nombre");
@@ -35,7 +39,7 @@ public class PestagnaPacientes extends JPanel {
         this.pnlTabla.addColumn("Jaula");
         this.add(this.pnlTabla, BorderLayout.CENTER);
         
-        this.pnlBotones = new PanelBotones(4);
+        this.pnlBotones = new PanelBotones(1);
         this.add(this.pnlBotones, BorderLayout.SOUTH);
                 
     }
