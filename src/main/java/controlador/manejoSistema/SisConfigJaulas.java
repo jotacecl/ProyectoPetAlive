@@ -15,24 +15,25 @@ public class SisConfigJaulas {
     public ManejoDeDatos mD;
     public VentanaCJaulas vCJaulas;
     public ArrayList<String> cantidadJaulas = new ArrayList<>(3);
+    private final String RUTA = "data\\config\\";
+    private final String ARCHIVO = "jaulas.json";
 
-    public SisConfigJaulas() {
+    public SisConfigJaulas(PestagnasInicio p) {
         this.mD = new ManejoDeDatos();
-    }
-    
-    
+        this.cargarDatos(p);
+    }        
     
     /**
      * Metodo para iniciar la ventana de Configuracion de Jaulas.
      */
     public void iniciarCJaulas(){
+        
         if(cantidadJaulas.size() == 3){
             this.vCJaulas = new VentanaCJaulas(cantidadJaulas.get(0), 
                     cantidadJaulas.get(1), 
                     cantidadJaulas.get(2));
         }else{
-            this.vCJaulas = new VentanaCJaulas("","","");
-            cantidadJaulas = mD.leerArchivoArrayString("configJaulas.json");
+            this.vCJaulas = new VentanaCJaulas("","","");            
         }        
     }
     
@@ -48,19 +49,17 @@ public class SisConfigJaulas {
         this.cantidadJaulas.set(0, this.vCJaulas.pnlCJaulas.txtCL.getText());
         this.cantidadJaulas.set(1, this.vCJaulas.pnlCJaulas.txtCM.getText());
         this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText()); 
-        mD.escritura(this.cantidadJaulas, "configJaulas.json");
+        mD.escritura(this.cantidadJaulas, RUTA+ARCHIVO);
     }
     
     /**
      * Metodo para actualizar la pestaña de Jaulas.
      * @param p 
      */
-    public void actualizarJaulas(PestagnasInicio p){
-        ArrayList <String> jaulas = mD.leerArchivoArrayString("configJaulas.json");
-        
-        p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(jaulas.get(0)));
-        p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(jaulas.get(1)));
-        p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(jaulas.get(2)));
+    public void actualizarJaulas(PestagnasInicio p){                
+        p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(cantidadJaulas.get(0)));
+        p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(cantidadJaulas.get(1)));
+        p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(cantidadJaulas.get(2)));
         p.pJaulas.pJaulas.removeAll();
         p.pJaulas.pJaulas.updateUI();
         p.pJaulas.pJaulas.repaint();
@@ -91,7 +90,16 @@ public class SisConfigJaulas {
      }
     
     
-    public void repintar(){
+    /**
+     * Metodo que permite cargar los datos desde un documento al programa cuando este se inicie.
+     * @param p 
+     */
+    public void cargarDatos(PestagnasInicio p){
+        ArrayList<String> aux = mD.leerArchivoArrayString(RUTA+ARCHIVO);         
+        if(aux!=null){
+            this.cantidadJaulas = aux;
+            this.actualizarJaulas(p);
+        }             
         
     }
     

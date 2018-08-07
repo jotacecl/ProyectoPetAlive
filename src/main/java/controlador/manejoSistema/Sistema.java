@@ -38,8 +38,10 @@ public class Sistema {
     }  
     
     private void iniciarComponentes(){
+        this.pPestagnas = new PestagnasInicio();
+        
         this.sDatosClinica = new SisDatosClinica();
-        this.sConfigJaulas = new SisConfigJaulas();
+        this.sConfigJaulas = new SisConfigJaulas(pPestagnas);
         this.sConfigHorario = new SisConfigHorario();
         this.sCliente = new SisCliente();
         this.gDatos = new GestorDatos();
@@ -51,8 +53,7 @@ public class Sistema {
         this.sDirectorio = new SisDirectorio();
         this.sTratamiento = new SisTratamiento();
         this.sInsumos = new SisInsumos();
-        
-        this.pPestagnas = new PestagnasInicio();
+                
         this.sDatosClinica.iniciarDClinica();
         this.sConfigJaulas.iniciarCJaulas();
         this.sConfigHorario.iniciarCHorario();
