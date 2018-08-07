@@ -1,6 +1,7 @@
 
 package controlador.manejoSistema;
 
+import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
 import vista.vistaDatosClinica.VentanaDClinica;
 
@@ -9,9 +10,11 @@ import vista.vistaDatosClinica.VentanaDClinica;
  * @author Juan Carlos
  */
 public class SisDatosClinica {
-    
+    public ManejoDeDatos mD;
     public VentanaDClinica vDClinica;
     private final ArrayList<String> datosClinica = new ArrayList<>(8);
+    private final String RUTA = "data\\config\\";
+    private final String ARCHIVO = "datosClinica.json";
     
     /**
      * Metodo para iniciar la ventana Datos de la Clinica.
@@ -52,6 +55,7 @@ public class SisDatosClinica {
         this.datosClinica.set(5,this.vDClinica.pnlDatos.txtTelefono.getText());
         this.datosClinica.set(6,this.vDClinica.pnlDatos.txtEmail.getText());
         this.datosClinica.set(7,this.vDClinica.pnlDatos.txtWeb.getText());
+        mD.escritura(this.datosClinica, RUTA+ARCHIVO);
     }
     
 }

@@ -1,6 +1,7 @@
 
 package controlador.manejoSistema;
 
+import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
 import vista.vistaHorario.VentanaHorario;
 
@@ -9,13 +10,17 @@ import vista.vistaHorario.VentanaHorario;
  * @author Juan Carlos
  */
 public class SisConfigHorario {
-    
+    public ManejoDeDatos mD;
     public VentanaHorario vCHorario;
-    private final ArrayList<String> datosHorario = new ArrayList<>(8);
+    public ArrayList<String> datosHorario = new ArrayList<>(8);
+    private final String RUTA = "data\\config\\";
+    private final String ARCHIVO = "horario.json";
     
     /**
      * Metodo para iniciar la ventana Horario.
      */
+    
+    
     public void iniciarCHorario(){
         if(datosHorario.size() == 8){
             this.vCHorario = new VentanaHorario(datosHorario.get(0), 
@@ -26,6 +31,7 @@ public class SisConfigHorario {
                     datosHorario.get(5),
                     datosHorario.get(6),
                     datosHorario.get(7));
+            
         }else{
             this.vCHorario = new VentanaHorario("","","","","","","","");
         }  
@@ -48,6 +54,7 @@ public class SisConfigHorario {
        this.datosHorario.set(5, this.vCHorario.pnlHorario.txtSD2.getText());
        this.datosHorario.set(6, this.vCHorario.pnlHorario.txtSD3.getText());
        this.datosHorario.set(7, this.vCHorario.pnlHorario.txtSD4.getText());
+       mD.escritura(this.datosHorario, RUTA+ARCHIVO);
        
     }
     
