@@ -15,12 +15,14 @@ public class SisConfigHorario {
     public ArrayList<String> datosHorario = new ArrayList<>(8);
     private final String RUTA = "data\\config\\";
     private final String ARCHIVO = "horario.json";
+
+    public SisConfigHorario() {
+        this.mD = new ManejoDeDatos();
+    }
     
     /**
      * Metodo para iniciar la ventana Horario.
-     */
-    
-    
+     */        
     public void iniciarCHorario(){
         if(datosHorario.size() == 8){
             this.vCHorario = new VentanaHorario(datosHorario.get(0), 
