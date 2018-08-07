@@ -171,13 +171,19 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAnnadir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnEliminar.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pPersonal.pnlBuscar.btnBuscar.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pPersonal.pnlBuscar.btnActualizar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAnnadir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnEliminar.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pPacientes.pnlBuscar.btnBuscar.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pPacientes.pnlBuscar.btnActualizar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnAnnadir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnEliminar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnCancelar.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pClientes.pnlBuscar.btnBuscar.addActionListener(this);
+        this.system.pPestagnas.pFicheros.pClientes.pnlBuscar.btnActualizar.addActionListener(this);
         this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnAnnadir.addActionListener(this);
         this.system.pPestagnas.pFicheros.pProductos.pnlBotones.btnEliminar.addActionListener(this);
@@ -192,6 +198,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
         this.system.pPestagnas.pCitas.pnlBotones.btnAbrir.addActionListener(this);
         this.system.pPestagnas.pCitas.pnlBotones.btnAnnadir.addActionListener(this);
         this.system.pPestagnas.pCitas.pnlBotones.btnEliminar.addActionListener(this);
+        this.system.pPestagnas.pCitas.pnlBuscar.btnBuscar.addActionListener(this);
+        this.system.pPestagnas.pCitas.pnlBuscar.btnActualizar.addActionListener(this);
     }
     
     public void addActionListenerInsumo(){
@@ -439,9 +447,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
         }else if(this.system.sCliente.vCliente.pnlBotones.btnCancelar == e.getSource()){                         //boton CANCELAR
             this.system.sCliente.vCliente.hide();  
         }else if(this.system.sCliente.vCliente.pnlBotones.btnAceptar == e.getSource()){                          //boton ACEPTAR
-            try{
-            int index = this.system.pPestagnas.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();  
-            this.system.sCliente.editarCliente(index, this.system.pPestagnas);
+            try{              
+            this.system.sCliente.editarCliente(this.system.pPestagnas);
             this.system.sCliente.vCliente.hide();
             }catch(Exception m){
                 String out = "Datos faltantes o incorrectos.\n";
@@ -449,6 +456,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
             }
         }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBotones.btnEliminar == e.getSource()){               //boton Eliminar
             this.system.sCliente.eliminarCliente(this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBuscar.btnBuscar == e.getSource()){ 
+            String auxRut = this.system.pPestagnas.pFicheros.pClientes.pnlBuscar.txtBuscar.getText();
+            this.system.sCliente.buscar(auxRut,this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pFicheros.pClientes.pnlBuscar.btnActualizar == e.getSource()){
+            this.system.sCliente.refrescar(this.system.pPestagnas);
         }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnAbrir == e.getSource()){  //PACIENTES  
             try{
                 this.system.sFichaPaciente.iniciarFPaciente(1, this.system.pPestagnas);
@@ -499,18 +511,18 @@ public class VentanaInicio extends JFrame implements ActionListener{
             String especie = JOptionPane.showInputDialog(null, "Introduce una nueva especie");
             this.system.sFichaPaciente.setEspecie(especie);
         }else if(this.system.sFichaPaciente.vFPaciente.pnlBotones.pnlBotones.btnAceptar == e.getSource()){                  //boton ACEPTAR
-            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+            int index = this.system.sFichaPaciente.comparar(this.system.pPestagnas);
             this.system.sConfigJaulas.setJaulaOcupada(false,
                     this.system.sFichaPaciente.listaPacientes.get(index).getTamannoJaula(), 
                     this.system.sFichaPaciente.listaPacientes.get(index).getNroJaula(), 
                     this.system.pPestagnas);
-            this.system.sFichaPaciente.editarFPaciente(index, this.system.pPestagnas);                       
+            this.system.sFichaPaciente.editarFPaciente(this.system.pPestagnas);                       
             this.system.sConfigJaulas.setJaulaOcupada(this.system.booleano,
                     (String)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbTJaula.getSelectedItem(), 
                     (int)this.system.sFichaPaciente.vFPaciente.pnlDatos.cbNJaula.getSelectedItem(), 
                     this.system.pPestagnas);           
             this.system.sFichaPaciente.vFPaciente.hide();
-            }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda == e.getSource()){                          //boton BUSCAR
+        }else if(this.system.sFichaPaciente.vFPaciente.pnlDatos.btnBusqueda == e.getSource()){                          //boton BUSCAR
             String rut = JOptionPane.showInputDialog(null, "Introduce el rut con puntos y guion \n"+"Ej: 19.512.341-4");   
             if(this.system.gDatos.compararRut(rut,this.system.sCliente)==true){
                 this.system.sFichaPaciente.vFPaciente.pnlDatos.txtCliente.setText(rut);
@@ -560,7 +572,7 @@ public class VentanaInicio extends JFrame implements ActionListener{
             int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
             this.system.sInsumos.eliminarInsumo(this.system.sFichaPaciente, index, this.system.sCliente);
         }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBotones.btnEliminar == e.getSource()){
-            int index = this.system.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();            
+            int index = this.system.sFichaPaciente.comparar(this.system.pPestagnas);            
             this.system.sConfigJaulas.setJaulaOcupada(
                     false, 
                     this.system.sFichaPaciente.listaPacientes.get(index).getTamannoJaula(), 
@@ -568,6 +580,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
                     this.system.pPestagnas);
             this.system.sFichaPaciente.eliminarPaciente(this.system.pPestagnas);
             
+        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBuscar.btnBuscar == e.getSource()){
+            String rut = this.system.pPestagnas.pFicheros.pPacientes.pnlBuscar.txtBuscar.getText();
+            this.system.sFichaPaciente.buscar(rut, this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pFicheros.pPacientes.pnlBuscar.btnActualizar == e.getSource()){
+            this.system.sFichaPaciente.refrescar(this.system.pPestagnas);
         }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnAbrir == e.getSource()){  //PERSONAL
             try{
             this.system.sPersonal.iniciarPersonal(1, this.system.pPestagnas, this.system.listaCiudades, this.system.listaRegiones);            
@@ -591,6 +608,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sPersonal.vPersonal.setVisible(true);
         }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBotones.btnEliminar == e.getSource()){
             this.system.sPersonal.eliminarPersonal(this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBuscar.btnBuscar == e.getSource()){
+            String rut = this.system.pPestagnas.pFicheros.pPersonal.pnlBuscar.txtBuscar.getText();
+            this.system.sPersonal.buscar(rut, this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pFicheros.pPersonal.pnlBuscar.btnActualizar == e.getSource()){
+            this.system.sPersonal.refrescar(this.system.pPestagnas);
         }else if(this.system.sPersonal.vPersonal.pnlBotones.btnGuardar == e.getSource()){
             try{
                 if(this.system.sPersonal.vPersonal.pnlDatos.rutParte1.getText().length()>0 &&
@@ -607,9 +629,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.sPersonal.vPersonal.pnlBotones.btnAceptar == e.getSource()){
-            int index = this.system.pPestagnas.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow();
-            this.system.sPersonal.editarPersonal(index, this.system.pPestagnas);
+        }else if(this.system.sPersonal.vPersonal.pnlBotones.btnAceptar == e.getSource()){            
+            this.system.sPersonal.editarPersonal(this.system.pPestagnas);
             this.system.sPersonal.vPersonal.hide();
         }else if(this.system.sPersonal.vPersonal.pnlBotones.btnCancelar == e.getSource()){
             this.system.sPersonal.vPersonal.hide();
@@ -667,6 +688,11 @@ public class VentanaInicio extends JFrame implements ActionListener{
             this.system.sCitas.vCitas.setVisible(true);
         }else if(this.system.pPestagnas.pCitas.pnlBotones.btnEliminar == e.getSource()){
             this.system.sCitas.eliminarCita(this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pCitas.pnlBuscar.btnBuscar == e.getSource()){
+            String rut = this.system.pPestagnas.pCitas.pnlBuscar.txtBuscar.getText();
+            this.system.sCitas.buscar(rut, this.system.pPestagnas);
+        }else if(this.system.pPestagnas.pCitas.pnlBuscar.btnActualizar == e.getSource()){
+            this.system.sCitas.refrescar(this.system.pPestagnas);
         }else if(this.system.sCitas.vCitas.pnlDatos.btnBusqueda == e.getSource()){
             String rut = JOptionPane.showInputDialog(null, "Introduce el rut con puntos y guion \n"+"Ej: 19.512.341-4");   
             if(this.system.gDatos.compararRut(rut,this.system.sCliente)==true){
@@ -680,9 +706,8 @@ public class VentanaInicio extends JFrame implements ActionListener{
                 String out = "Datos faltantes o incorrectos.\n";
                 JOptionPane.showMessageDialog(null, out, "Advertencia", INFORMATION_MESSAGE);
             }
-        }else if(this.system.sCitas.vCitas.pnlBotones.btnAceptar == e.getSource()){
-            int index = this.system.pPestagnas.pCitas.pnlTabla.tabla.getSelectedRow();            
-            this.system.sCitas.editarCita(index, this.system.pPestagnas);
+        }else if(this.system.sCitas.vCitas.pnlBotones.btnAceptar == e.getSource()){                       
+            this.system.sCitas.editarCita(this.system.pPestagnas);
             this.system.sCitas.vCitas.hide();
         }else if(this.system.sCitas.vCitas.pnlBotones.btnCancelar == e.getSource()){
             this.system.sCitas.vCitas.hide();

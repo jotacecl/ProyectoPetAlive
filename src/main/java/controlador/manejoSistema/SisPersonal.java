@@ -30,6 +30,14 @@ public class SisPersonal {
     private String movil;
     private String email;
     private String cargo;
+    private GestorDatos gDatos;
+    private ArrayList<String> partesRut = new ArrayList<>();
+    
+    private int indice;
+
+    public SisPersonal() {
+        this.gDatos = new GestorDatos();
+    }        
     
     /**
      * Metodo para iniciar la ventana Personal.
@@ -39,9 +47,10 @@ public class SisPersonal {
      * @param listaRegiones 
      */
     public void iniciarPersonal(int btnSeleccionado, PestagnasInicio p, ArrayList listaCiudades, ArrayList listaRegiones){
-        int index = p.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow();                
+                       
         if(btnSeleccionado == 1){
-            this.setDatosPersonal(index, listaCiudades, listaRegiones);
+            this.indice = comparar(p);
+            this.setDatosPersonal(this.indice, listaCiudades, listaRegiones);
         }else if(btnSeleccionado == 2){
             this.vPersonal = new VentanaPersonal(3,null,"","","","");
             if(this.vPersonal.pnlDatos.cbCiudad.getItemAt(1) != ("    ")){
@@ -70,8 +79,17 @@ public class SisPersonal {
      * @param listaRegiones 
      */
     public void setDatosPersonal(int index, ArrayList listaCiudades, ArrayList listaRegiones){
-        Personal p  = this.listaPersonal.get(index);                                ;
-            
+        this.gDatos = new GestorDatos();
+        
+        Personal p  = this.listaPersonal.get(index);                                
+        
+        this.rut = p.getRut();        
+        this.partesRut = this.gDatos.separarRut(this.rut);
+        this.rutPart1 = (String) this.partesRut.get(0);       
+        this.rutPart2 = (String) this.partesRut.get(1);     
+        this.rutPart3 = (String) this.partesRut.get(2);        
+        this.rutPart4 = (String) this.partesRut.get(3); 
+        
         this.vPersonal = new VentanaPersonal(
                 2,
                 p,
@@ -131,31 +149,33 @@ public class SisPersonal {
     
     /**
      * Metodo para editar una ficha de Personal.
-     * @param index
      * @param pi 
      */
-    public void editarPersonal(int index, PestagnasInicio pi){
+    public void editarPersonal(PestagnasInicio pi){
+        int auxIndex = pi.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow();
+        
         this.getAllDataPersonal();
         
-        this.listaPersonal.get(index).setNombre(this.nombre);
-        this.listaPersonal.get(index).setApellido(this.apellido);
-        this.listaPersonal.get(index).setRut(this.rut);
-        this.listaPersonal.get(index).setDireccion(this.direccion);
-        this.listaPersonal.get(index).setCiudad(this.ciudad);
-        this.listaPersonal.get(index).setRegion(this.region);
-        this.listaPersonal.get(index).setTelefono(Integer.parseInt(this.telefono));
-        this.listaPersonal.get(index).setMovil(Integer.parseInt(this.movil));
-        this.listaPersonal.get(index).setEmail(this.email);
+        this.listaPersonal.get(this.indice).setNombre(this.nombre);
+        this.listaPersonal.get(this.indice).setApellido(this.apellido);
+        this.listaPersonal.get(this.indice).setRut(this.rut);
+        this.listaPersonal.get(this.indice).setDireccion(this.direccion);
+        this.listaPersonal.get(this.indice).setCiudad(this.ciudad);
+        this.listaPersonal.get(this.indice).setRegion(this.region);
+        this.listaPersonal.get(this.indice).setTelefono(Integer.parseInt(this.telefono));
+        this.listaPersonal.get(this.indice).setMovil(Integer.parseInt(this.movil));
+        this.listaPersonal.get(this.indice).setEmail(this.email);
         
-        Personal p = this.listaPersonal.get(index);        
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getNombre(), index, 0);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getApellido(), index, 1);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getRut(), index, 2);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getCiudad(), index, 3);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getTelefono(), index, 4);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getMovil(), index, 5);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getEmail(), index, 6);
-        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getCargo(), index, 7);
+        Personal p = this.listaPersonal.get(this.indice);
+        
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getNombre(), auxIndex, 0);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getApellido(), auxIndex, 1);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getRut(), auxIndex, 2);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getCiudad(), auxIndex, 3);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getTelefono(), auxIndex, 4);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getMovil(), auxIndex, 5);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getEmail(), auxIndex, 6);
+        pi.pFicheros.pPersonal.pnlTabla.modelo.setValueAt(p.getCargo(), auxIndex, 7);
     }
     
     /**
@@ -163,7 +183,8 @@ public class SisPersonal {
      * @param p 
      */
     public void eliminarPersonal(PestagnasInicio p){
-        this.listaPersonal.remove(p.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow());
+        this.indice = comparar(p);
+        this.listaPersonal.remove(this.indice);
         p.pFicheros.pPersonal.pnlTabla.modelo.removeRow(p.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow());
     }
     
@@ -228,6 +249,82 @@ public class SisPersonal {
             }
         }
         this.vPersonal.pnlDatos.cbCargo.removeItemAt(this.vPersonal.pnlDatos.cbCargo.getSelectedIndex());
+    }
+    
+    /**
+     * Busca el rut ingresado en la lista de clientes.
+     * @param rut     
+     * @param p     
+     */
+    public void buscar(String rut, PestagnasInicio p){          
+        for(Personal personal: listaPersonal){
+             if(rut.equals(personal.getRut())){
+                  p.pFicheros.pPersonal.pnlTabla.modelo.setRowCount(0);
+                  break;
+             }
+        }
+        
+       for(Personal personal: listaPersonal){
+             if(rut.equals(personal.getRut())){                                                                            
+                Personal per = personal;
+                
+                Object[] fila = new Object[]{
+                        per.getNombre(),
+                        per.getApellido(),
+                        per.getRut(),
+                        per.getCiudad(),
+                        per.getTelefono(),
+                        per.getMovil(),
+                        per.getEmail(),
+                        per.getCargo()     
+                };
+                p.pFicheros.pPersonal.pnlTabla.modelo.addRow(fila);
+            }
+        }
+    }
+    
+    /**
+     * Refresca la tabla de la pestanna de cliente.
+     * @param p 
+     */
+    public void refrescar(PestagnasInicio p){
+        p.pFicheros.pPersonal.pnlTabla.modelo.setRowCount(0);
+        for(Personal personal: listaPersonal){
+            Personal per = personal;
+            
+            Object[] fila = new Object[]{
+                        per.getNombre(),
+                        per.getApellido(),
+                        per.getRut(),
+                        per.getCiudad(),
+                        per.getTelefono(),
+                        per.getMovil(),
+                        per.getEmail(),
+                        per.getCargo()
+            };              
+            p.pFicheros.pPersonal.pnlTabla.modelo.addRow(fila);
+        }                
+    }
+    
+    /**
+     * Compara la informacion que contiene la fila seleccionada con la info
+     * de la lista de clientes.
+     * @param p
+     * @return 
+     */
+    public int comparar(PestagnasInicio p){
+        int index = p.pFicheros.pPersonal.pnlTabla.tabla.getSelectedRow();      
+        String aux1 = (String) p.pFicheros.pPersonal.pnlTabla.modelo.getValueAt(index,0);        
+        String aux2 = (String) p.pFicheros.pPersonal.pnlTabla.modelo.getValueAt(index,1);
+        String aux3 = (String) p.pFicheros.pPersonal.pnlTabla.modelo.getValueAt(index,2);
+        for(Personal personal: listaPersonal){
+            if(aux1.equals(personal.getNombre()) &&
+                aux2.equals(personal.getApellido()) &&
+                    aux3.equals(personal.getRut())){                
+                return listaPersonal.indexOf(personal);
+            }
+        }
+        return -1;
     }
     
 }

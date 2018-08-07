@@ -27,15 +27,17 @@ public class SisFichaPaciente {
     public String rut;
     private int nroJaula;    
     
+    private int indice;
+    
     /**
      * Metodo para iniciar la ventana de Ficha Paciente, se desplega con o sin info segun se requiera.
      * @param btnSeleccionado
      * @param p 
      */
-    public void iniciarFPaciente(int btnSeleccionado, PestagnasInicio p){
-        int index = p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+    public void iniciarFPaciente(int btnSeleccionado, PestagnasInicio p){        
         if(btnSeleccionado == 1){
-            this.setDatosFPaciente(index);
+            this.indice = comparar(p);
+            this.setDatosFPaciente(this.indice);
         }else if(btnSeleccionado == 2){
             this.vFPaciente = new VentanaFichaPaciente(null, false, 3);
             this.vFPaciente.pnlDatos.cbTipo.removeAllItems();
@@ -135,34 +137,37 @@ public class SisFichaPaciente {
     
     /**
      * Metodo para editar una ficha ya exitente.
-     * @param index
      * @param pi 
      */
-    public void editarFPaciente(int index, PestagnasInicio pi){
+    public void editarFPaciente(PestagnasInicio pi){        
+        int auxIndex = pi.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
+        
         this.getAllDataPaciente();
         
-        this.listaPacientes.get(index).setNombre(this.nombreP);
-        this.listaPacientes.get(index).setEspecie(this.especie);
-        this.listaPacientes.get(index).setRaza(this.raza);
-        this.listaPacientes.get(index).setColor(this.color);
+        this.listaPacientes.get(this.indice).setNombre(this.nombreP);
+        this.listaPacientes.get(this.indice).setEspecie(this.especie);
+        this.listaPacientes.get(this.indice).setRaza(this.raza);
+        this.listaPacientes.get(this.indice).setColor(this.color);
         if(!this.fNac.equals("null-null-null")){  
-            this.listaPacientes.get(index).setfNacimiento(this.fNac);
+            this.listaPacientes.get(this.indice).setfNacimiento(this.fNac);
         }
-        this.listaPacientes.get(index).setSexo(this.sexo);
-        this.listaPacientes.get(index).setInternado(this.internado);
-        this.listaPacientes.get(index).setTamannoJaula(this.tamannoJaula);
-        this.listaPacientes.get(index).setNroJaula(this.nroJaula);
-        this.listaPacientes.get(index).setRutCliente(this.rut);
+        this.listaPacientes.get(this.indice).setSexo(this.sexo);
+        this.listaPacientes.get(this.indice).setInternado(this.internado);
+        this.listaPacientes.get(this.indice).setTamannoJaula(this.tamannoJaula);
+        this.listaPacientes.get(this.indice).setNroJaula(this.nroJaula);
+        this.listaPacientes.get(this.indice).setRutCliente(this.rut);
+        this.listaPacientes.get(this.indice).setAntecedentes(this.antMed);
         
-        Paciente p = this.listaPacientes.get(index);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getNombre(), index, 0);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getEspecie(), index, 1);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getRaza(), index, 2);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getColor(), index, 3);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getfNacimiento(), index, 4);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getSexo(), index, 5);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getInternado(), index, 6);
-        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula()+" "+p.getNroJaula(), index, 7);
+        Paciente p = this.listaPacientes.get(this.indice);
+        
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getNombre(), auxIndex, 0);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getEspecie(), auxIndex, 1);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getRaza(), auxIndex, 2);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getColor(), auxIndex, 3);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getfNacimiento(), auxIndex, 4);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getSexo(), auxIndex, 5);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getInternado(), auxIndex, 6);
+        pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula()+" "+p.getNroJaula(), auxIndex, 7);
         
     }
     
@@ -171,7 +176,8 @@ public class SisFichaPaciente {
      * @param p 
      */
     public void eliminarPaciente(PestagnasInicio p){
-        this.listaPacientes.remove(p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
+        this.indice = comparar(p);
+        this.listaPacientes.remove(this.indice);
         p.pFicheros.pPacientes.pnlTabla.modelo.removeRow(p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
     }
     
@@ -263,6 +269,84 @@ public class SisFichaPaciente {
         }else{
             System.out.println("null");
         }                
+    }
+    
+    /**
+     * Busca el rut ingresado en la lista de pacientes.
+     * @param rut     
+     * @param p     
+     */
+    public void buscar(String rut, PestagnasInicio p){          
+        for(Paciente paciente: listaPacientes){
+             if(rut.equals(paciente.getRutCliente())){
+                  p.pFicheros.pPacientes.pnlTabla.modelo.setRowCount(0);
+                  break;
+             }
+        }
+        
+       for(Paciente paciente: listaPacientes){
+             if(rut.equals(paciente.getRutCliente())){                                                                            
+                Paciente pa = paciente;
+                
+                Object[] fila = new Object[]{
+                        pa.getNombre(),
+                        pa.getEspecie(),
+                        pa.getRaza(),
+                        pa.getColor(),
+                        pa.getfNacimiento(),
+                        pa.getSexo(),
+                        pa.getInternado(),
+                        pa.getTamannoJaula()+" "+pa.getNroJaula()
+                };             
+                p.pFicheros.pPacientes.pnlTabla.modelo.addRow(fila);
+            }
+        }
+    }
+    
+    /**
+     * Refresca la tabla de la pestanna de pacientes.
+     * @param p 
+     */
+    public void refrescar(PestagnasInicio p){
+        p.pFicheros.pPacientes.pnlTabla.modelo.setRowCount(0);
+        for(Paciente paciente: listaPacientes){
+            Paciente pa = paciente;
+            
+            Object[] fila = new Object[]{
+                    pa.getNombre(),
+                        pa.getEspecie(),
+                        pa.getRaza(),
+                        pa.getColor(),
+                        pa.getfNacimiento(),
+                        pa.getSexo(),
+                        pa.getInternado(),
+                        pa.getTamannoJaula()+" "+pa.getNroJaula()
+            };              
+            p.pFicheros.pPacientes.pnlTabla.modelo.addRow(fila);
+        }                
+    }
+    
+    /**
+     * Compara la informacion que contiene la fila seleccionada con la info
+     * de la lista de pacientes.
+     * @param p
+     * @return 
+     */
+    public int comparar(PestagnasInicio p){
+        int index = p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();      
+        String aux1 = (String) p.pFicheros.pPacientes.pnlTabla.modelo.getValueAt(index,0);        
+        String aux2 = (String) p.pFicheros.pPacientes.pnlTabla.modelo.getValueAt(index,1);
+        String aux3 = (String) p.pFicheros.pPacientes.pnlTabla.modelo.getValueAt(index,2);
+        String aux4 = (String) p.pFicheros.pPacientes.pnlTabla.modelo.getValueAt(index,4);
+        for(Paciente paciente: listaPacientes){
+            if(aux1.equals(paciente.getNombre()) &&
+                aux2.equals(paciente.getEspecie()) &&
+                aux3.equals(paciente.getRaza()) &&
+                aux4.equals(paciente.getfNacimiento())){                
+                return listaPacientes.indexOf(paciente);
+            }
+        }
+        return -1;
     }
     
 }

@@ -30,6 +30,8 @@ public class SisCliente {
     private String deuda;
     private GestorDatos gDatos;
     private ArrayList<String> partesRut = new ArrayList<>();
+    
+    private int indice;
 
     public SisCliente() {
         this.gDatos = new GestorDatos();
@@ -42,10 +44,11 @@ public class SisCliente {
      * @param listaCiudades
      * @param listaRegiones 
      */
-    public void iniciarCliente(int btnSeleccionado, PestagnasInicio p, ArrayList listaCiudades, ArrayList listaRegiones){         
-        int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();
+    public void iniciarCliente(int btnSeleccionado, PestagnasInicio p, ArrayList listaCiudades, ArrayList listaRegiones){        
+        
         if(btnSeleccionado == 1){          
-            this.setDatosCliente(index, listaCiudades, listaRegiones);
+            this.indice = comparar(p);
+            this.setDatosCliente(this.indice, listaCiudades, listaRegiones);
         }else if(btnSeleccionado == 2){
             this.vCliente = new VentanaCliente(2,null,"","","","","");
             if(this.vCliente.pnlDatos.cbCiudad.getItemAt(1) != ("    ")){
@@ -117,7 +120,8 @@ public class SisCliente {
                                 this.email);
         this.listaClientes.add(c);
         
-        Object[] fila = new Object[]{c.getNombre(),
+        Object[] fila = new Object[]{
+                    c.getNombre(),
                     c.getApellido(),
                     c.getRut(),
                     c.getCiudad(),
@@ -129,30 +133,31 @@ public class SisCliente {
     
     /**
      * Metodo para editar un Cliente ya exitente.
-     * @param index
      * @param p 
      */
-    public void editarCliente(int index, PestagnasInicio p){
+    public void editarCliente(PestagnasInicio p){
+        int auxIndex = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();
+        
         this.getAllDataCliente();
         
-        this.listaClientes.get(index).setNombre(this.nombre);
-        this.listaClientes.get(index).setApellido(this.apellido);
-        this.listaClientes.get(index).setRut(this.rut);
-        this.listaClientes.get(index).setDireccion(this.direccion);
-        this.listaClientes.get(index).setCiudad(this.ciudad);
-        this.listaClientes.get(index).setRegion(this.region);
-        this.listaClientes.get(index).setTelefono(Integer.parseInt(this.telefono));
-        this.listaClientes.get(index).setMovil(Integer.parseInt(this.movil));
-        this.listaClientes.get(index).setEmail(this.email);
+        this.listaClientes.get(this.indice).setNombre(this.nombre);
+        this.listaClientes.get(this.indice).setApellido(this.apellido);
+        this.listaClientes.get(this.indice).setRut(this.rut);
+        this.listaClientes.get(this.indice).setDireccion(this.direccion);
+        this.listaClientes.get(this.indice).setCiudad(this.ciudad);
+        this.listaClientes.get(this.indice).setRegion(this.region);
+        this.listaClientes.get(this.indice).setTelefono(Integer.parseInt(this.telefono));
+        this.listaClientes.get(this.indice).setMovil(Integer.parseInt(this.movil));
+        this.listaClientes.get(this.indice).setEmail(this.email);
         
-        Cliente c = this.listaClientes.get(index);        
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getNombre(), index, 0);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getApellido(), index, 1);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getRut(), index, 2);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getCiudad(), index, 3);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getTelefono(), index, 4);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getMovil(), index, 5);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getEmail(), index, 6);
+        Cliente c = this.listaClientes.get(this.indice);        
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getNombre(), auxIndex, 0);
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getApellido(), auxIndex, 1);
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getRut(), auxIndex, 2);
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getCiudad(), auxIndex, 3);
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getTelefono(), auxIndex, 4);
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getMovil(), auxIndex, 5);
+        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getEmail(), auxIndex, 6);
         
         
     }
@@ -162,7 +167,8 @@ public class SisCliente {
      * @param p 
      */
     public void eliminarCliente(PestagnasInicio p){
-       this.listaClientes.remove(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
+        this.indice = comparar(p);
+       this.listaClientes.remove(this.indice);
        p.pFicheros.pClientes.pnlTabla.modelo.removeRow(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
     }
     
@@ -184,4 +190,77 @@ public class SisCliente {
         this.movil = this.vCliente.pnlDatos.txtMovil.getText();
         this.email = this.vCliente.pnlDatos.txtEmail.getText();
     }
+    
+    /**
+     * Busca el rut ingresado en la lista de clientes.
+     * @param rut     
+     * @param p     
+     */
+    public void buscar(String rut, PestagnasInicio p){          
+        for(Cliente cliente: listaClientes){
+             if(rut.equals(cliente.getRut())){
+                  p.pFicheros.pClientes.pnlTabla.modelo.setRowCount(0);
+                  break;
+             }
+        }
+        
+       for(Cliente cliente: listaClientes){
+             if(rut.equals(cliente.getRut())){                                                                            
+                Cliente c = cliente;
+                
+                Object[] fila = new Object[]{
+                    c.getNombre(),
+                    c.getApellido(),
+                    c.getRut(),
+                    c.getCiudad(),
+                    c.getTelefono(),
+                    c.getMovil(),
+                    c.getEmail()};             
+                p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);
+            }
+        }
+    }
+    
+    /**
+     * Refresca la tabla de la pestanna de cliente.
+     * @param p 
+     */
+    public void refrescar(PestagnasInicio p){
+        p.pFicheros.pClientes.pnlTabla.modelo.setRowCount(0);
+        for(Cliente cliente: listaClientes){
+            Cliente c = cliente;
+            
+            Object[] fila = new Object[]{
+                    c.getNombre(),
+                    c.getApellido(),
+                    c.getRut(),
+                    c.getCiudad(),
+                    c.getTelefono(),
+                    c.getMovil(),
+                    c.getEmail()};              
+            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);
+        }                
+    }
+    
+    /**
+     * Compara la informacion que contiene la fila seleccionada con la info
+     * de la lista de clientes.
+     * @param p
+     * @return 
+     */
+    public int comparar(PestagnasInicio p){
+        int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();      
+        String aux1 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,0);        
+        String aux2 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,1);
+        String aux3 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,2);
+        for(Cliente cliente: listaClientes){
+            if(aux1.equals(cliente.getNombre()) &&
+                aux2.equals(cliente.getApellido()) &&
+                    aux3.equals(cliente.getRut())){                
+                return listaClientes.indexOf(cliente);
+            }
+        }
+        return -1;
+    }
+    
 }
