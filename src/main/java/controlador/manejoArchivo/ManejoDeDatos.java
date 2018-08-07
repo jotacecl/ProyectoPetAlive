@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 
 /**
  *
  * @author HernySenpai
  */
 public class ManejoDeDatos {
-    public static void escritura (Object object, String direccion){
+    
+    public void escritura (Object object, String direccion){
         Gson gson = new Gson();
         String datos = gson.toJson(object);
         guardar(direccion, datos);
@@ -44,7 +46,13 @@ public class ManejoDeDatos {
             System.out.println("File not found");
         }
         return datos;
+    }
     
+    public ArrayList<String> leerArchivoArrayString (String direccion){
+        Gson gson = new Gson();
+        String datos = lector(direccion);
+        ArrayList <String> array = gson.fromJson(datos, ArrayList.class);
+        return array;
     }
     
 }

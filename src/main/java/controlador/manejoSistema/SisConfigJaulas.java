@@ -14,7 +14,7 @@ public class SisConfigJaulas {
     
     public ManejoDeDatos mD;
     public VentanaCJaulas vCJaulas;
-    public final ArrayList<String> cantidadJaulas = new ArrayList<>(3);
+    public ArrayList<String> cantidadJaulas = new ArrayList<>(3);
 
     public SisConfigJaulas() {
         this.mD = new ManejoDeDatos();
@@ -32,6 +32,7 @@ public class SisConfigJaulas {
                     cantidadJaulas.get(2));
         }else{
             this.vCJaulas = new VentanaCJaulas("","","");
+            cantidadJaulas = mD.leerArchivoArrayString("configJaulas.json");
         }        
     }
     
@@ -46,17 +47,20 @@ public class SisConfigJaulas {
         }
         this.cantidadJaulas.set(0, this.vCJaulas.pnlCJaulas.txtCL.getText());
         this.cantidadJaulas.set(1, this.vCJaulas.pnlCJaulas.txtCM.getText());
-        this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText());       
+        this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText()); 
+        mD.escritura(this.cantidadJaulas, "configJaulas.json");
     }
     
     /**
      * Metodo para actualizar la pestaña de Jaulas.
      * @param p 
      */
-    public void actualizarJaulas(PestagnasInicio p){        
-        p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(vCJaulas.pnlCJaulas.txtCL.getText()));
-        p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(vCJaulas.pnlCJaulas.txtCM.getText()));
-        p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(vCJaulas.pnlCJaulas.txtCS.getText()));
+    public void actualizarJaulas(PestagnasInicio p){
+        ArrayList <String> jaulas = mD.leerArchivoArrayString("configJaulas.json");
+        
+        p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(jaulas.get(0)));
+        p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(jaulas.get(1)));
+        p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(jaulas.get(2)));
         p.pJaulas.pJaulas.removeAll();
         p.pJaulas.pJaulas.updateUI();
         p.pJaulas.pJaulas.repaint();

@@ -48,6 +48,7 @@ public class SisConfigHorario {
        this.datosHorario.set(5, this.vCHorario.pnlHorario.txtSD2.getText());
        this.datosHorario.set(6, this.vCHorario.pnlHorario.txtSD3.getText());
        this.datosHorario.set(7, this.vCHorario.pnlHorario.txtSD4.getText());
+       
     }
     
 }
