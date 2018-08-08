@@ -35,25 +35,29 @@ public class SisInsumos {
      * @param index 
      */
     public void setDatosInsumos(SisFichaPaciente sFP, int index){
-        
-        this.vInsumos = new VentanaInsumos();
-        for(int i=0; i<sFP.listaPacientes.get(index).getListaInsumos().size(); i++){
-            
-            Object[] fila = new Object[3];
-            fila[0] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getNombre();
-            
-            if(sFP.listaPacientes.get(index).getListaInsumos().get(i).getCantidad() == "0"){
-              fila[1] = " ";  
-            }else{
-              fila[1] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getCantidad(); 
-            } 
-            
-            fila[2] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getCosto();
-            this.vInsumos.pnlTabla.modelo.addRow(fila);
-            
+        try{
+            this.vInsumos = new VentanaInsumos();
+            if(!sFP.listaPacientes.isEmpty()){
+                for(int i=0; i<sFP.listaPacientes.get(index).getListaInsumos().size(); i++){
+
+                 Object[] fila = new Object[3];
+                 fila[0] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getNombre();
+
+                 if(sFP.listaPacientes.get(index).getListaInsumos().get(i).getCantidad() == "0"){
+                   fila[1] = " ";  
+                 }else{
+                   fila[1] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getCantidad(); 
+                 } 
+
+                 fila[2] = sFP.listaPacientes.get(index).getListaInsumos().get(i).getCosto();
+                 this.vInsumos.pnlTabla.modelo.addRow(fila);
+
+                }
+                this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(sFP.listaPacientes.get(index).getCostoInsumos()));  
+            }        
+        }catch(Exception e){
+            e.getCause();
         }
-        this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(sFP.listaPacientes.get(index).getCostoInsumos())); 
-        
     }
     
     /**
@@ -65,39 +69,47 @@ public class SisInsumos {
     public void crearInsumo(SisFichaPaciente sFP, int index, SisCliente sC){
         this.getAllDataInsumo();
         
-        if(this.cantidad == "0"){
-            this.ins = new Insumo(this.nombre,
-                                    " ",
-                                    this.costo);            
-        }else{
-            this.ins = new Insumo(this.nombre,
-                                    this.cantidad,
-                                    this.costo);            
-        }                   
-        
-        sFP.listaPacientes.get(index).getListaInsumos().add(this.ins);
-        this.sumarCosto(sFP, index, sC);
-        
-        Object[] fila;
-        if(this.cantidad == "0"){
-            fila = new Object[]{
-                this.ins.getNombre(),
-                "",
-                this.ins.getCosto()                
-            };
-        }else{
-            fila = new Object[]{
-                this.ins.getNombre(),
-                this.ins.getCantidad(),
-                this.ins.getCosto()                
-            };
+        try{
+            if(!sFP.listaPacientes.isEmpty()){
+                if(this.cantidad == "0"){
+                this.ins = new Insumo(this.nombre,
+                                        " ",
+                                        this.costo);            
+                }else{
+                    this.ins = new Insumo(this.nombre,
+                                            this.cantidad,
+                                            this.costo);            
+                }                   
+
+                sFP.listaPacientes.get(index).getListaInsumos().add(this.ins);
+                this.sumarCosto(sFP, index, sC);
+
+                Object[] fila;
+                if(this.cantidad == "0"){
+                    fila = new Object[]{
+                        this.ins.getNombre(),
+                        "",
+                        this.ins.getCosto()                
+                    };
+                }else{
+                    fila = new Object[]{
+                        this.ins.getNombre(),
+                        this.ins.getCantidad(),
+                        this.ins.getCosto()                
+                    };
+                }
+
+                this.vInsumos.pnlTabla.modelo.addRow(fila);
+
+                this.vInsumos.pnlInsumo.txtInsumo.setText("");
+                this.vInsumos.pnlInsumo.txtCantidad.setText("");
+                this.vInsumos.pnlInsumo.txtCosto.setText("");
+            }
+        }catch(NullPointerException e){
+            e.getCause();
+        }catch(Exception n){
+            n.getCause();
         }
-        
-        this.vInsumos.pnlTabla.modelo.addRow(fila);
-        
-        this.vInsumos.pnlInsumo.txtInsumo.setText("");
-        this.vInsumos.pnlInsumo.txtCantidad.setText("");
-        this.vInsumos.pnlInsumo.txtCosto.setText("");
     }
     
     /**
@@ -107,26 +119,35 @@ public class SisInsumos {
      * @param sC 
      */
     public void eliminarInsumo(SisFichaPaciente sFP, int index, SisCliente sC){
-        this.restarCosto(sFP, index, sC);
-        sFP.listaPacientes.get(index).getListaInsumos().remove(this.vInsumos.pnlTabla.tabla.getSelectedRow());
-        this.vInsumos.pnlTabla.modelo.removeRow(this.vInsumos.pnlTabla.tabla.getSelectedRow());        
+        try{
+            if(!sFP.listaPacientes.isEmpty()){
+               this.restarCosto(sFP, index, sC);
+                sFP.listaPacientes.get(index).getListaInsumos().remove(this.vInsumos.pnlTabla.tabla.getSelectedRow());
+                this.vInsumos.pnlTabla.modelo.removeRow(this.vInsumos.pnlTabla.tabla.getSelectedRow()); 
+            }                    
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
     /**
      * Metodo para obtener los datos ingresados por el usuario.
      */
     public void getAllDataInsumo(){
-        this.nombre = this.vInsumos.pnlInsumo.txtInsumo.getText();
-        if(this.vInsumos.pnlInsumo.txtCantidad.getText().equals("") || 
-           this.vInsumos.pnlInsumo.txtCantidad.getText().equals(null) || 
-           this.vInsumos.pnlInsumo.txtCantidad.getText().equals(" ") ||
-           this.vInsumos.pnlInsumo.txtCantidad.getText().equals("0")){
-            this.cantidad = " " ;            
-        }else{
-            this.cantidad = this.vInsumos.pnlInsumo.txtCantidad.getText();
+        try{
+            this.nombre = this.vInsumos.pnlInsumo.txtInsumo.getText();
+            if(this.vInsumos.pnlInsumo.txtCantidad.getText().equals("") || 
+               this.vInsumos.pnlInsumo.txtCantidad.getText().equals(null) || 
+               this.vInsumos.pnlInsumo.txtCantidad.getText().equals(" ") ||
+               this.vInsumos.pnlInsumo.txtCantidad.getText().equals("0")){
+                this.cantidad = " " ;            
+            }else{
+                this.cantidad = this.vInsumos.pnlInsumo.txtCantidad.getText();
+            }
+            this.costo = Integer.parseInt(this.vInsumos.pnlInsumo.txtCosto.getText());        
+        }catch(NullPointerException e){
+            e.getCause();
         }
-        this.costo = Integer.parseInt(this.vInsumos.pnlInsumo.txtCosto.getText());        
-        
     }
     
     /**
@@ -136,10 +157,16 @@ public class SisInsumos {
      * @param sC 
      */
     public void sumarCosto(SisFichaPaciente sFP, int index, SisCliente sC){
-        int valorTotal = this.costo+sFP.listaPacientes.get(index).getCostoInsumos();
-        sFP.listaPacientes.get(index).setCostoInsumos(valorTotal);        
-        this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(valorTotal));
-        this.actualizarDeudaCliente(sC, sFP, index, valorTotal);
+        try{
+            if(!sFP.listaPacientes.isEmpty()){
+                int valorTotal = this.costo+sFP.listaPacientes.get(index).getCostoInsumos();
+                sFP.listaPacientes.get(index).setCostoInsumos(valorTotal);        
+                this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(valorTotal));
+                this.actualizarDeudaCliente(sC, sFP, index, valorTotal); 
+            }   
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
     /**
@@ -149,11 +176,17 @@ public class SisInsumos {
      * @param sC 
      */
     public void restarCosto(SisFichaPaciente sFP, int index, SisCliente sC){
-        int i = this.vInsumos.pnlTabla.tabla.getSelectedRow();
-        int valorTotal = sFP.listaPacientes.get(index).getCostoInsumos()- sFP.listaPacientes.get(index).getListaInsumos().get(i).getCosto();
-        sFP.listaPacientes.get(index).setCostoInsumos(valorTotal);        
-        this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(valorTotal));
-        this.actualizarDeudaCliente(sC, sFP, index, valorTotal);
+        try{
+            if(!sFP.listaPacientes.isEmpty()){
+                int i = this.vInsumos.pnlTabla.tabla.getSelectedRow();
+                int valorTotal = sFP.listaPacientes.get(index).getCostoInsumos()- sFP.listaPacientes.get(index).getListaInsumos().get(i).getCosto();
+                sFP.listaPacientes.get(index).setCostoInsumos(valorTotal);        
+                this.vInsumos.pnlTabla.txtTotal.setText(Integer.toString(valorTotal));
+                this.actualizarDeudaCliente(sC, sFP, index, valorTotal);
+            }   
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
     /**
