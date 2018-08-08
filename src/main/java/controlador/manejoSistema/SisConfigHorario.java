@@ -35,7 +35,14 @@ public class SisConfigHorario {
                     datosHorario.get(7));
             
         }else{
-            this.vCHorario = new VentanaHorario("","","","","","","","");
+            this.vCHorario = new VentanaHorario(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(1),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(2),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(3),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(4),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(5),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(6),
+            mD.leerArchivoArrayString(RUTA+ARCHIVO).get(7));
         }  
     }
     

@@ -1,6 +1,7 @@
 
 package controlador.manejoSistema;
 
+import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
 import modelo.Cliente;
 import vista.vistaClientes.VentanaCliente;
@@ -13,7 +14,7 @@ import vista.vistaInicio.PestagnasInicio;
 public class SisCliente {
        
     public VentanaCliente vCliente;
-    public final ArrayList<Cliente> listaClientes = new ArrayList<>();
+    public ArrayList<Cliente> listaClientes = new ArrayList<>();
     private String nombre;
     private String apellido;
     private String rut;
@@ -30,11 +31,15 @@ public class SisCliente {
     private String deuda;
     private GestorDatos gDatos;
     private ArrayList<String> partesRut = new ArrayList<>();
-    
+    private final String RUTA = "data\\config\\";
+    private final String ARCHIVO = "ListaClientes.json";
+    public ManejoDeDatos mD;
     private int indice;
 
-    public SisCliente() {
+    public SisCliente(PestagnasInicio p) {
         this.gDatos = new GestorDatos();
+        this.mD = new ManejoDeDatos();
+        this.cargarDatos(p);
     }        
     
     /**
@@ -133,7 +138,9 @@ public class SisCliente {
                         c.getTelefono(),
                         c.getMovil(),
                         c.getEmail()};        
-            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);                
+            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);
+            mD.escritura(listaClientes, RUTA +ARCHIVO);
+            
         }catch(NullPointerException e){
             e.getCause();
         }catch(NumberFormatException n){
@@ -186,6 +193,7 @@ public class SisCliente {
         try{
             this.indice = comparar(p);
             this.listaClientes.remove(this.indice);
+            mD.escritura(listaClientes, RUTA+ARCHIVO);
             p.pFicheros.pClientes.pnlTabla.modelo.removeRow(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
         }catch(Exception e){
             
@@ -252,6 +260,7 @@ public class SisCliente {
      */
     public void refrescar(PestagnasInicio p){
         p.pFicheros.pClientes.pnlTabla.modelo.setRowCount(0);
+//        listaClientes = mD.leerArchivoListaCliente(RUTA+ARCHIVO);
         for(Cliente cliente: listaClientes){
             Cliente c = cliente;
             
@@ -288,6 +297,14 @@ public class SisCliente {
             }
         }       
         return -1;
+    }
+        public void cargarDatos(PestagnasInicio p){
+        ArrayList<Cliente> aux = mD.leerArchivoListaCliente(RUTA+ARCHIVO);         
+        if(aux!=null){
+            this.listaClientes = aux;
+            this.refrescar(p);
+        }             
+        
     }
     
 }

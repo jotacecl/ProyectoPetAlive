@@ -46,7 +46,7 @@ public class Sistema {
         this.sDatosClinica = new SisDatosClinica();
         this.sConfigJaulas = new SisConfigJaulas(pPestagnas);
         this.sConfigHorario = new SisConfigHorario();
-        this.sCliente = new SisCliente();
+        this.sCliente = new SisCliente(pPestagnas);
         this.gDatos = new GestorDatos();
         this.sFichaPaciente = new SisFichaPaciente();
         this.sPersonal = new SisPersonal();

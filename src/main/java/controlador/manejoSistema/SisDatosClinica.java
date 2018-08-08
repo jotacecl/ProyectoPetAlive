@@ -15,6 +15,12 @@ public class SisDatosClinica {
     private final ArrayList<String> datosClinica = new ArrayList<>(8);
     private final String RUTA = "data\\config\\";
     private final String ARCHIVO = "datosClinica.json";
+
+    public SisDatosClinica() {
+        this.mD = new ManejoDeDatos();
+    }
+    
+    
     
     /**
      * Metodo para iniciar la ventana Datos de la Clinica.
@@ -33,7 +39,14 @@ public class SisDatosClinica {
             }else{
                 System.out.println("");
                 System.out.println("Imprime vacio");
-                this.vDClinica = new VentanaDClinica("", "", "", "", "", "", "", "");                                    
+                this.vDClinica = new VentanaDClinica(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(1),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(2),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(3),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(4),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(5),
+                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(6),
+            mD.leerArchivoArrayString(RUTA+ARCHIVO).get(7));                                    
             }   
     }
     
