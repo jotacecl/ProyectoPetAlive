@@ -43,17 +43,19 @@ public class GestorDatos {
      */
     public ArrayList separarRut(String rut){
         this.lista = new ArrayList<>();
-        if(rut.length()==12){
-            this.lista.add(Character.toString(rut.charAt(0))+Character.toString(rut.charAt(1)));
-            this.lista.add(Character.toString(rut.charAt(3))+Character.toString(rut.charAt(4))+Character.toString(rut.charAt(5)));
-            this.lista.add(Character.toString(rut.charAt(7))+Character.toString(rut.charAt(8))+Character.toString(rut.charAt(9)));
-            this.lista.add(Character.toString(rut.charAt(11)));
-        }else{
-            this.lista.add(Character.toString(rut.charAt(0)));
-            this.lista.add(Character.toString(rut.charAt(2))+Character.toString(rut.charAt(3))+Character.toString(rut.charAt(4)));
-            this.lista.add(Character.toString(rut.charAt(6))+Character.toString(rut.charAt(7))+Character.toString(rut.charAt(8)));
-            this.lista.add(Character.toString(rut.charAt(9)));
-        }     
+        if(rut.length()==12 || rut.length()==11){            
+            if(rut.length()==12){
+                this.lista.add(Character.toString(rut.charAt(0))+Character.toString(rut.charAt(1)));
+                this.lista.add(Character.toString(rut.charAt(3))+Character.toString(rut.charAt(4))+Character.toString(rut.charAt(5)));
+                this.lista.add(Character.toString(rut.charAt(7))+Character.toString(rut.charAt(8))+Character.toString(rut.charAt(9)));
+                this.lista.add(Character.toString(rut.charAt(11)));
+            }else{
+                this.lista.add(Character.toString(rut.charAt(0)));
+                this.lista.add(Character.toString(rut.charAt(2))+Character.toString(rut.charAt(3))+Character.toString(rut.charAt(4)));
+                this.lista.add(Character.toString(rut.charAt(6))+Character.toString(rut.charAt(7))+Character.toString(rut.charAt(8)));
+                this.lista.add(Character.toString(rut.charAt(10)));
+            }                 
+        }       
         return this.lista;
     }
     

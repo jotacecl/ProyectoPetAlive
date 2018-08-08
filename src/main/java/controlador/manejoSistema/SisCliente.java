@@ -71,64 +71,74 @@ public class SisCliente {
      * @param listaRegiones 
      */
     public void setDatosCliente(int index, ArrayList listaCiudades, ArrayList listaRegiones){
-        this.gDatos = new GestorDatos();
-        
-        Cliente c = this.listaClientes.get(index);
-                
-        this.rut = c.getRut();        
-        this.partesRut = this.gDatos.separarRut(this.rut);
-        this.rutPart1 = (String) this.partesRut.get(0);       
-        this.rutPart2 = (String) this.partesRut.get(1);     
-        this.rutPart3 = (String) this.partesRut.get(2);        
-        this.rutPart4 = (String) this.partesRut.get(3);         
-        this.deuda = Integer.toString(c.getDeuda());
-            
-        this.vCliente = new VentanaCliente(1,
-                c,                
-                rutPart1,
-                rutPart2, 
-                rutPart3, 
-                rutPart4,                
-                deuda);
-        this.vCliente.pnlDatos.cbCiudad.removeAllItems();
-        for(Object l:listaCiudades){
-        this.vCliente.pnlDatos.cbCiudad.addItem(l);
+        try{
+            this.gDatos = new GestorDatos();
+
+            Cliente c = this.listaClientes.get(index);
+
+            this.rut = c.getRut();        
+            this.partesRut = this.gDatos.separarRut(this.rut);
+            this.rutPart1 = (String) this.partesRut.get(0);       
+            this.rutPart2 = (String) this.partesRut.get(1);     
+            this.rutPart3 = (String) this.partesRut.get(2);        
+            this.rutPart4 = (String) this.partesRut.get(3);         
+            this.deuda = Integer.toString(c.getDeuda());
+
+            this.vCliente = new VentanaCliente(1,
+                    c,                
+                    rutPart1,
+                    rutPart2, 
+                    rutPart3, 
+                    rutPart4,                
+                    deuda);
+            this.vCliente.pnlDatos.cbCiudad.removeAllItems();
+            for(Object l:listaCiudades){
+            this.vCliente.pnlDatos.cbCiudad.addItem(l);
+            }
+            this.vCliente.pnlDatos.cbRegion.removeAllItems();
+            for(Object l:listaRegiones){
+            this.vCliente.pnlDatos.cbRegion.addItem(l);
+            }
+            this.vCliente.pnlDatos.cbCiudad.setSelectedItem(ciudad);
+            this.vCliente.pnlDatos.cbRegion.setSelectedItem(region);
+        }catch(Exception e){
+            e.getCause();
         }
-        this.vCliente.pnlDatos.cbRegion.removeAllItems();
-        for(Object l:listaRegiones){
-        this.vCliente.pnlDatos.cbRegion.addItem(l);
-        }
-        this.vCliente.pnlDatos.cbCiudad.setSelectedItem(ciudad);
-        this.vCliente.pnlDatos.cbRegion.setSelectedItem(region);
     }
     
     /**
      * Metodo para crear un Cliente nuevo.
      * @param p 
      */
-    public void crearCliente(PestagnasInicio p){       
-        this.getAllDataCliente();
-        
-        Cliente c = new Cliente(this.nombre,
-                                this.apellido,
-                                this.rut,
-                                this.direccion,
-                                this.ciudad,
-                                this.region,
-                                Integer.parseInt(this.telefono),
-                                Integer.parseInt(this.movil),
-                                this.email);
-        this.listaClientes.add(c);
-        
-        Object[] fila = new Object[]{
-                    c.getNombre(),
-                    c.getApellido(),
-                    c.getRut(),
-                    c.getCiudad(),
-                    c.getTelefono(),
-                    c.getMovil(),
-                    c.getEmail()};        
-        p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);                
+    public void crearCliente(PestagnasInicio p){  
+        try{
+            this.getAllDataCliente();
+
+            Cliente c = new Cliente(this.nombre,
+                                    this.apellido,
+                                    this.rut,
+                                    this.direccion,
+                                    this.ciudad,
+                                    this.region,
+                                    Integer.parseInt(this.telefono),
+                                    Integer.parseInt(this.movil),
+                                    this.email);
+            this.listaClientes.add(c);
+
+            Object[] fila = new Object[]{
+                        c.getNombre(),
+                        c.getApellido(),
+                        c.getRut(),
+                        c.getCiudad(),
+                        c.getTelefono(),
+                        c.getMovil(),
+                        c.getEmail()};        
+            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);                
+        }catch(NullPointerException e){
+            e.getCause();
+        }catch(NumberFormatException n){
+            n.getCause();
+        }
     }   
     
     /**
@@ -136,29 +146,35 @@ public class SisCliente {
      * @param p 
      */
     public void editarCliente(PestagnasInicio p){
-        int auxIndex = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();
-        
-        this.getAllDataCliente();
-        
-        this.listaClientes.get(this.indice).setNombre(this.nombre);
-        this.listaClientes.get(this.indice).setApellido(this.apellido);
-        this.listaClientes.get(this.indice).setRut(this.rut);
-        this.listaClientes.get(this.indice).setDireccion(this.direccion);
-        this.listaClientes.get(this.indice).setCiudad(this.ciudad);
-        this.listaClientes.get(this.indice).setRegion(this.region);
-        this.listaClientes.get(this.indice).setTelefono(Integer.parseInt(this.telefono));
-        this.listaClientes.get(this.indice).setMovil(Integer.parseInt(this.movil));
-        this.listaClientes.get(this.indice).setEmail(this.email);
-        
-        Cliente c = this.listaClientes.get(this.indice);        
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getNombre(), auxIndex, 0);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getApellido(), auxIndex, 1);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getRut(), auxIndex, 2);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getCiudad(), auxIndex, 3);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getTelefono(), auxIndex, 4);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getMovil(), auxIndex, 5);
-        p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getEmail(), auxIndex, 6);
-        
+        try{
+            int auxIndex = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();
+
+            this.getAllDataCliente();
+
+            if(!this.listaClientes.isEmpty()){
+                this.listaClientes.get(this.indice).setNombre(this.nombre);
+                this.listaClientes.get(this.indice).setApellido(this.apellido);
+                this.listaClientes.get(this.indice).setRut(this.rut);
+                this.listaClientes.get(this.indice).setDireccion(this.direccion);
+                this.listaClientes.get(this.indice).setCiudad(this.ciudad);
+                this.listaClientes.get(this.indice).setRegion(this.region);
+                this.listaClientes.get(this.indice).setTelefono(Integer.parseInt(this.telefono));
+                this.listaClientes.get(this.indice).setMovil(Integer.parseInt(this.movil));
+                this.listaClientes.get(this.indice).setEmail(this.email);
+
+                Cliente c = this.listaClientes.get(this.indice);        
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getNombre(), auxIndex, 0);
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getApellido(), auxIndex, 1);
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getRut(), auxIndex, 2);
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getCiudad(), auxIndex, 3);
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getTelefono(), auxIndex, 4);
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getMovil(), auxIndex, 5);
+                p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getEmail(), auxIndex, 6);
+            }
+            
+        }catch(NullPointerException e){
+            e.getCause();
+        }
         
     }
     
@@ -167,28 +183,37 @@ public class SisCliente {
      * @param p 
      */
     public void eliminarCliente(PestagnasInicio p){
-        this.indice = comparar(p);
-       this.listaClientes.remove(this.indice);
-       p.pFicheros.pClientes.pnlTabla.modelo.removeRow(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
+        try{
+            this.indice = comparar(p);
+            this.listaClientes.remove(this.indice);
+            p.pFicheros.pClientes.pnlTabla.modelo.removeRow(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
+        }catch(Exception e){
+            
+        }
     }
     
     /**
      * Metodo para obtener los datos ingresados por el usuario.
      */
     public void getAllDataCliente(){
-        this.nombre = this.vCliente.pnlDatos.txtNombre.getText();
-        this.apellido = this.vCliente.pnlDatos.txtApellidos.getText();
-        this.rutPart1 = this.vCliente.pnlDatos.rutParte1.getText();
-        this.rutPart2 = this.vCliente.pnlDatos.rutParte2.getText();
-        this.rutPart3 = this.vCliente.pnlDatos.rutParte3.getText();
-        this.rutPart4 = this.vCliente.pnlDatos.rutParte4.getText();
-        this.rut =this.rutPart1 +"."+this.rutPart2+"."+this.rutPart3+"-"+this.rutPart4;
-        this.direccion = this.vCliente.pnlDatos.txtDireccion.getText();
-        this.ciudad = (String)this.vCliente.pnlDatos.cbCiudad.getSelectedItem();
-        this.region = (String)this.vCliente.pnlDatos.cbRegion.getSelectedItem();
-        this.telefono = this.vCliente.pnlDatos.txtTelefono.getText();
-        this.movil = this.vCliente.pnlDatos.txtMovil.getText();
-        this.email = this.vCliente.pnlDatos.txtEmail.getText();
+        try{
+            this.nombre = this.vCliente.pnlDatos.txtNombre.getText();
+            this.apellido = this.vCliente.pnlDatos.txtApellidos.getText();
+            this.rutPart1 = this.vCliente.pnlDatos.rutParte1.getText();
+            this.rutPart2 = this.vCliente.pnlDatos.rutParte2.getText();
+            this.rutPart3 = this.vCliente.pnlDatos.rutParte3.getText();
+            this.rutPart4 = this.vCliente.pnlDatos.rutParte4.getText();
+            this.rut =this.rutPart1 +"."+this.rutPart2+"."+this.rutPart3+"-"+this.rutPart4;
+            this.direccion = this.vCliente.pnlDatos.txtDireccion.getText();
+            this.ciudad = (String)this.vCliente.pnlDatos.cbCiudad.getSelectedItem();
+            this.region = (String)this.vCliente.pnlDatos.cbRegion.getSelectedItem();
+            this.telefono = this.vCliente.pnlDatos.txtTelefono.getText();
+            this.movil = this.vCliente.pnlDatos.txtMovil.getText();
+            this.email = this.vCliente.pnlDatos.txtEmail.getText();
+        }catch(NullPointerException e){
+            e.getCause();
+        }
+            
     }
     
     /**
@@ -249,17 +274,19 @@ public class SisCliente {
      * @return 
      */
     public int comparar(PestagnasInicio p){
-        int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();      
-        String aux1 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,0);        
-        String aux2 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,1);
-        String aux3 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,2);
-        for(Cliente cliente: listaClientes){
+        int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();                
+        if(p.pFicheros.pClientes.pnlTabla.modelo.getRowCount()!=0){
+            String aux1 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,0);
+            String aux2 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,1);
+            String aux3 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,2);
+            for(Cliente cliente: listaClientes){
             if(aux1.equals(cliente.getNombre()) &&
                 aux2.equals(cliente.getApellido()) &&
                     aux3.equals(cliente.getRut())){                
                 return listaClientes.indexOf(cliente);
+                }
             }
-        }
+        }       
         return -1;
     }
     

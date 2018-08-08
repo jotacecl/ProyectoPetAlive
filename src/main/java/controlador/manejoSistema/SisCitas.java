@@ -41,10 +41,16 @@ public class SisCitas {
      * Metodo para ingresar los datos en los JTextfields de la ventana.
      * @param index 
      */
-    public void setDatosCitas(int index){        
-       Cita c = this.listaCitas.get(index);               
-       
-       this.vCitas = new VentanaCita(2,c);
+    public void setDatosCitas(int index){
+        try{
+            if(!this.listaCitas.isEmpty()){
+                Cita c = this.listaCitas.get(index);               
+
+                this.vCitas = new VentanaCita(2,c);
+            }  
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
     /**
@@ -52,28 +58,32 @@ public class SisCitas {
      * @param p 
      */
     public void crearCita(PestagnasInicio p) throws Exception{
-        this.getAllDataCita();
-          if(this.rutCliente.length()!=0 &&
-                  this.paciente.length()!=0 &&
-                  this.fechaIngreso.length()!=0){
-            Cita c = new Cita(
-                            this.paciente,
-                            this.rutCliente,
-                            this.fechaIngreso,
-                            this.fechaCita,
-                            this.motivo);
-            this.listaCitas.add(c);
-            
-            Object[] fila = new Object[]{
-            c.getPaciente(),
-            c.getRutCliente(),
-            c.getFechaIngreso(),
-            c.getFechaCita(),
-            c.getMotivoCita()};              
-            p.pCitas.pnlTabla.modelo.addRow(fila);  
-          }else{
-              throw new Exception();
-          }                                                         
+        try{
+            this.getAllDataCita();
+              if(this.rutCliente.length()!=0 &&
+                      this.paciente.length()!=0 &&
+                      this.fechaIngreso.length()!=0){
+                Cita c = new Cita(
+                                this.paciente,
+                                this.rutCliente,
+                                this.fechaIngreso,
+                                this.fechaCita,
+                                this.motivo);
+                this.listaCitas.add(c);
+
+                Object[] fila = new Object[]{
+                c.getPaciente(),
+                c.getRutCliente(),
+                c.getFechaIngreso(),
+                c.getFechaCita(),
+                c.getMotivoCita()};              
+                p.pCitas.pnlTabla.modelo.addRow(fila);  
+              }else{
+                  throw new Exception();
+              } 
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
     /**
@@ -81,24 +91,30 @@ public class SisCitas {
      * @param p 
      */
     public void editarCita(PestagnasInicio p){
-        int auxIndex = p.pCitas.pnlTabla.tabla.getSelectedRow();
-        
-        this.getAllDataCita();
-                
-        this.listaCitas.get(this.indice).setPaciente(this.paciente);
-        this.listaCitas.get(this.indice).setFechaIngreso(this.fechaIngreso);
-        if(!this.fechaCita.equals("null-null-null")){
-            this.listaCitas.get(this.indice).setFechaCita(this.fechaCita);
+        try{
+            int auxIndex = p.pCitas.pnlTabla.tabla.getSelectedRow();
+
+            this.getAllDataCita();
+            if(!this.listaCitas.isEmpty()){
+                this.listaCitas.get(this.indice).setPaciente(this.paciente);
+                this.listaCitas.get(this.indice).setFechaIngreso(this.fechaIngreso);
+                if(!this.fechaCita.equals("null-null-null")){
+                    this.listaCitas.get(this.indice).setFechaCita(this.fechaCita);
+                }
+                this.listaCitas.get(this.indice).setMotivoCita(this.motivo);
+
+                Cita c = this.listaCitas.get(this.indice);
+
+                p.pCitas.pnlTabla.modelo.setValueAt(c.getPaciente(), auxIndex, 0);
+                p.pCitas.pnlTabla.modelo.setValueAt(c.getRutCliente(), auxIndex, 1);
+                p.pCitas.pnlTabla.modelo.setValueAt(c.getFechaIngreso(), auxIndex, 2);
+                p.pCitas.pnlTabla.modelo.setValueAt(c.getFechaCita(), auxIndex, 3);
+                p.pCitas.pnlTabla.modelo.setValueAt(c.getMotivoCita(), auxIndex, 4);
+            }
+            
+        }catch(NullPointerException e){
+            e.getCause();
         }
-        this.listaCitas.get(this.indice).setMotivoCita(this.motivo);
-        
-        Cita c = this.listaCitas.get(this.indice);
-                        
-        p.pCitas.pnlTabla.modelo.setValueAt(c.getPaciente(), auxIndex, 0);
-        p.pCitas.pnlTabla.modelo.setValueAt(c.getRutCliente(), auxIndex, 1);
-        p.pCitas.pnlTabla.modelo.setValueAt(c.getFechaIngreso(), auxIndex, 2);
-        p.pCitas.pnlTabla.modelo.setValueAt(c.getFechaCita(), auxIndex, 3);
-        p.pCitas.pnlTabla.modelo.setValueAt(c.getMotivoCita(), auxIndex, 4);
                 
     }
     
@@ -107,24 +123,32 @@ public class SisCitas {
      * @param p 
      */
     public void eliminarCita(PestagnasInicio p){
-        this.indice = comparar(p);
-        this.listaCitas.remove(this.indice);
-        p.pCitas.pnlTabla.modelo.removeRow(p.pCitas.pnlTabla.tabla.getSelectedRow());
+        try{
+            this.indice = comparar(p);
+            this.listaCitas.remove(this.indice);
+            p.pCitas.pnlTabla.modelo.removeRow(p.pCitas.pnlTabla.tabla.getSelectedRow());
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
     /**
      * Metodo para obtener los datos ingresados por el usuario.
      */
-    public void getAllDataCita(){               
-        this.paciente = this.vCitas.pnlDatos.txtPaciente.getText();
-        this.rutCliente = this.vCitas.pnlDatos.txtRUT.getText();
-        this.fechaIngreso = this.vCitas.pnlDatos.txtFIngreso.getText();   
-        
-        String fechaSeleccionada = String.format(this.vCitas.pnlDatos.FORMATO, 
-        this.vCitas.pnlDatos.calendario.getDate());
-        this.fechaCita = fechaSeleccionada;
-        
-        this.motivo = this.vCitas.pnlDatos.txtMotivo.getText();
+    public void getAllDataCita(){ 
+        try{
+            this.paciente = this.vCitas.pnlDatos.txtPaciente.getText();
+            this.rutCliente = this.vCitas.pnlDatos.txtRUT.getText();
+            this.fechaIngreso = this.vCitas.pnlDatos.txtFIngreso.getText();   
+
+            String fechaSeleccionada = String.format(this.vCitas.pnlDatos.FORMATO, 
+            this.vCitas.pnlDatos.calendario.getDate());
+            this.fechaCita = fechaSeleccionada;
+
+            this.motivo = this.vCitas.pnlDatos.txtMotivo.getText();
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
     /**
@@ -181,17 +205,21 @@ public class SisCitas {
      * @return 
      */
     public int comparar(PestagnasInicio p){
-        int index = p.pCitas.pnlTabla.tabla.getSelectedRow();        
-        String aux1 = (String) p.pCitas.pnlTabla.modelo.getValueAt(index,0);        
-        String aux2 = (String) p.pCitas.pnlTabla.modelo.getValueAt(index,1);
-        String aux3 = (String) p.pCitas.pnlTabla.modelo.getValueAt(index,3);
-        for(Cita c: listaCitas){
+        int index = p.pCitas.pnlTabla.tabla.getSelectedRow();          
+        if(p.pCitas.pnlTabla.modelo.getRowCount()!=0){
+            String aux1 = (String) p.pCitas.pnlTabla.modelo.getValueAt(index,0);        
+            String aux2 = (String) p.pCitas.pnlTabla.modelo.getValueAt(index,1);
+            String aux3 = (String) p.pCitas.pnlTabla.modelo.getValueAt(index,3);
+            for(Cita c: listaCitas){
             if(aux1.equals(c.getPaciente()) &&
                 aux2.equals(c.getRutCliente()) &&
                     aux3.equals(c.getFechaCita())){                
                 return listaCitas.indexOf(c);
+                }
             }
         }
+        
+        
         return -1;
     }
     

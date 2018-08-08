@@ -43,21 +43,24 @@ public class SisConfigHorario {
      * Metodo para ingresar los datos en los JTextfields de la ventana.
      */
     public void setDatosHorario(){
-       if(this.datosHorario.isEmpty()){
-            for(int i = 0; i<8 ;i++){
-            this.datosHorario.add("");            
-            }
+        try{
+            if(this.datosHorario.isEmpty()){
+                 for(int i = 0; i<8 ;i++){
+                 this.datosHorario.add("");            
+                 }
+             }
+            this.datosHorario.set(0, this.vCHorario.pnlHorario.txtLV1.getText());
+            this.datosHorario.set(1, this.vCHorario.pnlHorario.txtLV2.getText());
+            this.datosHorario.set(2, this.vCHorario.pnlHorario.txtLV3.getText());
+            this.datosHorario.set(3, this.vCHorario.pnlHorario.txtLV4.getText());
+            this.datosHorario.set(4, this.vCHorario.pnlHorario.txtSD1.getText());
+            this.datosHorario.set(5, this.vCHorario.pnlHorario.txtSD2.getText());
+            this.datosHorario.set(6, this.vCHorario.pnlHorario.txtSD3.getText());
+            this.datosHorario.set(7, this.vCHorario.pnlHorario.txtSD4.getText());
+            mD.escritura(this.datosHorario, RUTA+ARCHIVO);
+        }catch(NullPointerException e){
+            e.getCause();
         }
-       this.datosHorario.set(0, this.vCHorario.pnlHorario.txtLV1.getText());
-       this.datosHorario.set(1, this.vCHorario.pnlHorario.txtLV2.getText());
-       this.datosHorario.set(2, this.vCHorario.pnlHorario.txtLV3.getText());
-       this.datosHorario.set(3, this.vCHorario.pnlHorario.txtLV4.getText());
-       this.datosHorario.set(4, this.vCHorario.pnlHorario.txtSD1.getText());
-       this.datosHorario.set(5, this.vCHorario.pnlHorario.txtSD2.getText());
-       this.datosHorario.set(6, this.vCHorario.pnlHorario.txtSD3.getText());
-       this.datosHorario.set(7, this.vCHorario.pnlHorario.txtSD4.getText());
-       mD.escritura(this.datosHorario, RUTA+ARCHIVO);
-       
     }
     
 }

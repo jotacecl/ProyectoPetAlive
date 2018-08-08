@@ -3,8 +3,6 @@ package controlador.manejoSistema;
 
 import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import vista.vistaJaulas.VentanaCJaulas;
 import vista.vistaInicio.PestagnasInicio;
 
@@ -43,6 +41,7 @@ public class SisConfigJaulas {
      * Metodo para ingresar los datos en los JTextfields de la ventana.
      */
     public void setDatosJaula(){
+        try{
         if(this.cantidadJaulas.isEmpty()){
             for(int i = 0; i<3 ;i++){
             this.cantidadJaulas.add("");            
@@ -52,6 +51,9 @@ public class SisConfigJaulas {
         this.cantidadJaulas.set(1, this.vCJaulas.pnlCJaulas.txtCM.getText());
         this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText()); 
         mD.escritura(this.cantidadJaulas, RUTA+ARCHIVO);
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
     /**
@@ -79,20 +81,29 @@ public class SisConfigJaulas {
      * @param nroJaula
      * @param p 
      */
-    public void setJaulaOcupada(boolean ocupada, String tamannoJaula,int nroJaula, PestagnasInicio p){        
-         if(tamannoJaula.equals("L")){
-             p.pJaulas.pJaulas.jaulasL.get(nroJaula-1).setOcupada(ocupada);
-             p.pJaulas.pJaulas.jaulasL.get(nroJaula-1).pintar();
-             this.actualizarJaulas(p);
-         }else if(tamannoJaula.equals("M")){
-             p.pJaulas.pJaulas.jaulasM.get(nroJaula-1).setOcupada(ocupada);
-             p.pJaulas.pJaulas.jaulasM.get(nroJaula-1).pintar();
-             this.actualizarJaulas(p);
-         }else if(tamannoJaula.equals("S")){
-             p.pJaulas.pJaulas.jaulasS.get(nroJaula-1).setOcupada(ocupada);
-             p.pJaulas.pJaulas.jaulasS.get(nroJaula-1).pintar();
-             this.actualizarJaulas(p);
-         }         
+    public void setJaulaOcupada(boolean ocupada, String tamannoJaula,int nroJaula, PestagnasInicio p){
+        try{
+            if(!p.pJaulas.pJaulas.jaulasL.isEmpty() && 
+                    !p.pJaulas.pJaulas.jaulasM.isEmpty() && 
+                    !p.pJaulas.pJaulas.jaulasS.isEmpty()){
+                if(tamannoJaula.equals("L")){
+                 p.pJaulas.pJaulas.jaulasL.get(nroJaula-1).setOcupada(ocupada);
+                 p.pJaulas.pJaulas.jaulasL.get(nroJaula-1).pintar();
+                 this.actualizarJaulas(p);
+                }else if(tamannoJaula.equals("M")){
+                    p.pJaulas.pJaulas.jaulasM.get(nroJaula-1).setOcupada(ocupada);
+                    p.pJaulas.pJaulas.jaulasM.get(nroJaula-1).pintar();
+                    this.actualizarJaulas(p);
+                }else if(tamannoJaula.equals("S")){
+                    p.pJaulas.pJaulas.jaulasS.get(nroJaula-1).setOcupada(ocupada);
+                    p.pJaulas.pJaulas.jaulasS.get(nroJaula-1).pintar();
+                    this.actualizarJaulas(p);
+                }
+
+            }
+        }catch(Exception e){
+            e.getCause();
+        }
      }
     
     
