@@ -28,12 +28,16 @@ public class SisDirectorio {
     * Metodo para ingresar los datos en los JTextfields de la ventana.
     * @param directorio 
     */
-   public void setDirectorio(String directorio){        
-       if(this.almacenDirectorio.isEmpty()){
-           this.almacenDirectorio.add(directorio);
-       }else{
-           this.almacenDirectorio.set(0, directorio);
-       }       
+   public void setDirectorio(String directorio){
+       try {
+           if(this.almacenDirectorio.isEmpty()){
+               this.almacenDirectorio.add(directorio);
+           }else{
+               this.almacenDirectorio.set(0, directorio);
+           }   
+       } catch (NullPointerException e) {
+           e.getCause();
+       }              
    }      
           
 }

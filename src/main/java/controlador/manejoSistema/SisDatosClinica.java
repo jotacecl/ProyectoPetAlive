@@ -41,6 +41,7 @@ public class SisDatosClinica {
      * Metodo para ingresar los datos automaticamente en los JTextfields de la ventana. 
      */
     public void setDatosClinica(){
+        try{
         if(this.datosClinica.size() == 0){
             for(int i = 0; i<8 ;i++){
             this.datosClinica.add("");            
@@ -55,6 +56,9 @@ public class SisDatosClinica {
         this.datosClinica.set(6,this.vDClinica.pnlDatos.txtEmail.getText());
         this.datosClinica.set(7,this.vDClinica.pnlDatos.txtWeb.getText());
         mD.escritura(this.datosClinica, RUTA+ARCHIVO);
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
 }
