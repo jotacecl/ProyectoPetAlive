@@ -20,7 +20,7 @@ public class SisDirectorio {
        if(!this.almacenDirectorio.isEmpty()){           
            this.vDirectorio = new VentanaDirectorio(this.almacenDirectorio.get(0));
        }else{           
-           this.vDirectorio = new VentanaDirectorio("");
+           this.vDirectorio = new VentanaDirectorio(null);
        }
    }
    

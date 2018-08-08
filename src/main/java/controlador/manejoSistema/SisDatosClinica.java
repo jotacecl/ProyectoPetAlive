@@ -38,8 +38,7 @@ public class SisDatosClinica {
     }
     
      /**
-     * Metodo para ingresar los datos automaticamente en los JTextfields de la ventana.
-     * @param index 
+     * Metodo para ingresar los datos automaticamente en los JTextfields de la ventana. 
      */
     public void setDatosClinica(){
         if(this.datosClinica.size() == 0){

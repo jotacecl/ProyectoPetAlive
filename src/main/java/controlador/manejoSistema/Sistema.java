@@ -34,7 +34,7 @@ public class Sistema {
     public boolean booleano;
     
     public Sistema(){
-        this.iniciarComponentes();        
+        this.iniciarComponentes();          
     }  
     
     private void iniciarComponentes(){
@@ -65,7 +65,7 @@ public class Sistema {
         this.sServicio.iniciarServicios(2, this.pPestagnas);
         this.sDirectorio.iniciarDirectorio();
         this.sTratamiento.iniciarTratamiento(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
-        this.sInsumos.iniciarInsumos(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
+        this.sInsumos.iniciarInsumos(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());                  
     }                
     
     public void setCiudades(String ciudad){

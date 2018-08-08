@@ -3,6 +3,8 @@ package controlador.manejoSistema;
 
 import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import vista.vistaJaulas.VentanaCJaulas;
 import vista.vistaInicio.PestagnasInicio;
 
@@ -56,7 +58,8 @@ public class SisConfigJaulas {
      * Metodo para actualizar la pestaña de Jaulas.
      * @param p 
      */
-    public void actualizarJaulas(PestagnasInicio p){                
+    public void actualizarJaulas(PestagnasInicio p){
+        try{
         p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(cantidadJaulas.get(0)));
         p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(cantidadJaulas.get(1)));
         p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(cantidadJaulas.get(2)));
@@ -64,6 +67,9 @@ public class SisConfigJaulas {
         p.pJaulas.pJaulas.updateUI();
         p.pJaulas.pJaulas.repaint();
         p.pJaulas.pJaulas.iniciarComponentes();
+        }catch(Exception e){
+            e.getCause();
+        }
     }  
     
     /**
