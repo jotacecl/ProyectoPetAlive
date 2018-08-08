@@ -37,6 +37,9 @@ public class Sistema {
         this.iniciarComponentes();          
     }  
     
+    /**
+     * Metodo para iniciar todos los componentes de la aplicacion.
+     */
     private void iniciarComponentes(){
         this.pPestagnas = new PestagnasInicio();
         
@@ -68,6 +71,10 @@ public class Sistema {
         this.sInsumos.iniciarInsumos(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());                  
     }                
     
+    /**
+     * Metodo para agregar una Ciudad nueva a la lista.
+     * @param ciudad 
+     */
     public void setCiudades(String ciudad){
         
         if(ciudad != null){
@@ -86,6 +93,11 @@ public class Sistema {
         
     }
     
+    /**
+     * Metodo para editar una Ciudad seleccionada.
+     * @param ciudadEditada
+     * @param ventanaSeleccionada 
+     */
     public void editarCiudad(String ciudadEditada, int ventanaSeleccionada){
         if(ciudadEditada != null){
             this.eliminarCiudad(ventanaSeleccionada);
@@ -95,24 +107,36 @@ public class Sistema {
         }      
     }
     
+    /**
+     * Metodo para eliminar una Ciudad seleccionada.
+     * @param ventanaSeleccionada 
+     */
     public void eliminarCiudad(int ventanaSeleccionada){
-        if(ventanaSeleccionada == 1){
-            for(int i=0; i<listaCiudades.size(); i++){            
-                if( (String)this.sCliente.vCliente.pnlDatos.cbCiudad.getSelectedItem()==this.listaCiudades.get(i) ){
-                    this.listaCiudades.remove(i);
+        try{
+            if(ventanaSeleccionada == 1){
+                for(int i=0; i<listaCiudades.size(); i++){            
+                    if( (String)this.sCliente.vCliente.pnlDatos.cbCiudad.getSelectedItem()==this.listaCiudades.get(i) ){
+                        this.listaCiudades.remove(i);
+                    }
                 }
-            }
-        }else if(ventanaSeleccionada == 2){
-            for(int i=0; i<listaCiudades.size(); i++){            
-                if( (String)this.sPersonal.vPersonal.pnlDatos.cbCiudad.getSelectedItem()==this.listaCiudades.get(i) ){
-                    this.listaCiudades.remove(i);
-                }
-            }        
-        }   
-        this.sCliente.vCliente.pnlDatos.cbCiudad.removeItemAt(this.sCliente.vCliente.pnlDatos.cbCiudad.getSelectedIndex());
-        this.sPersonal.vPersonal.pnlDatos.cbCiudad.removeItemAt(this.sPersonal.vPersonal.pnlDatos.cbCiudad.getSelectedIndex());
+            }else if(ventanaSeleccionada == 2){
+                for(int i=0; i<listaCiudades.size(); i++){            
+                    if( (String)this.sPersonal.vPersonal.pnlDatos.cbCiudad.getSelectedItem()==this.listaCiudades.get(i) ){
+                        this.listaCiudades.remove(i);
+                    }
+                }        
+            }   
+            this.sCliente.vCliente.pnlDatos.cbCiudad.removeItemAt(this.sCliente.vCliente.pnlDatos.cbCiudad.getSelectedIndex());
+            this.sPersonal.vPersonal.pnlDatos.cbCiudad.removeItemAt(this.sPersonal.vPersonal.pnlDatos.cbCiudad.getSelectedIndex());
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
+    /**
+     * Metodo para agregar una Region nueva.
+     * @param region 
+     */
     public void setRegiones(String region){
         
         if(region != null){
@@ -130,6 +154,11 @@ public class Sistema {
         } 
     } 
     
+    /**
+     * Metodo para editar una Region seleccionada.
+     * @param regionEditada
+     * @param ventanaSeleccionada 
+     */
     public void editarRegion(String regionEditada, int ventanaSeleccionada){
         if(regionEditada != null){
             this.eliminarRegion(ventanaSeleccionada);
@@ -139,24 +168,36 @@ public class Sistema {
         } 
     }
     
+    /**
+     * Metodo para eliminar una Region seleccionada.
+     * @param ventanaSeleccionada 
+     */
     public void eliminarRegion(int ventanaSeleccionada){ 
-        if(ventanaSeleccionada == 1){
-            for(int i=0; i<listaRegiones.size(); i++){
-                if((String)this.sCliente.vCliente.pnlDatos.cbRegion.getSelectedItem()==this.listaRegiones.get(i)){
-                    this.listaRegiones.remove(i);
+        try{
+            if(ventanaSeleccionada == 1){
+                for(int i=0; i<listaRegiones.size(); i++){
+                    if((String)this.sCliente.vCliente.pnlDatos.cbRegion.getSelectedItem()==this.listaRegiones.get(i)){
+                        this.listaRegiones.remove(i);
+                    }
                 }
-            }
-        }else if(ventanaSeleccionada == 2){
-            for(int i=0; i<listaRegiones.size(); i++){
-                if((String)this.sPersonal.vPersonal.pnlDatos.cbRegion.getSelectedItem()==this.listaRegiones.get(i)){
-                    this.listaRegiones.remove(i);
+            }else if(ventanaSeleccionada == 2){
+                for(int i=0; i<listaRegiones.size(); i++){
+                    if((String)this.sPersonal.vPersonal.pnlDatos.cbRegion.getSelectedItem()==this.listaRegiones.get(i)){
+                        this.listaRegiones.remove(i);
+                    }
                 }
-            }
-        }        
-        this.sCliente.vCliente.pnlDatos.cbRegion.removeItemAt(this.sCliente.vCliente.pnlDatos.cbRegion.getSelectedIndex());
-        this.sPersonal.vPersonal.pnlDatos.cbRegion.removeItemAt(this.sPersonal.vPersonal.pnlDatos.cbRegion.getSelectedIndex());
+            }        
+            this.sCliente.vCliente.pnlDatos.cbRegion.removeItemAt(this.sCliente.vCliente.pnlDatos.cbRegion.getSelectedIndex());
+            this.sPersonal.vPersonal.pnlDatos.cbRegion.removeItemAt(this.sPersonal.vPersonal.pnlDatos.cbRegion.getSelectedIndex());
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
+    /**
+     * Metodo para abrir el explorador de archivos del PC.
+     * @param dir 
+     */
     public void abrirExplorer(String dir){
         Runtime r = Runtime.getRuntime();
 		Process p = null;

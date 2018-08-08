@@ -22,6 +22,11 @@ public class SisProducto {
     private int stock;
     private int precio;
     
+    /**
+     * Metodo para iniciar la ventana de Productos, se desplega con o sin info segun se requiera.
+     * @param btnSeleccionado
+     * @param p 
+     */
     public void iniciarProductos(int btnSeleccionado, PestagnasInicio p){
         int index = p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow();        
         if(btnSeleccionado == 1){            
@@ -37,57 +42,79 @@ public class SisProducto {
         }
     }
     
-    public void setDatosProducto(int index){ 
-        Producto p = this.listaProductos.get(index);               
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     * @param index 
+     */
+    public void setDatosProducto(int index){
+        if(!listaProductos.isEmpty()){
+            Producto p = this.listaProductos.get(index);               
         
-        this.vProducto = new VentanaProducto(2, p);
-        this.vProducto.pnlDatos.cbTipo.removeAllItems();
-        for(Object l:listaTipoProductos){
-                    this.vProducto.pnlDatos.cbTipo.addItem(l);
-                }
-        this.vProducto.pnlDatos.cbTipo.setSelectedItem(tipo);
-        
+            this.vProducto = new VentanaProducto(2, p);
+            this.vProducto.pnlDatos.cbTipo.removeAllItems();
+            for(Object l:listaTipoProductos){
+                        this.vProducto.pnlDatos.cbTipo.addItem(l);
+                    }
+            this.vProducto.pnlDatos.cbTipo.setSelectedItem(tipo);
+        }                
     }
     
+    /**
+     * Metodo para crear un Producto nuevo.
+     * @param p 
+     */
     public void crearProducto(PestagnasInicio p){
-        this.getAllDataProducto();
-        
-        Producto pr = new Producto(                
-                this.nombre,
-                this.tipo,
-                this.descripcion,
-                this.stock,
-                this.precio
-        );
-        
-        this.listaProductos.add(pr);
-        
-        Object[] fila = new Object[]{
-            pr.getNombre(),
-            pr.getTipo(),
-            pr.getDescripcion(),
-            pr.getStock(),
-            pr.getPrecio()
-        };                       
-        p.pFicheros.pProductos.pnlTabla.modelo.addRow(fila);
+        try{
+            this.getAllDataProducto();
+
+            Producto pr = new Producto(                
+                    this.nombre,
+                    this.tipo,
+                    this.descripcion,
+                    this.stock,
+                    this.precio
+            );
+
+            this.listaProductos.add(pr);
+
+            Object[] fila = new Object[]{
+                pr.getNombre(),
+                pr.getTipo(),
+                pr.getDescripcion(),
+                pr.getStock(),
+                pr.getPrecio()
+            };                       
+            p.pFicheros.pProductos.pnlTabla.modelo.addRow(fila);
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
+    /**
+     * Metodo para editar un Producto ya exitente.
+     * @param p 
+     */
     public void editarProducto(int index, PestagnasInicio p){
-        this.getAllDataProducto();
-                
-        this.listaProductos.get(index).setNombre(this.nombre);
-        this.listaProductos.get(index).setTipo(this.tipo);
-        this.listaProductos.get(index).setDescripcion(this.descripcion);
-        this.listaProductos.get(index).setStock(this.stock);
-        this.listaProductos.get(index).setPrecio(this.precio);
-        
-        Producto pr = this.listaProductos.get(index);        
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getNombre(), index, 0);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getTipo(), index, 1);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getDescripcion(), index, 2);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getStock(), index, 3);
-        p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getPrecio(), index, 4);
-        
+        try{
+            this.getAllDataProducto();
+
+            if(!this.listaProductos.isEmpty()){
+                this.listaProductos.get(index).setNombre(this.nombre);
+                this.listaProductos.get(index).setTipo(this.tipo);
+                this.listaProductos.get(index).setDescripcion(this.descripcion);
+                this.listaProductos.get(index).setStock(this.stock);
+                this.listaProductos.get(index).setPrecio(this.precio);
+
+                Producto pr = this.listaProductos.get(index);        
+                p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getNombre(), index, 0);
+                p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getTipo(), index, 1);
+                p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getDescripcion(), index, 2);
+                p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getStock(), index, 3);
+                p.pFicheros.pProductos.pnlTabla.modelo.setValueAt(pr.getPrecio(), index, 4);
+            }   
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
     /**
@@ -95,51 +122,85 @@ public class SisProducto {
      * @param p 
      */
     public void eliminarProducto(PestagnasInicio p){
-        this.listaProductos.remove(p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow());
-        p.pFicheros.pProductos.pnlTabla.modelo.removeRow(p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow());
+        try{
+            this.listaProductos.remove(p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow());
+            p.pFicheros.pProductos.pnlTabla.modelo.removeRow(p.pFicheros.pProductos.pnlTabla.tabla.getSelectedRow());
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
+    /**
+     * Metodo para obtener la info del producto. 
+     */
     public void getAllDataProducto(){
                 
-        this.nombre = this.vProducto.pnlDatos.txtNombre.getText();
-        this.tipo = (String)this.vProducto.pnlDatos.cbTipo.getSelectedItem();
-        this.descripcion = this.vProducto.pnlDatos.txtDescripcion.getText();
-        this.stock = Integer.parseInt(this.vProducto.pnlDatos.txtStock.getText());
-        this.precio = Integer.parseInt(this.vProducto.pnlDatos.txtPrecio.getText());
-        
+        try{
+            this.nombre = this.vProducto.pnlDatos.txtNombre.getText();
+            this.tipo = (String)this.vProducto.pnlDatos.cbTipo.getSelectedItem();
+            this.descripcion = this.vProducto.pnlDatos.txtDescripcion.getText();
+            this.stock = Integer.parseInt(this.vProducto.pnlDatos.txtStock.getText());
+            this.precio = Integer.parseInt(this.vProducto.pnlDatos.txtPrecio.getText());
+        }catch(NullPointerException e){
+            e.getCause();
+        }
         
     }
     
+    /**
+     * Metodo para agregar un tipo de producto. 
+     * @param tipo
+     */
     public void setTipo(String tipo){
-         if(tipo != null){
-            this.listaTipoProductos.add(tipo);
-            Collections.sort(this.listaTipoProductos);
-            this.vProducto.pnlDatos.cbTipo.removeAllItems();
-            for(String l:listaTipoProductos){
-            this.vProducto.pnlDatos.cbTipo.addItem(l);
-            }
-             System.out.println("Tipo: "+tipo+" agregado.");
-        }else{
-            System.out.println("null");
-        } 
+        try{
+            if(tipo != null){
+               this.listaTipoProductos.add(tipo);
+               Collections.sort(this.listaTipoProductos);
+               this.vProducto.pnlDatos.cbTipo.removeAllItems();
+               for(String l:listaTipoProductos){
+               this.vProducto.pnlDatos.cbTipo.addItem(l);
+               }
+                System.out.println("Tipo: "+tipo+" agregado.");
+            }else{
+               System.out.println("null");
+            } 
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }  
     
+    /**
+     * Metodo para editar el tipo de producto seleccionado. 
+     * @param tipoEditado
+     */
     public void editarTipo(String tipoEditado){
-         if(tipoEditado != null){
-             this.eliminarTipo();
-             this.setTipo(tipoEditado);
-         }else{
-            System.out.println("null");
-        } 
+        try{
+            if(tipoEditado != null){
+                this.eliminarTipo();
+                this.setTipo(tipoEditado);
+            }else{
+               System.out.println("null");
+            } 
+        }catch(NullPointerException e){
+            e.getCause();
+        }
     }
     
+    /**
+     * Metodo para eliminar el tipo producto seleccionado. 
+     */
     public void eliminarTipo(){
-        for(int i=0; i<listaTipoProductos.size(); i++){
-            if((String)this.vProducto.pnlDatos.cbTipo.getSelectedItem() == this.listaTipoProductos.get(i)){
-                this.listaTipoProductos.remove(i);
+        try{
+            for(int i=0; i<listaTipoProductos.size(); i++){
+
+                if((String)this.vProducto.pnlDatos.cbTipo.getSelectedItem() == this.listaTipoProductos.get(i)){
+                    this.listaTipoProductos.remove(i);
+                }
             }
+            this.vProducto.pnlDatos.cbTipo.removeItemAt(this.vProducto.pnlDatos.cbTipo.getSelectedIndex());
+        }catch(NullPointerException e){
+            e.getCause();
         }
-        this.vProducto.pnlDatos.cbTipo.removeItemAt(this.vProducto.pnlDatos.cbTipo.getSelectedIndex());
     }
     
 }

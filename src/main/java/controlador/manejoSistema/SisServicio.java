@@ -18,6 +18,12 @@ public class SisServicio {
     private String descripcion;
     private int precio;
     
+    
+    /**
+     * Metodo para iniciar la ventana de Servicios, se desplega con o sin info segun se requiera.
+     * @param btnSeleccionado
+     * @param p 
+     */
     public void iniciarServicios(int btnSeleccionado, PestagnasInicio p){
         
         int index = p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow();
@@ -29,44 +35,69 @@ public class SisServicio {
                 
     }
     
+    /**
+     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     * @param index 
+     */
     public void setDatosServicio(int index){
-        Servicio s = this.listaServicios.get(index);
+        if(!listaServicios.isEmpty()){
+            Servicio s = this.listaServicios.get(index);
                         
-        this.vServicio = new VentanaServicio(s, 2);                        
+            this.vServicio = new VentanaServicio(s, 2);  
+        }                              
     }
     
+    /**
+     * Metodo para crear un Servicio nuevo.
+     * @param p 
+     */
     public void crearServicio(PestagnasInicio p){
         
-        this.getAllDataServicio();
-        
-        Servicio s = new Servicio(
-                this.nombre,
-                this.descripcion,
-                this.precio
-        );
-        
-        this.listaServicios.add(s);
-        
-        Object[] fila = new Object[3];
-        fila[0] = s.getNombre();
-        fila[1] = s.getDescripcion();
-        fila[2] = s.getPrecio();
-        p.pFicheros.pServicios.pnlTabla.modelo.addRow(fila);
+        try{
+            this.getAllDataServicio();
+
+            Servicio s = new Servicio(
+                    this.nombre,
+                    this.descripcion,
+                    this.precio
+            );
+
+            this.listaServicios.add(s);
+
+            Object[] fila = new Object[3];
+            fila[0] = s.getNombre();
+            fila[1] = s.getDescripcion();
+            fila[2] = s.getPrecio();
+            p.pFicheros.pServicios.pnlTabla.modelo.addRow(fila);
+        }catch(NullPointerException e){
+            e.getCause();
+        }
         
     }
     
+    /**
+     * Metodo para editar un Servicio ya exitente.
+     * @param p 
+     */
     public void editarServicio(int index, PestagnasInicio p){
         
-        this.getAllDataServicio();
+        try{
+            this.getAllDataServicio();
+
+            if(!this.listaServicios.isEmpty()){
+                this.listaServicios.get(index).setNombre(this.nombre);
+                this.listaServicios.get(index).setDescripcion(this.descripcion);
+                this.listaServicios.get(index).setPrecio(this.precio);
+
+                Servicio s = this.listaServicios.get(index);
+                p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getNombre(), index, 0);
+                p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getDescripcion(), index, 1);
+                p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getPrecio(), index, 2);  
+            }
+        }catch(NullPointerException e){
+            e.getCause();
+        }
         
-        this.listaServicios.get(index).setNombre(this.nombre);
-        this.listaServicios.get(index).setDescripcion(this.descripcion);
-        this.listaServicios.get(index).setPrecio(this.precio);
-        
-        Servicio s = this.listaServicios.get(index);
-        p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getNombre(), index, 0);
-        p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getDescripcion(), index, 1);
-        p.pFicheros.pServicios.pnlTabla.modelo.setValueAt(s.getPrecio(), index, 2);
     }
     
     /**
@@ -74,15 +105,26 @@ public class SisServicio {
      * @param p 
      */
     public void eliminarServicio(PestagnasInicio p){
-        this.listaServicios.remove(p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow());
-        p.pFicheros.pServicios.pnlTabla.modelo.removeRow(p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow());
+        try{
+            this.listaServicios.remove(p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow());
+            p.pFicheros.pServicios.pnlTabla.modelo.removeRow(p.pFicheros.pServicios.pnlTabla.tabla.getSelectedRow());
+        }catch(Exception e){
+            e.getCause();
+        }
     }
     
+    /**
+     * Metodo para obtener la info del Servicio. 
+     */
     public void getAllDataServicio(){
         
-        this.nombre = this.vServicio.pnlDatosS.txtNombre.getText();
-        this.descripcion = this.vServicio.pnlDatosS.txtDescripcion.getText();
-        this.precio = Integer.parseInt(this.vServicio.pnlDatosS.txtPrecio.getText());
+        try{
+            this.nombre = this.vServicio.pnlDatosS.txtNombre.getText();
+            this.descripcion = this.vServicio.pnlDatosS.txtDescripcion.getText();
+            this.precio = Integer.parseInt(this.vServicio.pnlDatosS.txtPrecio.getText());
+        }catch(NullPointerException e){
+            e.getCause();
+        }
         
     }
     
