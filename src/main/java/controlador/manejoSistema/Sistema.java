@@ -67,8 +67,8 @@ public class Sistema {
         this.sProductos.iniciarProductos(2, this.pPestagnas);
         this.sServicio.iniciarServicios(2, this.pPestagnas);
         this.sDirectorio.iniciarDirectorio();
-        this.sTratamiento.iniciarTratamiento(this.sFichaPaciente, this.sFichaPaciente.comparar(pPestagnas));
-        this.sInsumos.iniciarInsumos(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());                  
+        this.sTratamiento.iniciarTratamiento(this.sFichaPaciente, 0);
+        this.sInsumos.iniciarInsumos(this.sFichaPaciente,  0);                  
     }                
     
     /**

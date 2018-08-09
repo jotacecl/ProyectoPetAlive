@@ -3,7 +3,6 @@ package controlador.manejoSistema;
 import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
 import java.util.Collections;
-import modelo.Cliente;
 import modelo.Paciente;
 import vista.vistaFichaPaciente.VentanaFichaPaciente;
 import vista.vistaInicio.PestagnasInicio;

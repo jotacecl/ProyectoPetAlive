@@ -145,7 +145,7 @@ public class Paciente {
         this.rutCliente = rutCliente;
         this.tamannoJaula = tamannoJaula;
         this.nroJaula = nroJaula;
-        this.antecedentes = antecedentes;
+        this.antecedentes = antecedentes;        
     }                  
     
 }

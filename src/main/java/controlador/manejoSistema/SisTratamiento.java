@@ -17,13 +17,12 @@ public class SisTratamiento {
      * @param index
      * @param sFP 
      */
-    public void iniciarTratamiento(SisFichaPaciente sFP, int index){
-        
-        if(sFP.listaPacientes.size()!=0){
-            this.getTratamiento(sFP, index);   
-        }else{
-           this.vTrat = new VentanaTratamiento(2, ""); 
-        }                   
+    public void iniciarTratamiento(SisFichaPaciente sFP, int index){        
+            if(sFP.listaPacientes.size()!=0){
+                this.getTratamiento(sFP, index);   
+            }else{
+               this.vTrat = new VentanaTratamiento(2, ""); 
+            }           
     }
     
     /**
@@ -31,7 +30,8 @@ public class SisTratamiento {
      * @param sFP
      * @param index
      */
-    public void getTratamiento(SisFichaPaciente sFP, int index){                           
+    public void getTratamiento(SisFichaPaciente sFP, int index){  
+        try{
         if(!sFP.listaPacientes.isEmpty()){
             if(sFP.listaPacientes.get(index).getTratamiento() == null){
                this.vTrat = new VentanaTratamiento(2, "");
@@ -40,6 +40,9 @@ public class SisTratamiento {
                this.vTrat = new VentanaTratamiento(1, this.texto);
             }     
         }                              
+        }catch(Exception e){
+            e.getCause();
+        }
     }        
     
     /**

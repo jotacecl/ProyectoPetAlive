@@ -27,12 +27,12 @@ public class SisInsumos {
      * @param sFP
      * @param index
      */
-    public void iniciarInsumos(SisFichaPaciente sFP, int index) {
-        if (sFP.listaPacientes.size() != 0 && sFP.listaPacientes.get(index).getListaInsumos() != null) {
-            this.setDatosInsumos(sFP, index);
-        } else {
-            this.vInsumos = new VentanaInsumos();
-        }
+    public void iniciarInsumos(SisFichaPaciente sFP, int index) {        
+            if (sFP.listaPacientes.size() != 0) {
+                this.setDatosInsumos(sFP, index);
+            } else {
+                this.vInsumos = new VentanaInsumos();
+            }        
     }
 
     /**
