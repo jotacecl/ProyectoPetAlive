@@ -129,10 +129,7 @@ public class Paciente {
 
     public void setCostoInsumos(int costoInsumos) {
         this.costoInsumos = costoInsumos;
-    }
-    
-    public Paciente() {
-    }   
+    }          
 
     public Paciente( String nombre, String especie, String raza, String color, String fNacimiento, String sexo, String internado, String rutCliente, String tamannoJaula, int nroJaula, String antecedentes) {       
         this.nombre = nombre;

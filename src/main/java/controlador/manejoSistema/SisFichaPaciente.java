@@ -72,13 +72,13 @@ public class SisFichaPaciente {
 
             this.antMed = this.listaPacientes.get(index).getAntecedentes();
 
-            if (this.internado.equals("si")) {
+            if (p.getInternado().equals("si")) {
                 this.vFPaciente = new VentanaFichaPaciente(
                         p,
                         true,
                         2);
                 this.vFPaciente.pnlDatos.grupoRB2.setSelected(this.vFPaciente.pnlDatos.rbSi.getModel(), true);
-            } else if (this.internado.equals("no")) {
+            } else if (p.getInternado().equals("no")) {
                 this.vFPaciente = new VentanaFichaPaciente(
                         p,
                         false,
@@ -86,9 +86,9 @@ public class SisFichaPaciente {
                 this.vFPaciente.pnlDatos.grupoRB2.setSelected(this.vFPaciente.pnlDatos.rbNo.getModel(), true);
             }
 
-            if (this.sexo.equals("macho")) {
+            if (p.getSexo().equals("macho")) {
                 this.vFPaciente.pnlDatos.grupoRB.setSelected(this.vFPaciente.pnlDatos.rbMacho.getModel(), true);
-            } else if (this.sexo.equals("hembra")) {
+            } else if (p.getSexo().equals("hembra")) {
                 this.vFPaciente.pnlDatos.grupoRB.setSelected(this.vFPaciente.pnlDatos.rbHembra.getModel(), true);
             }
 
@@ -96,17 +96,17 @@ public class SisFichaPaciente {
             for (String l : listaEspecies) {
                 this.vFPaciente.pnlDatos.cbTipo.addItem(l);
             }
-            this.vFPaciente.pnlDatos.cbTipo.setSelectedItem(this.especie);
+            this.vFPaciente.pnlDatos.cbTipo.setSelectedItem(p.getEspecie());
 
-            this.vFPaciente.pnlDatos.cbTJaula.setSelectedItem(this.tamannoJaula);
+            this.vFPaciente.pnlDatos.cbTJaula.setSelectedItem(p.getTamannoJaula());
             this.vFPaciente.pnlDatos.cbNJaula.removeAllItems();
 
             if (this.nroJaula == 0) {
                 this.vFPaciente.pnlDatos.cbNJaula.addItem(1);
                 this.vFPaciente.pnlDatos.cbNJaula.setSelectedItem(1);
             } else {
-                this.vFPaciente.pnlDatos.cbNJaula.addItem(this.nroJaula);
-                this.vFPaciente.pnlDatos.cbNJaula.setSelectedItem(this.nroJaula);
+                this.vFPaciente.pnlDatos.cbNJaula.addItem(p.getNroJaula());
+                this.vFPaciente.pnlDatos.cbNJaula.setSelectedItem(p.getNroJaula());
             }
         } catch (Exception e) {
             e.getCause();
@@ -199,7 +199,8 @@ public class SisFichaPaciente {
                 pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula() + " " + p.getNroJaula(), auxIndex, 7);
             }
             mD.escritura(listaPacientes, RUTA + ARCHIVO1);
-
+            mD.escritura(this.listaEspecies, RUTA+ARCHIVO2);
+            
         } catch (NullPointerException e) {
             e.getCause();
         }
