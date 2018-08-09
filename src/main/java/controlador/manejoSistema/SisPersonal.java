@@ -108,24 +108,25 @@ public class SisPersonal {
                         rutPart2,
                         rutPart3,
                         rutPart4);
-            }
+                
+                this.vPersonal.pnlDatos.cbCiudad.removeAllItems();
+                for (Object l : listaCiudades) {
+                    this.vPersonal.pnlDatos.cbCiudad.addItem(l);
+                }
+                this.vPersonal.pnlDatos.cbRegion.removeAllItems();
+                for (Object l : listaRegiones) {
+                    this.vPersonal.pnlDatos.cbRegion.addItem(l);
+                }
+                this.vPersonal.pnlDatos.cbCargo.removeAllItems();
+                for (String l : listaCargos) {
+                    this.vPersonal.pnlDatos.cbCargo.addItem(l);
+                }
 
-            this.vPersonal.pnlDatos.cbCiudad.removeAllItems();
-            for (Object l : listaCiudades) {
-                this.vPersonal.pnlDatos.cbCiudad.addItem(l);
-            }
-            this.vPersonal.pnlDatos.cbRegion.removeAllItems();
-            for (Object l : listaRegiones) {
-                this.vPersonal.pnlDatos.cbRegion.addItem(l);
-            }
-            this.vPersonal.pnlDatos.cbCargo.removeAllItems();
-            for (String l : listaCargos) {
-                this.vPersonal.pnlDatos.cbCargo.addItem(l);
-            }
-
-            this.vPersonal.pnlDatos.cbCiudad.setSelectedItem(ciudad);
-            this.vPersonal.pnlDatos.cbRegion.setSelectedItem(region);
-            this.vPersonal.pnlDatos.cbCargo.setSelectedItem(cargo);
+                this.vPersonal.pnlDatos.cbCiudad.setSelectedItem(p.getCiudad());
+                this.vPersonal.pnlDatos.cbRegion.setSelectedItem(p.getRegion());
+                this.vPersonal.pnlDatos.cbCargo.setSelectedItem(p.getCargo());
+                
+            }           
         } catch (NullPointerException e) {
             e.getCause();
         }

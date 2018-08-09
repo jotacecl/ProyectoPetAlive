@@ -4,7 +4,6 @@ import controlador.manejoArchivo.ManejoDeDatos;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import modelo.Personal;
 import vista.vistaInicio.PestagnasInicio;
 
 /**
@@ -32,8 +31,8 @@ public class Sistema {
     private final String RUTA = "data\\config\\";
     private final String ARCHIVO1 = "ciudades.json";
     private final String ARCHIVO2 = "regiones.json";
-    public final ArrayList<String> listaCiudades = new ArrayList<>();
-    public final ArrayList<String> listaRegiones = new ArrayList<>();
+    public ArrayList<String> listaCiudades = new ArrayList<>();
+    public ArrayList<String> listaRegiones = new ArrayList<>();
 
     public boolean booleano;
 
@@ -228,29 +227,11 @@ public class Sistema {
         }
     }
     
-    public void refrescar(PestagnasInicio p) {
-        p.pFicheros.pPersonal.pnlTabla.modelo.setRowCount(0);
-        for (Personal personal : listaPersonal) {
-            Personal per = personal;
-
-            Object[] fila = new Object[]{
-                per.getNombre(),
-                per.getApellido(),
-                per.getRut(),
-                per.getCiudad(),
-                per.getTelefono(),
-                per.getMovil(),
-                per.getEmail(),
-                per.getCargo()
-            };
-            p.pFicheros.pPersonal.pnlTabla.modelo.addRow(fila);
-        }
-    }
+    
     public void cargarDatosCiudades(PestagnasInicio p) {
         ArrayList<String> aux = mD.leerArchivoArrayString(RUTA + ARCHIVO1);
         if (aux != null) {
             this.listaCiudades = aux;
-            this.refrescar(p);
         }
     }
     
@@ -258,7 +239,6 @@ public class Sistema {
         ArrayList<String> aux = mD.leerArchivoArrayString(RUTA + ARCHIVO2);
         if (aux != null) {
             this.listaRegiones = aux;
-            this.refrescar(p);
         }
     }
 

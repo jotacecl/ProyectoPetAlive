@@ -18,6 +18,7 @@ public class SisConfigHorario {
 
     public SisConfigHorario() {
         this.mD = new ManejoDeDatos();
+        this.cargarDatos();
     }
     
     /**
@@ -35,14 +36,16 @@ public class SisConfigHorario {
                     datosHorario.get(7));
             
         }else{
-            this.vCHorario = new VentanaHorario(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0),
-                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(1),
-                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(2),
-                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(3),
-                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(4),
-                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(5),
-                    mD.leerArchivoArrayString(RUTA+ARCHIVO).get(6),
-            mD.leerArchivoArrayString(RUTA+ARCHIVO).get(7));
+            this.vCHorario = new VentanaHorario(
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+            );
         }  
     }
     
@@ -70,4 +73,14 @@ public class SisConfigHorario {
         }
     }
     
+    /**
+     * Metodo que permite cargar los datos desde un documento al programa cuando este se inicie.
+     * @param p 
+     */
+    public void cargarDatos(){
+        ArrayList<String> aux = mD.leerArchivoArrayString(RUTA+ARCHIVO);
+        if(aux!=null){
+            this.datosHorario = aux;
+        }
+    }
 }

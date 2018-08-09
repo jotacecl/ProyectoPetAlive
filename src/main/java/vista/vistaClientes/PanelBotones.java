@@ -29,7 +29,7 @@ public class PanelBotones extends JPanel {
         this.labDeuda = new JLabel("Deuda ");
         this.add(this.labDeuda);
         
-        this.txtDeuda = new JTextField(deuda);
+        this.txtDeuda = new JTextField(deuda, 2);
         this.txtDeuda.setEditable(false);
         this.add(this.txtDeuda);
         

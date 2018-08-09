@@ -104,8 +104,8 @@ public class SisCliente {
             for(Object l:listaRegiones){
             this.vCliente.pnlDatos.cbRegion.addItem(l);
             }
-            this.vCliente.pnlDatos.cbCiudad.setSelectedItem(ciudad);
-            this.vCliente.pnlDatos.cbRegion.setSelectedItem(region);
+            this.vCliente.pnlDatos.cbCiudad.setSelectedItem(c.getCiudad());
+            this.vCliente.pnlDatos.cbRegion.setSelectedItem(c.getRegion());
         }catch(Exception e){
             e.getCause();
         }

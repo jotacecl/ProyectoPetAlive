@@ -69,7 +69,7 @@ public class SisProducto {
             for(Object l:listaTipoProductos){
                         this.vProducto.pnlDatos.cbTipo.addItem(l);
                     }
-            this.vProducto.pnlDatos.cbTipo.setSelectedItem(tipo);
+            this.vProducto.pnlDatos.cbTipo.setSelectedItem(p.getTipo());
         }                
     }
     

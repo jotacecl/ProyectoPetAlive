@@ -39,19 +39,19 @@ public class SisConfigJaulas {
     }
     
     /**
-     * Metodo para ingresar los datos en los JTextfields de la ventana.
+     * Metodo para obtener los datos en los JTextfields de la ventana.
      */
     public void setDatosJaula(){
         try{
-        if(this.cantidadJaulas.isEmpty()){
-            for(int i = 0; i<3 ;i++){
-            this.cantidadJaulas.add("");            
+            if(this.cantidadJaulas.isEmpty()){
+                for(int i = 0; i<3 ;i++){
+                this.cantidadJaulas.add("");            
+                }
             }
-        }
-        this.cantidadJaulas.set(0, this.vCJaulas.pnlCJaulas.txtCL.getText());
-        this.cantidadJaulas.set(1, this.vCJaulas.pnlCJaulas.txtCM.getText());
-        this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText()); 
-        mD.escritura(this.cantidadJaulas, RUTA+ARCHIVO);
+            this.cantidadJaulas.set(0, this.vCJaulas.pnlCJaulas.txtCL.getText());
+            this.cantidadJaulas.set(1, this.vCJaulas.pnlCJaulas.txtCM.getText());
+            this.cantidadJaulas.set(2, this.vCJaulas.pnlCJaulas.txtCS.getText()); 
+            mD.escritura(this.cantidadJaulas, RUTA+ARCHIVO);
         }catch(Exception e){
             e.getCause();
         }
@@ -63,13 +63,13 @@ public class SisConfigJaulas {
      */
     public void actualizarJaulas(PestagnasInicio p){
         try{
-        p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(cantidadJaulas.get(0)));
-        p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(cantidadJaulas.get(1)));
-        p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(cantidadJaulas.get(2)));
-        p.pJaulas.pJaulas.removeAll();
-        p.pJaulas.pJaulas.updateUI();
-        p.pJaulas.pJaulas.repaint();
-        p.pJaulas.pJaulas.iniciarComponentes();
+            p.pJaulas.pJaulas.setCantidadJaulasL(Integer.valueOf(cantidadJaulas.get(0)));
+            p.pJaulas.pJaulas.setCantidadJaulasM(Integer.valueOf(cantidadJaulas.get(1)));
+            p.pJaulas.pJaulas.setCantidadJaulasS(Integer.valueOf(cantidadJaulas.get(2)));
+            p.pJaulas.pJaulas.removeAll();
+            p.pJaulas.pJaulas.updateUI();
+            p.pJaulas.pJaulas.repaint();
+            p.pJaulas.pJaulas.iniciarComponentes();
         }catch(Exception e){
             e.getCause();
         }
