@@ -4,6 +4,7 @@ package controlador.manejoSistema;
 import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
 import vista.vistaDirectorio.VentanaDirectorio;
+import vista.vistaInicio.PestagnasInicio;
 
 /**
  *
@@ -17,11 +18,10 @@ public class SisDirectorio {
    private final String ARCHIVO = "directorio.json";
    public ManejoDeDatos mD;
 
-    public SisDirectorio() {
+    public SisDirectorio(PestagnasInicio p) {
         this.mD = new ManejoDeDatos();
-    }
-   
-   
+        this.cargarDatos(p);
+    }      
    
    /**
     * Metodo para iniciar la ventana de Directorio.
@@ -29,10 +29,9 @@ public class SisDirectorio {
    public void iniciarDirectorio(){
        try{
         if(!this.almacenDirectorio.isEmpty()){           
-            this.vDirectorio = new VentanaDirectorio(this.almacenDirectorio.get(0));
-            this.vDirectorio = new VentanaDirectorio(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0));
+            this.vDirectorio = new VentanaDirectorio(this.almacenDirectorio.get(0));            
         }else{        
-            this.vDirectorio = new VentanaDirectorio(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0));
+            this.vDirectorio = new VentanaDirectorio("");
         }
        }catch(NullPointerException e){
            e.getCause();
@@ -43,6 +42,7 @@ public class SisDirectorio {
     * Metodo para ingresar los datos en los JTextfields de la ventana.
     * @param directorio 
     */
+   
    public void setDirectorio(String directorio){
        try {
            if(this.almacenDirectorio.isEmpty()){
@@ -54,6 +54,13 @@ public class SisDirectorio {
        } catch (NullPointerException e) {
            e.getCause();
        }       
-   }      
+   }
+   
+    public void cargarDatos(PestagnasInicio p){
+        ArrayList<String> aux = mD.leerArchivoArrayString(RUTA+ARCHIVO);         
+        if(aux!=null){
+            this.almacenDirectorio = aux;                        
+        }
+    }
           
 }

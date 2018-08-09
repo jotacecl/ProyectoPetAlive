@@ -53,7 +53,7 @@ public class Sistema {
         this.sCitas = new SisCitas();
         this.sProductos = new SisProducto();
         this.sServicio = new SisServicio();
-        this.sDirectorio = new SisDirectorio();
+        this.sDirectorio = new SisDirectorio(pPestagnas);
         this.sTratamiento = new SisTratamiento();
         this.sInsumos = new SisInsumos();
                 

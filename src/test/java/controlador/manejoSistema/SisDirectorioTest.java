@@ -19,7 +19,7 @@ public class SisDirectorioTest {
     
     public SisDirectorioTest() {
         this.sys = new Sistema();
-        this.sD = new SisDirectorio();
+        this.sD = new SisDirectorio(sys.pPestagnas);
     }
     
     @Test
