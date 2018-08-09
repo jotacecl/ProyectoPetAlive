@@ -14,7 +14,7 @@ import vista.vistaInicio.PestagnasInicio;
 public class SisFichaPaciente {
 
     public VentanaFichaPaciente vFPaciente;
-    private final ArrayList<String> listaEspecies = new ArrayList<>();
+    private ArrayList<String> listaEspecies = new ArrayList<>();
     public ArrayList<Paciente> listaPacientes = new ArrayList<>();
     public String nombreP;
     public String especie;
@@ -28,7 +28,8 @@ public class SisFichaPaciente {
     public String rut;
     private int nroJaula;
     private final String RUTA = "data\\config\\";
-    private final String ARCHIVO = "pacientes.json";
+    private final String ARCHIVO1 = "pacientes.json";
+    private final String ARCHIVO2 = "especies.json";
     private GestorDatos gDatos;
     public ManejoDeDatos mD;
     private int indice;
@@ -36,7 +37,8 @@ public class SisFichaPaciente {
     public SisFichaPaciente(PestagnasInicio p) {
         this.mD = new ManejoDeDatos();
         this.gDatos = new GestorDatos();
-        this.cargarDatos(p);
+        this.cargarDatosEspecie(p);
+        this.cargarDatosPaciente(p);
     }
 
     /**
@@ -136,7 +138,8 @@ public class SisFichaPaciente {
                         this.nroJaula,
                         this.antMed);
                 this.listaPacientes.add(p);
-                mD.escritura(listaPacientes, RUTA + ARCHIVO);
+                mD.escritura(listaPacientes, RUTA + ARCHIVO1);
+                mD.escritura(listaEspecies, RUTA+ARCHIVO2);
 
                 Object[] fila = new Object[]{
                     p.getNombre(),
@@ -162,12 +165,14 @@ public class SisFichaPaciente {
      * @param pi
      */
     public void editarFPaciente(PestagnasInicio pi) {
+        
         try {
             int auxIndex = pi.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow();
 
             this.getAllDataPaciente();
-
+            
             if (!this.listaPacientes.isEmpty()) {
+                
                 this.listaPacientes.get(this.indice).setNombre(this.nombreP);
                 this.listaPacientes.get(this.indice).setEspecie(this.especie);
                 this.listaPacientes.get(this.indice).setRaza(this.raza);
@@ -183,7 +188,7 @@ public class SisFichaPaciente {
                 this.listaPacientes.get(this.indice).setAntecedentes(this.antMed);
 
                 Paciente p = this.listaPacientes.get(this.indice);
-
+                
                 pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getNombre(), auxIndex, 0);
                 pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getEspecie(), auxIndex, 1);
                 pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getRaza(), auxIndex, 2);
@@ -193,7 +198,7 @@ public class SisFichaPaciente {
                 pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getInternado(), auxIndex, 6);
                 pi.pFicheros.pPacientes.pnlTabla.modelo.setValueAt(p.getTamannoJaula() + " " + p.getNroJaula(), auxIndex, 7);
             }
-            mD.escritura(listaPacientes, RUTA + ARCHIVO);
+            mD.escritura(listaPacientes, RUTA + ARCHIVO1);
 
         } catch (NullPointerException e) {
             e.getCause();
@@ -210,7 +215,7 @@ public class SisFichaPaciente {
             this.indice = comparar(p);
             this.listaPacientes.remove(this.indice);
             p.pFicheros.pPacientes.pnlTabla.modelo.removeRow(p.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
-            mD.escritura(listaPacientes, RUTA + ARCHIVO);
+            mD.escritura(listaPacientes, RUTA + ARCHIVO1);
         } catch (Exception e) {
             e.getCause();
         }
@@ -265,6 +270,7 @@ public class SisFichaPaciente {
             this.vFPaciente.pnlDatos.cbTipo.removeAllItems();
             for (String l : listaEspecies) {
                 this.vFPaciente.pnlDatos.cbTipo.addItem(l);
+                mD.escritura(listaEspecies, RUTA+ARCHIVO2);
             }
             System.out.println("Especie: " + especie + " agregada.");
         } else {
@@ -284,12 +290,14 @@ public class SisFichaPaciente {
         } else {
             System.out.println("null");
         }
+        mD.escritura(this.listaEspecies, RUTA+ARCHIVO2);
     }
 
     /**
      * Metodo para eliminar la especie seleccionada en el JComboBox
      */
     public void eliminarEspecie() {
+        this.listaEspecies = mD.leerArchivoArrayString(RUTA+ARCHIVO2);
         try {
             for (int i = 0; i < listaEspecies.size(); i++) {
                 if ((String) this.vFPaciente.pnlDatos.cbTipo.getSelectedItem() == this.listaEspecies.get(i)) {
@@ -297,6 +305,7 @@ public class SisFichaPaciente {
                 }
             }
             this.vFPaciente.pnlDatos.cbTipo.removeItemAt(this.vFPaciente.pnlDatos.cbTipo.getSelectedIndex());
+            mD.escritura(listaEspecies, RUTA+ARCHIVO2);
         } catch (NullPointerException e) {
             e.getCause();
         }
@@ -410,12 +419,19 @@ public class SisFichaPaciente {
         return -1;
     }
 
-    public void cargarDatos(PestagnasInicio p) {
-        ArrayList<Paciente> aux = mD.leerArchivoListaPaciente(RUTA + ARCHIVO);
+    public void cargarDatosPaciente(PestagnasInicio p) {
+        ArrayList<Paciente> aux = mD.leerArchivoListaPaciente(RUTA + ARCHIVO1);
         if (aux != null) {
             this.listaPacientes = aux;
             this.refrescar(p);
         }
     }
-
+    
+    public void cargarDatosEspecie(PestagnasInicio p) {
+        ArrayList<String> aux = mD.leerArchivoArrayString(RUTA + ARCHIVO2);
+        if (aux != null) {
+            this.listaEspecies = aux;
+            this.refrescar(p);
+        }
+    }
 }
