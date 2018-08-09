@@ -249,7 +249,7 @@ public class SisProducto {
     }
     
     public void cargarDatosTipoProducto(PestagnasInicio p) {
-        ArrayList<String> aux = mD.leerArchivoArrayString(RUTA + ARCHIVO1);
+        ArrayList<String> aux = mD.leerArchivoArrayString(RUTA + ARCHIVO2);
         if (aux != null) {
             this.listaTipoProductos = aux;
             this.refrescar(p);

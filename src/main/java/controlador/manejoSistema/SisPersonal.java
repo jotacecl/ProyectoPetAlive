@@ -153,6 +153,7 @@ public class SisPersonal {
             this.listaPersonal.add(p);
             mD.escritura(listaPersonal, RUTA+ARCHIVO1);
             mD.escritura(listaCargos, RUTA+ARCHIVO2);
+            
 
             Object[] fila = new Object[]{
                 p.getNombre(),
