@@ -44,11 +44,11 @@ public class Sistema {
         this.pPestagnas = new PestagnasInicio();
         
         this.sDatosClinica = new SisDatosClinica();
-        this.sConfigJaulas = new SisConfigJaulas(pPestagnas);
+        this.sFichaPaciente = new SisFichaPaciente(pPestagnas);
+        this.sConfigJaulas = new SisConfigJaulas(pPestagnas, sFichaPaciente);
         this.sConfigHorario = new SisConfigHorario();
         this.sCliente = new SisCliente(pPestagnas);
-        this.gDatos = new GestorDatos();
-        this.sFichaPaciente = new SisFichaPaciente(pPestagnas);
+        this.gDatos = new GestorDatos();      
         this.sPersonal = new SisPersonal(pPestagnas);
         this.sCitas = new SisCitas(pPestagnas);
         this.sProductos = new SisProducto(pPestagnas);

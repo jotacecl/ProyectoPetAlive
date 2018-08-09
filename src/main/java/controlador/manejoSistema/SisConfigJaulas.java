@@ -3,6 +3,7 @@ package controlador.manejoSistema;
 
 import controlador.manejoArchivo.ManejoDeDatos;
 import java.util.ArrayList;
+import modelo.Paciente;
 import vista.vistaJaulas.VentanaCJaulas;
 import vista.vistaInicio.PestagnasInicio;
 
@@ -18,9 +19,9 @@ public class SisConfigJaulas {
     private final String RUTA = "data\\config\\";
     private final String ARCHIVO = "jaulas.json";
 
-    public SisConfigJaulas(PestagnasInicio p) {
+    public SisConfigJaulas(PestagnasInicio p, SisFichaPaciente sFP) {
         this.mD = new ManejoDeDatos();
-        this.cargarDatos(p);
+        this.cargarDatos(p, sFP);
     }        
     
     /**
@@ -106,16 +107,33 @@ public class SisConfigJaulas {
         }
      }
     
+    /**
+     * Metodo que permite pintar las jaulas ocupadas al cargarse los datos
+     * de un documento.
+     * @param sFP
+     * @param p 
+     */
+    public void cargarJaulaOcupada(SisFichaPaciente sFP, PestagnasInicio p){
+        for(Paciente paciente: sFP.listaPacientes){
+            if(paciente.getInternado().equals("si")){
+                this.setJaulaOcupada(true, paciente.getTamannoJaula(), paciente.getNroJaula(), p);
+            }else if(paciente.getInternado().equals("no")){
+                this.setJaulaOcupada(false, paciente.getTamannoJaula(), paciente.getNroJaula(), p);
+            }
+        }       
+    }
+    
     
     /**
      * Metodo que permite cargar los datos desde un documento al programa cuando este se inicie.
      * @param p 
      */
-    public void cargarDatos(PestagnasInicio p){
+    public void cargarDatos(PestagnasInicio p, SisFichaPaciente sFP){
         ArrayList<String> aux = mD.leerArchivoArrayString(RUTA+ARCHIVO);         
         if(aux!=null){
             this.cantidadJaulas = aux;
             this.actualizarJaulas(p);
+            this.cargarJaulaOcupada(sFP, p);
         }             
         
     }

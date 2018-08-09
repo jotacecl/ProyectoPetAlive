@@ -31,7 +31,7 @@ public class SistemaTest {
     }
     
     @Test
-    public void elimininarCiudadTest(){
+    public void eliminarCiudadTest(){
         sys.eliminarCiudad(0);
     }
     

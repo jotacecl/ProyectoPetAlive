@@ -18,7 +18,7 @@ public class SisConfigJaulasTest {
 
     public SisConfigJaulasTest() {
         this.sys = new Sistema();
-        this.sCJ = new SisConfigJaulas(this.sys.pPestagnas);
+        this.sCJ = new SisConfigJaulas(this.sys.pPestagnas, this.sys.sFichaPaciente);
     }
             
     @Test
@@ -38,7 +38,7 @@ public class SisConfigJaulasTest {
     
     @Test
     public void cargarDatosTest(){
-        this.sCJ.cargarDatos(this.sys.pPestagnas);
+        this.sCJ.cargarDatos(this.sys.pPestagnas,sys.sFichaPaciente);
     }
     
 }
