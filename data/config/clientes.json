@@ -1,1 +1,1 @@
-[{"deuda":0,"nombre":"Juan","apellido":"Toro","rut":"11.111.111-1","direccion":"Dir","ciudad":"Victoria","region":"Araucania","telefono":1,"movil":2,"email":"Ee"}]
+[{"deuda":12,"nombre":"Juan","apellido":"Toro","rut":"11.111.111-1","direccion":"Dir","ciudad":"Victoria","region":"Arrr","telefono":1,"movil":2,"email":"Ee"},{"deuda":0,"nombre":"Test","apellido":"Man","rut":"22.222.222-2","direccion":"DirTest","ciudad":"Victoria","region":"Arrr","telefono":0,"movil":0,"email":"EmailTest"}]

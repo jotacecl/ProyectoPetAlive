@@ -31,8 +31,8 @@ public class SisCliente {
     private String deuda;
     private GestorDatos gDatos;
     private ArrayList<String> partesRut = new ArrayList<>();
-    private final String RUTA = "data\\config\\";
-    private final String ARCHIVO = "clientes.json";
+    public final String RUTA = "data\\config\\";
+    public final String ARCHIVO = "clientes.json";
     public ManejoDeDatos mD;
     private int indice;
 

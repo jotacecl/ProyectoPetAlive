@@ -3,6 +3,7 @@ package vista.vistaInsumos;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,7 +35,12 @@ public class PanelTablaIns extends JPanel {
         Font negrita = new Font("Arial", Font.BOLD, 16);
         
         JPanel pnlTabla = new JPanel();
-        this.modelo = new DefaultTableModel();
+        pnlTabla.setLayout(new GridLayout());
+                
+        this.modelo = new DefaultTableModel(){
+            public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+        };
+        
         this.tabla = new JTable();
         this.tabla.setModel(modelo);
         this.modelo.addColumn("Nombre");

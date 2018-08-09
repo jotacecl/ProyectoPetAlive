@@ -1,7 +1,6 @@
 
 package vista.vistaInsumos;
 
-
 import javax.swing.Box;
 import javax.swing.JFrame;
 
@@ -20,7 +19,8 @@ public class VentanaInsumos extends JFrame{
         this.iniciarComponentes();
     }
     
-    private void iniciarComponentes(){
+    private void iniciarComponentes(){      
+        
         Box caja = Box.createVerticalBox();
         
         this.pnlInsumo = new PanelIngresoIns();

@@ -1,8 +1,6 @@
 package controlador.manejoSistema;
 
-import controlador.manejoArchivo.ManejoDeDatos;
 import modelo.Insumo;
-import vista.vistaInicio.PestagnasInicio;
 import vista.vistaInsumos.VentanaInsumos;
 
 /**
@@ -212,6 +210,7 @@ public class SisInsumos {
         for (int i = 0; i < sC.listaClientes.size(); i++) {
             if (sFP.listaPacientes.get(index).getRutCliente().equals(sC.listaClientes.get(i).getRut())) {
                 sC.listaClientes.get(i).setDeuda(valor);
+                sC.mD.escritura(sC.listaClientes.get(i),sC.RUTA+sC.ARCHIVO);
                 break;
             }
         }
