@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import modelo.Cliente;
+import modelo.Paciente;
 
 /**
  *
@@ -62,6 +63,13 @@ public class ManejoDeDatos {
         Gson gson = new Gson();
         String datos = lector(direccion);
         ArrayList <Cliente> array = gson.fromJson(datos, new TypeToken<List<Cliente>>() {}.getType());
+        return array;
+    }
+    
+    public ArrayList<Paciente> leerArchivoListaPaciente (String direccion){
+        Gson gson = new Gson();
+        String datos = lector(direccion);
+        ArrayList <Paciente> array = gson.fromJson(datos, new TypeToken<List<Paciente>>() {}.getType());
         return array;
     }
     

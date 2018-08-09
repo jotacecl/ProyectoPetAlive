@@ -48,7 +48,7 @@ public class Sistema {
         this.sConfigHorario = new SisConfigHorario();
         this.sCliente = new SisCliente(pPestagnas);
         this.gDatos = new GestorDatos();
-        this.sFichaPaciente = new SisFichaPaciente();
+        this.sFichaPaciente = new SisFichaPaciente(pPestagnas);
         this.sPersonal = new SisPersonal();
         this.sCitas = new SisCitas();
         this.sProductos = new SisProducto();
@@ -67,7 +67,7 @@ public class Sistema {
         this.sProductos.iniciarProductos(2, this.pPestagnas);
         this.sServicio.iniciarServicios(2, this.pPestagnas);
         this.sDirectorio.iniciarDirectorio();
-        this.sTratamiento.iniciarTratamiento(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());
+        this.sTratamiento.iniciarTratamiento(this.sFichaPaciente, this.sFichaPaciente.comparar(pPestagnas));
         this.sInsumos.iniciarInsumos(this.sFichaPaciente, this.pPestagnas.pFicheros.pPacientes.pnlTabla.tabla.getSelectedRow());                  
     }                
     

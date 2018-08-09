@@ -177,7 +177,7 @@ public class SisCliente {
                 p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getMovil(), auxIndex, 5);
                 p.pFicheros.pClientes.pnlTabla.modelo.setValueAt(c.getEmail(), auxIndex, 6);
             }
-            
+            mD.escritura(listaClientes, RUTA+ARCHIVO);
         }catch(NullPointerException e){
             e.getCause();
         }catch(NumberFormatException n){

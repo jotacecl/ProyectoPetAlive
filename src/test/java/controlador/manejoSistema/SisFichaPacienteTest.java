@@ -19,7 +19,7 @@ public class SisFichaPacienteTest {
     
     public SisFichaPacienteTest() {
         this.sys = new Sistema();
-        this.sFP = new SisFichaPaciente();
+        this.sFP = new SisFichaPaciente(sys.pPestagnas);
     }
     
     @Test
