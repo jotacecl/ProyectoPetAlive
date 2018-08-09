@@ -19,7 +19,7 @@ public class SisProductoTest {
     
     public SisProductoTest() {
         this.sys = new Sistema();
-        this.sP = new SisProducto();
+        this.sP = new SisProducto(sys.pPestagnas);
     }
     
     @Test

@@ -20,7 +20,7 @@ public class SisServicioTest {
     
     public SisServicioTest() {
         this.sys = new Sistema();
-        this.sT = new SisServicio();
+        this.sT = new SisServicio(sys.pPestagnas);
     }
     
     @Test

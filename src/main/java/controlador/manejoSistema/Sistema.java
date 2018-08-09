@@ -49,10 +49,10 @@ public class Sistema {
         this.sCliente = new SisCliente(pPestagnas);
         this.gDatos = new GestorDatos();
         this.sFichaPaciente = new SisFichaPaciente(pPestagnas);
-        this.sPersonal = new SisPersonal();
-        this.sCitas = new SisCitas();
-        this.sProductos = new SisProducto();
-        this.sServicio = new SisServicio();
+        this.sPersonal = new SisPersonal(pPestagnas);
+        this.sCitas = new SisCitas(pPestagnas);
+        this.sProductos = new SisProducto(pPestagnas);
+        this.sServicio = new SisServicio(pPestagnas);
         this.sDirectorio = new SisDirectorio(pPestagnas);
         this.sTratamiento = new SisTratamiento();
         this.sInsumos = new SisInsumos();

@@ -13,7 +13,7 @@ import vista.vistaInicio.PestagnasInicio;
 public class SisCitas {
 
     public VentanaCita vCitas;
-    public final ArrayList<Cita> listaCitas = new ArrayList<>();
+    public ArrayList<Cita> listaCitas = new ArrayList<>();
     private String paciente;
     private String rutCliente;
     private String fechaIngreso;
@@ -24,6 +24,14 @@ public class SisCitas {
     public ManejoDeDatos mD;
     private int indice;
 
+    public SisCitas(PestagnasInicio p) {
+        this.mD = new ManejoDeDatos();
+        this.cargarDatosCita(p);
+    }
+
+    
+    
+    
     /**
      * Metodo para iniciar la ventana de Citas, se desplega con o sin info segun
      * se requiera.
@@ -124,7 +132,7 @@ public class SisCitas {
                 p.pCitas.pnlTabla.modelo.setValueAt(c.getFechaCita(), auxIndex, 3);
                 p.pCitas.pnlTabla.modelo.setValueAt(c.getMotivoCita(), auxIndex, 4);
             }
-
+            mD.escritura(listaCitas, ARCHIVO);
         } catch (NullPointerException e) {
             e.getCause();
         }
@@ -141,6 +149,7 @@ public class SisCitas {
             this.indice = comparar(p);
             this.listaCitas.remove(this.indice);
             p.pCitas.pnlTabla.modelo.removeRow(p.pCitas.pnlTabla.tabla.getSelectedRow());
+            mD.escritura(listaCitas, ARCHIVO);
         } catch (Exception e) {
             e.getCause();
         }
@@ -242,6 +251,14 @@ public class SisCitas {
         }
 
         return -1;
+    }
+    
+    public void cargarDatosCita(PestagnasInicio p) {
+        ArrayList<Cita> aux = mD.leerArchivoListaCita(RUTA + ARCHIVO);
+        if (aux != null) {
+            this.listaCitas = aux;
+            this.refrescar(p);
+        }
     }
 
 }

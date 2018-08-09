@@ -20,7 +20,7 @@ public class SisPersonalTest {
     
     public SisPersonalTest() { 
         this.sys = new Sistema();
-        this.sP = new SisPersonal();
+        this.sP = new SisPersonal(sys.pPestagnas);
     }
     
     @Test

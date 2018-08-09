@@ -20,7 +20,7 @@ public class SisCitasTest {
     
     public SisCitasTest() {
         this.sys = new Sistema();
-        this.sC = new SisCitas();
+        this.sC = new SisCitas(sys.pPestagnas);
     }
     
     @Test

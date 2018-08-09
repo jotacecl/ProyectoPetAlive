@@ -10,8 +10,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import modelo.Cita;
 import modelo.Cliente;
 import modelo.Paciente;
+import modelo.Personal;
+import modelo.Producto;
+import modelo.Servicio;
 
 /**
  *
@@ -72,5 +76,35 @@ public class ManejoDeDatos {
         ArrayList <Paciente> array = gson.fromJson(datos, new TypeToken<List<Paciente>>() {}.getType());
         return array;
     }
+    
+    public ArrayList<Personal> leerArchivoListaPersonal (String direccion){
+        Gson gson = new Gson();
+        String datos = lector(direccion);
+        ArrayList <Personal> array = gson.fromJson(datos, new TypeToken<List<Personal>>() {}.getType());
+        return array;
+    }
+    
+    public ArrayList<Producto> leerArchivoListaProducto (String direccion){
+        Gson gson = new Gson();
+        String datos = lector(direccion);
+        ArrayList <Producto> array = gson.fromJson(datos, new TypeToken<List<Producto>>() {}.getType());
+        return array;
+    }
+    
+    public ArrayList<Servicio> leerArchivoListaServicio (String direccion){
+        Gson gson = new Gson();
+        String datos = lector(direccion);
+        ArrayList <Servicio> array = gson.fromJson(datos, new TypeToken<List<Servicio>>() {}.getType());
+        return array;
+    }
+    
+    public ArrayList<Cita> leerArchivoListaCita (String direccion){
+        Gson gson = new Gson();
+        String datos = lector(direccion);
+        ArrayList <Cita> array = gson.fromJson(datos, new TypeToken<List<Cita>>() {}.getType());
+        return array;
+    }
+    
+    
     
 }
