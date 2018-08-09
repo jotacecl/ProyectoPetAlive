@@ -20,7 +20,7 @@ public class SisClienteTest {
     
     public SisClienteTest() {
         this.sys = new Sistema();
-        this.sC = new SisCliente();
+        this.sC = new SisCliente(sys.pPestagnas);
     }
     
     @Test

@@ -2,6 +2,8 @@
 package controlador.manejoArchivo;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,7 +42,7 @@ public class ManejoDeDatos {
     }
     
     private static String lector(String direccion){
-        String datos="";
+        String datos = null;
         try {
             datos = new String(Files.readAllBytes(Paths.get(direccion)));
         } catch (IOException e) {
@@ -59,7 +61,7 @@ public class ManejoDeDatos {
     public ArrayList<Cliente> leerArchivoListaCliente (String direccion){
         Gson gson = new Gson();
         String datos = lector(direccion);
-        ArrayList <Cliente> array = gson.fromJson(datos, ArrayList.class);
+        ArrayList <Cliente> array = gson.fromJson(datos, new TypeToken<List<Cliente>>() {}.getType());
         return array;
     }
     

@@ -32,7 +32,7 @@ public class SisCliente {
     private GestorDatos gDatos;
     private ArrayList<String> partesRut = new ArrayList<>();
     private final String RUTA = "data\\config\\";
-    private final String ARCHIVO = "ListaClientes.json";
+    private final String ARCHIVO = "clientes.json";
     public ManejoDeDatos mD;
     private int indice;
 
@@ -129,6 +129,7 @@ public class SisCliente {
                                     Integer.parseInt(this.movil),
                                     this.email);
             this.listaClientes.add(c);
+            mD.escritura(listaClientes, RUTA +ARCHIVO);
 
             Object[] fila = new Object[]{
                         c.getNombre(),
@@ -138,9 +139,7 @@ public class SisCliente {
                         c.getTelefono(),
                         c.getMovil(),
                         c.getEmail()};        
-            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);
-            mD.escritura(listaClientes, RUTA +ARCHIVO);
-            
+            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);                        
         }catch(NullPointerException e){
             e.getCause();
         }catch(NumberFormatException n){
@@ -181,6 +180,8 @@ public class SisCliente {
             
         }catch(NullPointerException e){
             e.getCause();
+        }catch(NumberFormatException n){
+            n.getCause();
         }
         
     }
@@ -192,9 +193,9 @@ public class SisCliente {
     public void eliminarCliente(PestagnasInicio p){
         try{
             this.indice = comparar(p);
-            this.listaClientes.remove(this.indice);
-            mD.escritura(listaClientes, RUTA+ARCHIVO);
+            this.listaClientes.remove(this.indice);            
             p.pFicheros.pClientes.pnlTabla.modelo.removeRow(p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow());
+            mD.escritura(listaClientes, RUTA+ARCHIVO);
         }catch(Exception e){
             
         }
@@ -259,21 +260,26 @@ public class SisCliente {
      * @param p 
      */
     public void refrescar(PestagnasInicio p){
-        p.pFicheros.pClientes.pnlTabla.modelo.setRowCount(0);
-//        listaClientes = mD.leerArchivoListaCliente(RUTA+ARCHIVO);
-        for(Cliente cliente: listaClientes){
-            Cliente c = cliente;
-            
-            Object[] fila = new Object[]{
-                    c.getNombre(),
-                    c.getApellido(),
-                    c.getRut(),
-                    c.getCiudad(),
-                    c.getTelefono(),
-                    c.getMovil(),
-                    c.getEmail()};              
-            p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);
-        }                
+        try{
+            p.pFicheros.pClientes.pnlTabla.modelo.setRowCount(0);
+            for(Cliente cliente: listaClientes){
+                Cliente c = cliente;
+
+                Object[] fila = new Object[]{
+                        c.getNombre(),
+                        c.getApellido(),
+                        c.getRut(),
+                        c.getCiudad(),
+                        c.getTelefono(),
+                        c.getMovil(),
+                        c.getEmail()};              
+                p.pFicheros.pClientes.pnlTabla.modelo.addRow(fila);
+            }   
+        }catch(NullPointerException e){
+            e.getCause();
+        }catch(Exception n){
+            n.getCause();
+        }
     }
     
     /**
@@ -283,28 +289,32 @@ public class SisCliente {
      * @return 
      */
     public int comparar(PestagnasInicio p){
-        int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();                
-        if(p.pFicheros.pClientes.pnlTabla.modelo.getRowCount()!=0){
-            String aux1 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,0);
-            String aux2 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,1);
-            String aux3 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,2);
-            for(Cliente cliente: listaClientes){
-            if(aux1.equals(cliente.getNombre()) &&
-                aux2.equals(cliente.getApellido()) &&
-                    aux3.equals(cliente.getRut())){                
-                return listaClientes.indexOf(cliente);
+        try{
+            int index = p.pFicheros.pClientes.pnlTabla.tabla.getSelectedRow();                
+            if(p.pFicheros.pClientes.pnlTabla.modelo.getRowCount()!=0){
+                String aux1 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,0);
+                String aux2 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,1);
+                String aux3 = (String) p.pFicheros.pClientes.pnlTabla.modelo.getValueAt(index,2);
+                for(Cliente cliente: listaClientes){
+                if(aux1.equals(cliente.getNombre()) &&
+                    aux2.equals(cliente.getApellido()) &&
+                        aux3.equals(cliente.getRut())){                
+                    return listaClientes.indexOf(cliente);
+                    }
                 }
-            }
-        }       
+            }   
+        }catch(Exception e){
+            e.getCause();
+        }               
         return -1;
     }
-        public void cargarDatos(PestagnasInicio p){
+    
+    public void cargarDatos(PestagnasInicio p){
         ArrayList<Cliente> aux = mD.leerArchivoListaCliente(RUTA+ARCHIVO);         
         if(aux!=null){
             this.listaClientes = aux;
             this.refrescar(p);
-        }             
-        
+        }                     
     }
     
 }

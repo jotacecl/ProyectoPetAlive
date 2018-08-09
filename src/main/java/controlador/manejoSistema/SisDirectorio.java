@@ -26,12 +26,16 @@ public class SisDirectorio {
    /**
     * Metodo para iniciar la ventana de Directorio.
     */
-   public void iniciarDirectorio(){         
-       if(!this.almacenDirectorio.isEmpty()){           
-           this.vDirectorio = new VentanaDirectorio(this.almacenDirectorio.get(0));
-           this.vDirectorio = new VentanaDirectorio(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0));
-       }else{        
-           this.vDirectorio = new VentanaDirectorio(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0));
+   public void iniciarDirectorio(){
+       try{
+        if(!this.almacenDirectorio.isEmpty()){           
+            this.vDirectorio = new VentanaDirectorio(this.almacenDirectorio.get(0));
+            this.vDirectorio = new VentanaDirectorio(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0));
+        }else{        
+            this.vDirectorio = new VentanaDirectorio(mD.leerArchivoArrayString(RUTA+ARCHIVO).get(0));
+        }
+       }catch(NullPointerException e){
+           e.getCause();
        }
    }
    
@@ -46,11 +50,10 @@ public class SisDirectorio {
            }else{
                this.almacenDirectorio.set(0, directorio);
            }
-           
+           mD.escritura(almacenDirectorio, RUTA+ARCHIVO);
        } catch (NullPointerException e) {
            e.getCause();
-       }
-       mD.escritura(almacenDirectorio, RUTA+ARCHIVO);
+       }       
    }      
           
 }

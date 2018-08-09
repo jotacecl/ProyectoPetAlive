@@ -200,20 +200,23 @@ public class SisCitas {
      * @param p
      */
     public void refrescar(PestagnasInicio p) {
-        p.pCitas.pnlTabla.modelo.setRowCount(0);
-        for (Cita cita : listaCitas) {
-            Cita c = cita;
+        try{
+            p.pCitas.pnlTabla.modelo.setRowCount(0);
+            for (Cita cita : listaCitas) {
+                Cita c = cita;
 
-            Object[] fila = new Object[]{
-                c.getPaciente(),
-                c.getRutCliente(),
-                c.getFechaIngreso(),
-                c.getFechaCita(),
-                c.getMotivoCita()};
-            p.pCitas.pnlTabla.modelo.addRow(fila);
-        }
-        mD.escritura(listaCitas,RUTA+ARCHIVO);
-
+                Object[] fila = new Object[]{
+                    c.getPaciente(),
+                    c.getRutCliente(),
+                    c.getFechaIngreso(),
+                    c.getFechaCita(),
+                    c.getMotivoCita()};
+                p.pCitas.pnlTabla.modelo.addRow(fila);
+            }
+            mD.escritura(listaCitas,RUTA+ARCHIVO);
+        }catch(NullPointerException e){
+            e.getCause();
+        }        
     }
 
     /**
